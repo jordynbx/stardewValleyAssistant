@@ -10,3 +10,4 @@
 |2/7/21|Finish project README|.5|
 |2/7/21|Week 3 videos, activities, and exercise|7|
 |2/9/21|Wireframes, user stories, reflections, project plan|5|
+|2/14/21|Week 4 Hibernate Demo|4|
