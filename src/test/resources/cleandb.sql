@@ -1,0 +1,2 @@
+delete from item;
+INSERT INTO item VALUES (1, 'blue jazz', 'crop'),(2, 'cauliflower', 'crop'),(3, 'garlic', 'crop'),(4, 'salmonberry', 'forage'),(5, 'milk', 'animal product'),(6, 'strawberry', 'crop');
