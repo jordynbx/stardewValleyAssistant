@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ItemDaoTest {
 
@@ -33,5 +33,51 @@ public class ItemDaoTest {
         List<Item> items = dao.getAllItems();
         assertEquals(6, items.size());
     }
+
+    /**
+     * Verifies the get item by name search success
+     */
+    @Test
+    void getItemByNameSuccess() {
+        List<Item> items = dao.getItemByName("s");
+        assertEquals(2, items.size());
+    }
+
+    /**
+     * Verify successful insert of an item
+     */
+    @Test
+    void insertSuccess() {
+        Item newItem = new Item("egg", "animal product");
+        int id = dao.insert(newItem);
+        assertNotEquals(0,id);
+        Item insertedItem = dao.getById(id);
+        assertEquals(("egg"), insertedItem.getName());
+    }
+
+    /**
+     * Verify successful update of item
+     */
+    @Test
+    void updateSuccess() {
+        String newItemName = "melon";
+        Item itemToUpdate = dao.getById(2);
+        itemToUpdate.setName(newItemName);
+        dao.saveOrUpdate(itemToUpdate);
+        Item retrievedItem = dao.getById(2);
+        assertEquals(newItemName, retrievedItem.getName());
+    }
+
+    /**
+     * verify successful delete of an item
+     */
+    @Test
+    void deleteSuccess() {
+        dao.delete(dao.getById(3));
+        assertNull(dao.getById(3));
+    }
+
+
+
 
 }
