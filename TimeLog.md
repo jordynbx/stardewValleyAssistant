@@ -11,3 +11,8 @@
 |2/7/21|Week 3 videos, activities, and exercise|7|
 |2/9/21|Wireframes, user stories, reflections, project plan|5|
 |2/14/21|Week 4 Hibernate Demo|4|
+|2/15/21|Loosely mapped out database structure for project|1|
+|2/19/21|Added a DAO with Hibernate to project|2|
+|2/21/21|Week 5 Hibernate demo, worked on database|2|
+|2/24/21|Worked on professional development project|4|
+|2/25/21|Github branch troubleshooting, re-adding Lombok to new branch|4|
