@@ -34,3 +34,18 @@ Tasks completed:
 - Updated reflections 
 
 So happy to finally have time to devote to my project. So far this week I sketched out my screens on scratch paper and then built them out as wireframes in Figma. I also spent time setting up the rest of the design and tracking files I need in my project structure, as well as starting to think big picture about what I need to do and learn for the rest of my project.
+
+### Week 5
+
+Tasks completed:
+- Implemented first Dao and tables
+
+
+### Week 6
+
+Tasks completed:
+- Added tables for user favorites
+- Scripted professional development presentation
+- Implemented Project Lombok
+
+Overall I'm starting to feel better about this semester, but I'm really stressed about my project. I feel like what I selected to do doesn't fit in nicely with what we're learning and I'm worried about the amount of tables and foreign key relationships I'll need to make, and if I need to sacrifice perfect database design to make this project more manageable in the given timeframe. I'm also concerned about how to get all the Stardew Valley data into my Database as well. For some reason I remembered there being an API or big spreadsheet I could use that I found for my PHP project last year, but I haven't been able to find anything like that. Hopefully I can come up with some kind of shortcut for getting all of the data loaded.

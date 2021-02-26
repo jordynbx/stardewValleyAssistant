@@ -15,4 +15,5 @@
 |2/19/21|Added a DAO with Hibernate to project|2|
 |2/21/21|Week 5 Hibernate demo, worked on database|2|
 |2/24/21|Worked on professional development project|4|
-|2/25/21|Github branch troubleshooting, re-adding Lombok to new branch, finishing week 5|5|
+|2/25/21|Github branch troubleshooting, re-adding Lombok to new branch, finishing week 5 demos|5|
+|2/26/21|Week 5 exercise, failed implementation of one to many on my project|5|
