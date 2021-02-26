@@ -1,5 +1,6 @@
 package edu.matc.persistence;
 
+import edu.matc.entity.Favorite;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -13,16 +14,16 @@ import java.util.List;
  * A generic DAO  inspired by rodrigoucha.wordpress.com
  */
 @Log4j2
-public class GenericDao<T> {
+public class GenericDao<?> {
 
-    private Class<T> type;
+    private Class<?> type;
 
     /**
      * Instantiates a new Generic dao.
      *
      * @param type the entity type, for example, User.
      */
-    public GenericDao(Class<T> type) {
+    public GenericDao(Class<?> type) {
         this.type = type;
     }
 

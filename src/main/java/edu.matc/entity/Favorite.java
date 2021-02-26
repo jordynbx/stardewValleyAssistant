@@ -23,11 +23,11 @@ public class Favorite {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
-    @Column(name = "user_id")
+    //@Column(name = "user_id")
     @NonNull
     private int userId;
 
-    @Column(name = "item_id")
+    //@Column(name = "item_id")
     @NonNull
     private int itemId;
 
