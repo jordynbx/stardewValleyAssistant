@@ -92,6 +92,13 @@
       <artifactId>hibernate-c3p0</artifactId>
       <version>5.4.4.Final</version>
     </dependency>
+    <!-- Project Lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.18</version>
+      <scope>provided</scope>
+    </dependency>
 
   </dependencies>
 
