@@ -14,16 +14,16 @@ import java.util.List;
  * A generic DAO  inspired by rodrigoucha.wordpress.com
  */
 @Log4j2
-public class GenericDao<?> {
+public class GenericDao<T> {
 
-    private Class<?> type;
+    private Class<T> type;
 
     /**
      * Instantiates a new Generic dao.
      *
      * @param type the entity type, for example, User.
      */
-    public GenericDao(Class<?> type) {
+    public GenericDao(Class<T> type) {
         this.type = type;
     }
 
