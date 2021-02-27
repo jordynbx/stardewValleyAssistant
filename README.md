@@ -19,8 +19,6 @@ A potential future update will incorporate the ability for logged in users to cu
     * Hibernate 5
 * Dependency Management
     * Maven
-* Web Services consumed using Java
-    * NOAA for weather conditions at a trail location, including snow depth
 * CSS
     * Bootstrap or Materialize (tbd)
 * Data Validation
