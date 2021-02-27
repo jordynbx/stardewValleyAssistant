@@ -27,8 +27,11 @@ public class Note {
     @ManyToOne
     private User user;
 
-    public Note(int item, User user) {
+    private String noteContent;
+
+    public Note(int item, User user, String noteContent) {
         this.item = item;
         this.user = user;
+        this.noteContent = noteContent;
     }
 }
