@@ -1,0 +1,5 @@
+[ERROR] 2021-02-27 17-32-29.865 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2021-02-27 17-32-31.020 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2021-02-27 17-32-31.139 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2021-02-27 17-32-31.268 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2021-02-27 17-32-31.381 [main] Database - java.sql.SQLException: Can not issue empty query.

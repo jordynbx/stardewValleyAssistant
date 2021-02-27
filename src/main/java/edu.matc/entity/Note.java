@@ -1,35 +1,34 @@
 package edu.matc.entity;
 
+import com.sun.xml.bind.v2.TODO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
 /**
- * The type Favorite.
+ * A user's note
  */
-@Entity(name = "Favorite")
-@Table(name = "user_favorites")
+@Entity(name = "Note")
+@Table(name = "notes")
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Data
-public class Favorite {
+public class Note {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
-    //@Column(name = "user_id")
-    @NonNull
-    private int userId;
+    //TODO: figure out if this should be an int or an Item, and if an Item, how to configure that
+    private int item;
 
-    //@Column(name = "item_id")
-    @NonNull
-    private int itemId;
-
+    @ManyToOne
     private User user;
+
+    public Note(int item, User user) {
+        this.item = item;
+        this.user = user;
+    }
 }

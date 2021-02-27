@@ -34,25 +34,25 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<Favorite> favorites = new HashSet<>();
+    private Set<Note> notes = new HashSet<>();
 
     /**
-     * Add favorite.
+     * Add note.
      *
-     * @param favorite the favorite
+     * @param note the note
      */
-    public void addFavorite(Favorite favorite) {
-        favorites.add(favorite);
-        favorite.setUser(this);
+    public void addNote(Note note) {
+        notes.add(note);
+        note.setUser(this);
     }
 
     /**
-     * Remove order.
+     * Remove note.
      *
-     * @param favorite the favorite
+     * @param note the note
      */
-    public void removeFavorite(Favorite favorite) {
-        favorites.remove(favorite);
-        favorite.setUser(null);
+    public void removeNote(Note note) {
+        notes.remove(note);
+        note.setUser(null);
     }
 }
