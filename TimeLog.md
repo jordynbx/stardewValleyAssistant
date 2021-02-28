@@ -19,3 +19,4 @@
 |2/26/21|Week 5 exercise, failed implementation of one to many on my project|5|
 |2/27/21|Deploy to AWS|2|
 |2/27/21|Create additional tables, added Note class and Dao, troubleshooted cleandb.sql and updated ItemDaoTest based on new data|3|
+|2/28/21|Worked on professional development presentation documentation|1|

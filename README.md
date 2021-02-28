@@ -1,6 +1,9 @@
 #Jordyn Barbiaux Individual Project
 
 ### Problem Statement
+
+Stardew Vally is a simluation role-playing video game where you inherit an old farm from your grandfather. You decide to leave your soul-sucking corporate job and start a new life in the small, coastal town of Stardew Valley. Over time, you build a farm and a life in this new community by cleaning up your farm and growing crops, creating artisan goods, fishing, mining, crafting, exploring, and building relationships with the local townspeople. 
+
 There are tons of things to keep track of in Stardew Valley, and it can be cumbersome to keep track of what purpose every item serves and which items you need to save for future requests, recipes, gifts, or bundles. Most existing Wikis for Stardew Valley have an excess of information, and it can be difficult to find the quick facts about an item that you need to make a decision while playing.
 
 I'd like to build the Stardew Valley Assistant to provide a visually appealing one-stop shop resources for Stardew Vally players to quickly find the information they need about an item while playing. This program will be searchable for crops, recipes, and animal products, found in Stardew Valley. When a user searches for an item, a page is generated with easy to read cards about the item, including key information such as: which NPCs love the item as a gift, which Community Center bundles use the item, which recipes use the item, where to acquire the item, in which season you can acquire the item, and more. 
