@@ -40,12 +40,16 @@ So happy to finally have time to devote to my project. So far this week I sketch
 Tasks completed:
 - Implemented first Dao and tables
 
+Overall I'm starting to feel better about this semester, but I'm stressed about my project. I feel like I bit off more than I can chew, and am worried about doing a good job with this project while still maintaining good database design. I think the amount of data I need to work with may be over-ambitious for the time frame of this course. I thought I would be able to use a Stardew Valley API to pull in the data about each item that I needed, not realizing that none exist! I am exploring options to make this project more maneagable for V1 while still staying true to my original vision.
 
 ### Week 6
 
 Tasks completed:
-- Added tables for user favorites
-- Scripted professional development presentation
+- Added the following tables: crops, notes, user, user_favorites
 - Implemented Project Lombok
+- Created UserDao and NoteDao (will have to switch these out for GenericDao)
 
-Overall I'm starting to feel better about this semester, but I'm really stressed about my project. I feel like what I selected to do doesn't fit in nicely with what we're learning and I'm worried about the amount of tables and foreign key relationships I'll need to make, and if I need to sacrifice perfect database design to make this project more manageable in the given timeframe. I'm also concerned about how to get all the Stardew Valley data into my Database as well. For some reason I remembered there being an API or big spreadsheet I could use that I found for my PHP project last year, but I haven't been able to find anything like that. Hopefully I can come up with some kind of shortcut for getting all of the data loaded.
+I believe I've been comparing my potential application to already completed applications I've seen, and I need to focus on what is possible in 15 weeks vs. what is pie-in-the-sky. I've decided to focus on a subset of information for my V1 project to make sure I have all the functionality hammered out and working properly, and then in the future I can add more data and functionality. V1 will include standard grown crops and information about those crops, such as the seed price, base sell price, season grown, and recipes that crops appear in. This will give me a great framework for the rest of the project once it's built out, but give me more time to focus on the functionality and not how I'm going ot map out and insert thousands of database rows. 
+
+I'm happy with my new direction and spent yesterday building out all the tables I needed for V1. Unfortunately, I then ran into a number of issues when trying to load up the data before each unit test because of the all the foreign keys and dependencies. I had originally plannign on all items, no matter what they were, living in the Item column and linking foreign keys back to item_id, but I realized that won't be possible because then in some other tables, I'll need two seperate columns to each have the same Item id column as the foreign key. My solution to this is to move recipes outside of the item column since they are groups of other items. However, I haven't yet figured out how I will deal with recipes that use other recipes as ingredients. Am planning on pulling in some others to help me troubleshoot that! 
+

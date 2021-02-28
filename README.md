@@ -46,7 +46,7 @@ A potential future update will incorporate the ability for logged in users to cu
 * [User Stories](DesignDocuments/userStories.md)
 * [Screen Design](DesignDocuments/wireframes)
 * [Application Flow] - TBD
-* [Database Design] - TBD
+* [Database Design](DesignDocuments/db_design.png)
 
 ### [Project Plan](ProjectPlan.md)
 
