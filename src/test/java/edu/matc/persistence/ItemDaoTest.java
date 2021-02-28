@@ -33,7 +33,7 @@ public class ItemDaoTest {
     @Test
     void getAllItemsSuccess() {
         List<Item> items = dao.getAllItems();
-        assertEquals(6, items.size());
+        assertEquals(7, items.size());
     }
 
     /**
@@ -42,7 +42,7 @@ public class ItemDaoTest {
     @Test
     void getItemByNameSuccess() {
         List<Item> items = dao.getItemByName("s");
-        assertEquals(2, items.size());
+        assertEquals(3, items.size());
     }
 
     /**
@@ -78,8 +78,4 @@ public class ItemDaoTest {
         dao.delete(dao.getById(3));
         assertNull(dao.getById(3));
     }
-
-
-
-
 }
