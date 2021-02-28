@@ -19,6 +19,7 @@
         <mapping class = "edu.matc.entity.Favorite" />
         <mapping class = "edu.matc.entity.Item" />
         <mapping class = "edu.matc.entity.User" />
+        <mapping class = "edu.matc.entity.Note" />
 
 
     </session-factory>

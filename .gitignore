@@ -51,3 +51,6 @@ fabric.properties
 # Resources
 database.properties
 hibernate.cfg.xml
+
+# Logs
+/${filepath}/

@@ -1,6 +1,7 @@
 package edu.matc.persistence;
 
 import edu.matc.entity.Item;
+import edu.matc.test.util.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +21,7 @@ public class ItemDaoTest {
     @BeforeEach
     void setUp() {
         edu.matc.test.util.Database database = edu.matc.test.util.Database.getInstance();
+
         database.runSQL("cleandb.sql");
 
         dao = new ItemDao();

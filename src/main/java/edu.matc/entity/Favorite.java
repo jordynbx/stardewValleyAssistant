@@ -31,5 +31,5 @@ public class Favorite {
     @NonNull
     private int itemId;
 
-    private User user;
+
 }
