@@ -18,3 +18,4 @@
 |2/25/21|Github branch troubleshooting, re-adding Lombok to new branch, finishing week 5 demos|5|
 |2/26/21|Week 5 exercise, failed implementation of one to many on my project|5|
 |2/27/21|Deploy to AWS|2|
+|2/27/21|Create additional tables, added Note class and Dao, troubleshooted cleandb.sql and updated ItemDaoTest based on new data|3|
