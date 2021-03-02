@@ -31,8 +31,11 @@
 - [ ] Create one-to-many relationship (User and Notes)
 - [ ] Implement Project Lombok
 - [ ] Select Bootstrap template
+- [ ] Implement check-in 1 feedback
+- [ ]
 
 ### Week 7
+- [ ] Convert Item and Note classes to use GenericDao
 - [ ] Create security-related tables (user and user_roles)
 - [ ] Create login functionality 
 - [ ] Research JavaMail or other web services I can add to project
@@ -48,4 +51,5 @@
 - [ ]
 
 #### On deck...
-
+- [ ]
+- [ ]
