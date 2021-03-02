@@ -100,9 +100,4 @@ public class NoteDaoTest {
         assertNotNull(insertedNote.getUser());
         assertEquals(expectedUser, insertedNote.getUser().getUsername());
     }
-
-
-
-
-
 }
