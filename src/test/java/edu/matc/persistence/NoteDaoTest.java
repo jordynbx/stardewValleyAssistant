@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class NoteDaoTest {
 
@@ -45,5 +45,23 @@ public class NoteDaoTest {
         assertEquals(1, notes.get(0).getUser().getId());
     }
 
+    /**
+     * Verifies a note is returned correctly based on id search
+     */
+    @Test
+    void getByIdSuccess() {
+        Note retrievedNote = (Note)dao.getById(2);
+        assertNotNull(retrievedNote);
+        assertEquals("lucky lunch", retrievedNote.getNoteContent());
+    }
+
+    /**
+     * Verifies successful delete of note
+     */
+    @Test
+    void deleteSuccess() {
+        dao.delete(dao.getById(3));
+        assertNull(dao.getById(3));
+    }
 
 }

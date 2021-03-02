@@ -2,7 +2,9 @@ package edu.matc.entity;
 
 import com.sun.xml.bind.v2.TODO;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -13,7 +15,8 @@ import javax.persistence.*;
 @Entity(name = "Note")
 @Table(name = "notes")
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class Note {
 
     @Id
@@ -35,5 +38,14 @@ public class Note {
         this.item = item;
         this.user = user;
         this.noteContent = noteContent;
+    }
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "id=" + id +
+                ", item=" + item +
+                ", noteContent='" + noteContent + '\'' +
+                '}';
     }
 }

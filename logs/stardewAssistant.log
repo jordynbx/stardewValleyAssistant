@@ -105,3 +105,4 @@
 [DEBUG] 2021-03-02 12-38-02.087 [main] GenericDao - Searching for order with user_id = 1
 [DEBUG] 2021-03-02 12-38-28.023 [main] GenericDao - Searching for order with user = 1
 [DEBUG] 2021-03-02 12-39-09.033 [main] GenericDao - Searching for order with user = 1
+[DEBUG] 2021-03-02 14-3-00.852 [main] GenericDao - Searching for order with user = 1
