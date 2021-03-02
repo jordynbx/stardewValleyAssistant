@@ -1,8 +1,10 @@
 package edu.matc.persistence;
 
 import edu.matc.entity.Favorite;
+import edu.matc.entity.Note;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -17,6 +19,7 @@ import java.util.List;
 public class GenericDao<T> {
 
     private Class<T> type;
+    SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
     /**
      * Instantiates a new Generic dao.
@@ -25,6 +28,25 @@ public class GenericDao<T> {
      */
     public GenericDao(Class<T> type) {
         this.type = type;
+    }
+
+
+    /**
+     * Gets all entities
+     *
+     * @return the all entities
+     */
+    public List<T> getAll() {
+        Session session = getSession();
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+        List<T> list = session.createQuery(query).getResultList();
+        session.close();
+        return list;
+
     }
 
     /**
@@ -52,23 +74,6 @@ public class GenericDao<T> {
         session.close();
     }
 
-    /**
-     * Gets all entities
-     *
-     * @return the all entities
-     */
-    public List<T> getAll() {
-        Session session = getSession();
-
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-
-        CriteriaQuery<T> query = builder.createQuery(type);
-        Root<T> root = query.from(type);
-        List<T> list = session.createQuery(query).getResultList();
-        session.close();
-        return list;
-
-    }
 
     /** Get order by property (exact match)
      * sample usage: getByPropertyEqual("lastName", "Curry")
@@ -77,7 +82,7 @@ public class GenericDao<T> {
      * @param value value of the property to search for
      * @return list of orders meeting the criteria search
      */
-    public List<T> getByPropertyEqual(String propertyName, String value) {
+    public List<T> getByPropertyEqual(String propertyName, int value) {
         Session session = getSession();
 
         log.debug("Searching for order with " + propertyName + " = " + value);

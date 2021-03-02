@@ -22,11 +22,13 @@ public class Note {
     private int id;
 
     //TODO: figure out if this should be an int or an Item, and if an Item, how to configure that
+    @Column(name = "item_id")
     private int item;
 
     @ManyToOne
     private User user;
 
+    @Column(name = "note")
     private String noteContent;
 
     public Note(int item, User user, String noteContent) {

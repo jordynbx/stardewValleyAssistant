@@ -99,6 +99,4 @@ public class NoteDao {
         transaction.commit();
         session.close();
     }
-
-
 }

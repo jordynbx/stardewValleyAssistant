@@ -101,3 +101,7 @@
 [ERROR] 2021-02-27 18-57-30.221 [main] Database - java.sql.SQLException: Can not issue empty query.
 [ERROR] 2021-02-27 18-57-30.264 [main] Database - java.sql.SQLException: Can not issue empty query.
 [ERROR] 2021-02-27 18-57-30.314 [main] Database - java.sql.SQLException: Can not issue empty query.
+[DEBUG] 2021-03-02 12-35-09.051 [main] GenericDao - Searching for order with user_id = 1
+[DEBUG] 2021-03-02 12-38-02.087 [main] GenericDao - Searching for order with user_id = 1
+[DEBUG] 2021-03-02 12-38-28.023 [main] GenericDao - Searching for order with user = 1
+[DEBUG] 2021-03-02 12-39-09.033 [main] GenericDao - Searching for order with user = 1
