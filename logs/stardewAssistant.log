@@ -108,3 +108,10 @@
 [DEBUG] 2021-03-02 14-3-00.852 [main] GenericDao - Searching for order with user = 1
 [DEBUG] 2021-03-02 14-31-02.751 [main] GenericDao - Searching for order with user = 1
 [DEBUG] 2021-03-02 14-32-15.987 [main] GenericDao - Searching for order with user = 1
+[DEBUG] 2021-03-02 14-43-31.608 [main] GenericDao - Searching for order with name = strawberry
+[DEBUG] 2021-03-02 14-47-17.739 [main] GenericDao - Searching for order with name = strawberry
+[DEBUG] 2021-03-02 14-48-39.428 [main] GenericDao - Searching for order with name = strawberry
+[DEBUG] 2021-03-02 14-48-54.406 [main] GenericDao - Searching for order with name = strawberry
+[DEBUG] 2021-03-02 14-48-54.913 [main] GenericDao - Searching for order with user = 1
+[DEBUG] 2021-03-02 14-49-05.966 [main] GenericDao - Searching for order with name = strawberry
+[DEBUG] 2021-03-02 14-49-06.483 [main] GenericDao - Searching for order with user = 1

@@ -1,7 +1,7 @@
 package edu.matc.persistence;
 
 import edu.matc.entity.Item;
-import edu.matc.test.util.Database;
+import edu.matc.entity.Note;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ItemDaoTest {
 
-    ItemDao dao;
+    GenericDao<Item> dao;
 
     /**
      * Run set up tasks before each test:
@@ -24,7 +24,7 @@ public class ItemDaoTest {
 
         database.runSQL("cleandb.sql");
 
-        dao = new ItemDao();
+        dao = new GenericDao<>(Item.class);
     }
 
     /**
@@ -32,7 +32,7 @@ public class ItemDaoTest {
      */
     @Test
     void getAllItemsSuccess() {
-        List<Item> items = dao.getAllItems();
+        List<Item> items = dao.getAll();
         assertEquals(7, items.size());
     }
 
@@ -41,8 +41,19 @@ public class ItemDaoTest {
      */
     @Test
     void getItemByNameSuccess() {
-        List<Item> items = dao.getItemByName("s");
-        assertEquals(3, items.size());
+        List<Item> items = dao.getByPropertyEqualString("name", "strawberry");
+        assertEquals(1, items.size());
+        assertEquals(6, items.get(0).getId());
+    }
+
+    /**
+     * Verifies item is returned correctly based on id
+     */
+    @Test
+    void getByIdSuccess() {
+        Item retrievedItem = (Item)dao.getById(6);
+        assertNotNull(retrievedItem);
+        assertEquals("strawberry", retrievedItem.getName());;
     }
 
     /**

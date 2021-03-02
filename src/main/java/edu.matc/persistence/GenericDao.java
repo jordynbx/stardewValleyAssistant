@@ -1,6 +1,7 @@
 package edu.matc.persistence;
 
 import edu.matc.entity.Favorite;
+import edu.matc.entity.Item;
 import edu.matc.entity.Note;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.Session;
@@ -9,6 +10,7 @@ import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
@@ -102,13 +104,33 @@ public class GenericDao<T> {
 
 
     /** Get order by property (exact match)
-     * sample usage: getByPropertyEqual("lastName", "Curry")
+     * sample usage: getByPropertyEqualInt("lastName", "Curry")
      *
      * @param propertyName entity property to search by
      * @param value value of the property to search for
      * @return list of orders meeting the criteria search
      */
-    public List<T> getByPropertyEqual(String propertyName, int value) {
+    public List<T> getByPropertyEqualInt(String propertyName, int value) {
+        Session session = getSession();
+
+        log.debug("Searching for order with " + propertyName + " = " + value);
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery( type );
+        Root<T> root = query.from(type );
+        query.select(root).where(builder.equal(root.get(propertyName), value));
+        List<T> entities = session.createQuery( query ).getResultList();
+
+        session.close();
+        return entities;
+    }
+
+    /**
+     * Gets items by searched for name
+     *
+     * @return all items with the searched for name
+     */
+    public List<T> getByPropertyEqualString(String propertyName, String value) {
         Session session = getSession();
 
         log.debug("Searching for order with " + propertyName + " = " + value);

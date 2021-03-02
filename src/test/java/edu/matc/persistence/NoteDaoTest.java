@@ -38,11 +38,11 @@ public class NoteDaoTest {
     }
 
     /**
-     * Verifies gets all notes by user using getByPropertyEqual
+     * Verifies gets all notes by user using getByPropertyEqualInt
      */
     @Test
     void getAllNotesByUserSuccess() {
-        List<Note> notes = dao.getByPropertyEqual("user", 1);
+        List<Note> notes = dao.getByPropertyEqualInt("user", 1);
         assertEquals(1, notes.size());
         assertEquals(1, notes.get(0).getUser().getId());
     }
