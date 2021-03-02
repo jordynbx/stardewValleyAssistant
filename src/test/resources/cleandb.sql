@@ -1,6 +1,8 @@
 delete from user;
 delete from user_favorites;
 delete from notes;
+delete from recipe_ingredients;
+delete from recipes;
 delete from crops;
 delete from item;
 delete from item_type;
@@ -8,5 +10,7 @@ INSERT INTO `item` VALUES (1, 'blue jazz', 'crop'),(2, 'cauliflower', 'crop'),(3
 INSERT INTO `item_type` VALUES (3,'animal product'),(1,'crop'),(4,'fish'),(2,'forage'),(5,'recipe');
 INSERT INTO `user` VALUES (1,'user1','password'),(2,'user2','password'),(3,'user3','password');
 INSERT INTO `crops` VALUES (1,3,'Spring',80,175,1);
+INSERT INTO `recipes` VALUES (1, 'Cheese Cauliflower'), (2, 'Lucky Lunch');
+INSERT INTO `recipe_ingredients` VALUES (1, 1, 2), (2, 2, 1);
 INSERT INTO `user_favorites` VALUES (1,1,1),(2,1,6),(3,2,7),(4,3,2),(5,1,3),(6,3,1);
 INSERT INTO `notes` VALUES (1,2,2,'Need 2 more gold for bundle'),(2,1,1,'lucky lunch'),(3,2,6,'cant buy seeds til spring 13');
