@@ -1,6 +1,8 @@
 package edu.matc.persistence;
 
+import edu.matc.entity.Item;
 import edu.matc.entity.Note;
+import edu.matc.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -63,5 +65,44 @@ public class NoteDaoTest {
         dao.delete(dao.getById(3));
         assertNull(dao.getById(3));
     }
+
+    /**
+     * verify success update of note
+     */
+    @Test
+    void updateSuccess() {
+        String newNote = "need 1 more gold for bundle";
+        Note noteToUpdate = dao.getById(1);
+        noteToUpdate.setNoteContent((newNote));
+        dao.saveOrUpdate(noteToUpdate);
+        Note retrievedNote = dao.getById(1);
+        assertEquals(newNote, retrievedNote.getNoteContent());
+    }
+
+    /**
+     * verify success insert of note
+     */
+    @Test
+    void insertSuccess() {
+        GenericDao<User> userDao = new GenericDao<>(User.class);
+        GenericDao<Item> itemDao = new GenericDao<>(Item.class);
+        User user = userDao.getById(3);
+        Item item = itemDao.getById(6);
+        String newNoteContent = "save 10 seeds";
+        Note newNote = new Note(item, user, newNoteContent);
+
+        int id = dao.insert(newNote);
+
+        assertNotEquals(0, id);
+        Note insertedNote = dao.getById(id);
+        String expectedUser = "user3";
+        assertEquals(newNoteContent, insertedNote.getNoteContent());
+        assertNotNull(insertedNote.getUser());
+        assertEquals(expectedUser, insertedNote.getUser().getUsername());
+    }
+
+
+
+
 
 }

@@ -24,9 +24,10 @@ public class Note {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
-    //TODO: figure out if this should be an int or an Item, and if an Item, how to configure that
-    @Column(name = "item_id")
-    private int item;
+//    //TODO: figure out if this should be an int or an Item, and if an Item, how to configure that
+//    @Column(name = "item_id")
+    @ManyToOne
+    private Item item;
 
     @ManyToOne
     private User user;
@@ -34,7 +35,7 @@ public class Note {
     @Column(name = "note")
     private String noteContent;
 
-    public Note(int item, User user, String noteContent) {
+    public Note(Item item, User user, String noteContent) {
         this.item = item;
         this.user = user;
         this.noteContent = noteContent;
