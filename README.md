@@ -1,4 +1,4 @@
-#Jordyn Barbiaux Individual Project
+# Jordyn Barbiaux Individual Project
 
 ### Problem Statement
 
