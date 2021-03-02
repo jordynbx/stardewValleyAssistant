@@ -2,7 +2,7 @@
 
 ### Problem Statement
 
-Stardew Vally is a simluation role-playing video game where you inherit an old farm from your grandfather. You decide to leave your soul-sucking corporate job and start a new life in the small, coastal town of Stardew Valley. Over time, you build a farm and a life in this new community by cleaning up your farm and growing crops, creating artisan goods, fishing, mining, crafting, exploring, and building relationships with the local townspeople. 
+Stardew Vally is a simulation role-playing video game where you inherit an old farm from your grandfather. You decide to leave your soul-sucking corporate job and start a new life in the small, coastal town of Stardew Valley. Over time, you build a farm and a life in this new community by cleaning up your farm and growing crops, creating artisan goods, fishing, mining, crafting, exploring, and building relationships with the local townspeople. 
 
 There are tons of things to keep track of in Stardew Valley, and it can be cumbersome to keep track of what purpose every item serves and which items you need to save for future requests, recipes, gifts, or bundles. Most existing Wikis for Stardew Valley have an excess of information, and it can be difficult to find the quick facts about an item that you need to make a decision while playing.
 
