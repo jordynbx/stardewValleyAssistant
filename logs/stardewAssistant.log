@@ -124,3 +124,10 @@
 [DEBUG] 2021-03-06 14-29-13.823 [main] GenericDao - Searching for order with user = 1
 [DEBUG] 2021-03-06 14-35-22.468 [main] GenericDao - Searching for order with name = strawberry
 [DEBUG] 2021-03-06 14-35-23.008 [main] GenericDao - Searching for order with user = 1
+[DEBUG] 2021-03-06 14-40-08.454 [main] GenericDao - Searching for order with name = strawberry
+[DEBUG] 2021-03-06 14-40-09.170 [main] GenericDao - Searching for order with user = 1
+[DEBUG] 2021-03-06 14-49-20.877 [main] GenericDao - Searching for order with name = strawberry
+[DEBUG] 2021-03-06 14-49-21.489 [main] GenericDao - Searching for order with user = 1
+[INFO ] 2021-03-06 14-49-43.331 [http-nio-8080-exec-9] LoginAction - The logged in user: user1 has a role of admin: true
+[DEBUG] 2021-03-06 14-52-20.485 [main] GenericDao - Searching for order with name = strawberry
+[DEBUG] 2021-03-06 14-52-21.085 [main] GenericDao - Searching for order with user = 1
