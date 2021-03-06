@@ -1,3 +1,4 @@
+delete from role;
 delete from user;
 delete from user_favorites;
 delete from notes;
@@ -14,3 +15,4 @@ INSERT INTO `recipes` VALUES (1, 'Cheese Cauliflower'), (2, 'Lucky Lunch');
 INSERT INTO `recipe_ingredients` VALUES (1, 1, 2), (2, 2, 1);
 INSERT INTO `user_favorites` VALUES (1,1,1),(2,1,6),(3,2,7),(4,3,2),(5,1,3),(6,3,1);
 INSERT INTO `notes` VALUES (1,2,2,'Need 2 more gold for bundle'),(2,1,1,'lucky lunch'),(3,2,6,'cant buy seeds til spring 13');
+INSERT INTO `role` VALUES (1,'admin','user1', 1);

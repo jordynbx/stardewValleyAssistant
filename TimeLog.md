@@ -22,3 +22,4 @@
 |2/28/21|Professional development presentation documentation, project documentation, peer review|3.5|
 |3/1/21|Professional dev presentation recording and finalize materials|2.5|
 |3/2/21|Create unit tests for Item and Note using GenericDao |2.5|
+|3/6/21|Auth Demo|2|

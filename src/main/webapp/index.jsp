@@ -1,6 +1,6 @@
 <html>
 <body>
-<h2>Hello World!</h2>
-<h3>Testing redeploy..maybe this time?</h3>
+<h1>Stardew Valley Assistant</h1>
+<a href="search.jsp">Log in</a>
 </body>
 </html>
