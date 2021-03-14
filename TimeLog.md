@@ -23,4 +23,6 @@
 |3/1/21|Professional dev presentation recording and finalize materials|2.5|
 |3/2/21|Create unit tests for Item and Note using GenericDao |2.5|
 |3/6/21|Auth Demo, implement auth in project|3.5|
-|3/7/21|security activity|2|
+|3/7/21|security activity, help other students|3|
+|3/13/21|Week 8 REST activities, team project planning|1|
+|3/14/21|Week 8 REST activities, TBD||
