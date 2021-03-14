@@ -7,6 +7,7 @@
   <name>StardewValleyAssistant Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>
+    <jersey-version>2.29.1</jersey-version>
     <hibernate-version>5.4.4.Final</hibernate-version>
     <maven.compiler.release>11</maven.compiler.release>
     <junit.version>4.12</junit.version>
@@ -98,6 +99,29 @@
       <artifactId>lombok</artifactId>
       <version>1.18.18</version>
       <scope>provided</scope>
+    </dependency>
+  <!--    jersey dependencies-->
+    <dependency>
+      <groupId>org.glassfish.jersey.core</groupId>
+      <artifactId>jersey-client</artifactId>
+      <version>${jersey-version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.glassfish.jersey.inject</groupId>
+      <artifactId>jersey-hk2</artifactId>
+      <version>${jersey-version}</version>
+    </dependency>
+    <!--    simple java mail-->
+    <dependency>
+      <groupId>org.simplejavamail</groupId>
+      <artifactId>simple-java-mail</artifactId>
+      <version>6.5.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>jakarta.mail</artifactId>
+      <version>1.6.4</version>
     </dependency>
 
   </dependencies>
