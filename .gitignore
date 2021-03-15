@@ -51,6 +51,7 @@ fabric.properties
 # Resources
 database.properties
 hibernate.cfg.xml
+email.properties
 
 # Logs
 /${filepath}/

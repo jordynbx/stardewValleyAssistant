@@ -1,23 +1,54 @@
 package edu.matc.api;
 
-import org.simplejavamail.api.email.Email;
-import org.simplejavamail.email.EmailBuilder;
-import org.simplejavamail.mailer.MailerBuilder;
+
+import com.google.protobuf.Message;
+import org.hibernate.Session;
+
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.net.PasswordAuthentication;
+import java.util.Properties;
 
 public class SendEmail {
 
-    void createEmail() {
-        Email email = EmailBuilder.startingBlank()
-                .from("Michel Baker", "m.baker@mbakery.com")
-                .to("mom", "jean.baker@hotmail.com")
-                .to("dad", "StevenOakly1963@hotmail.com")
-                .withSubject("My Bakery is finally open!")
-                .withPlainText("Mom, Dad. We did the opening ceremony of our bakery!!!")
-                .buildEmail();
+    final String username = "stardewvalleyassistant@gmail.com";
+    final String password = "entJAVA2021";
 
-        MailerBuilder
-                .withSMTPServer("server", 25, "username", "password")
-                .buildMailer()
-                .sendMail(email);
+    void createEmail() {
+
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", "587");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.starttls.enable", "true"); //TLS
+
+        Session session = javax.mail.Session.getInstance(prop,
+                new javax.mail.Authenticator() {
+                    protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+
+        try {
+
+            Message message = new MimeMessage(session);
+            ((MimeMessage) message).setFrom(new InternetAddress("from@gmail.com"));
+            ((MimeMessage) message).setRecipients(
+                    Message.RecipientType.TO,
+                    InternetAddress.parse("to_username_a@gmail.com, to_username_b@yahoo.com")
+            );
+            ((MimeMessage) message).setSubject("Testing Gmail TLS");
+            message.setText("Dear Mail Crawler,"
+                    + "\n\n Please do not spam my email!");
+
+            Transport.send(message);
+
+            System.out.println("Done");
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 }
+
