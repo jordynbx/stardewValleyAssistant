@@ -26,3 +26,4 @@
 |3/7/21|security activity, help other students|3|
 |3/13/21|Week 8 REST activities, team project planning|1|
 |3/14/21|Week 8 REST activities, Weather API exercise 8|4|
+|3/15/21|Implement javamail|1.5|
