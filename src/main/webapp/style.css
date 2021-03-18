@@ -1,0 +1,67 @@
+.container {
+    padding: 1em;
+}
+
+.formfield {
+    padding-right: 1em !important;
+    margin-right: 1em !important;
+}
+
+.formlabel{
+    min-width: 100px;
+}
+table td {
+    text-align: center;
+    vertical-align: center !important;
+}
+
+#wrapper {
+    background-color: white;
+    margin-top: 0px;
+    padding-top: 0px;
+
+}
+
+.bg-image {
+    /*background-image: url(images/title_banner.jpg);*/
+    background-color: lightblue;
+    background-size: cover;
+
+}
+.jumbotron {
+    margin-bottom: 0px;
+    /*background-image: url(images/sky.png);*/
+    background-color: navy;
+}
+
+#jumbohead, #jumbosub {
+    text-align: center;
+}
+
+#jumbohead {
+    text-transform: uppercase;
+}
+
+.tablecell {
+    width: 300px;
+}
+
+.error {
+    color: red;
+    font-weight: bolder;
+}
+
+.form {
+    background-color: #90CAF9;
+    border: 1px solid black;
+}
+
+.tableheading {
+    background-color: #FADEFF;
+}
+
+#croptable-fall{
+    border-radius: 1em;
+    background-color: #70F4E0 !important;
+    border: 1px solid black;
+}
