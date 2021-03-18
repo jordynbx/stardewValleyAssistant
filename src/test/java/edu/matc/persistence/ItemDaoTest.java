@@ -53,7 +53,7 @@ public class ItemDaoTest {
     void getByIdSuccess() {
         Item retrievedItem = (Item)dao.getById(6);
         assertNotNull(retrievedItem);
-        assertEquals("strawberry", retrievedItem.getName());;
+        assertEquals("strawberry", retrievedItem.getName());
     }
 
     /**

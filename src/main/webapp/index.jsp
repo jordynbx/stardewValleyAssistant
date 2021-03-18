@@ -7,6 +7,12 @@
 <br>
 <h1>Search for an item</h1>
 
+<form method="get" action="searchItem">
+    <label for="searchTerm">Enter item name:</label>
+    <input type="text" id="searchTerm" name="searchTerm">
+    <button type="submit" name="submit" value="search">Search</button>
+</form>
+
 <c:if test="${pageContext.request.isUserInRole('user')}">
     <p>You are logged in! In the future, page content will show including fields for notes and checkboxes for logged in users.</p>
 </c:if>

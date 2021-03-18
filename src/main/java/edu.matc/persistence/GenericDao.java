@@ -64,6 +64,18 @@ public class GenericDao<T> {
     }
 
     /**
+     * Gets a entity by the item id
+     * @param itemId entity id to search by
+     * @return a entity
+     */
+    public <T>T getByItemId(int itemId) {
+        Session session = getSession();
+        T entity = (T)session.get(type, itemId);
+        session.close();
+        return entity;
+    }
+
+    /**
      * Deletes the entity.
      *
      * @param entity entity to be deleted
