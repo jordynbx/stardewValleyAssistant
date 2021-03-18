@@ -5,7 +5,6 @@
 
 <h2>Search Results:</h2>
 <p>Item: ${item.name}<br>
-<c:if test="${item.type} == ">
 
 </p>
 
