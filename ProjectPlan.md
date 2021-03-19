@@ -41,10 +41,11 @@
 - [ ] Research JavaMail or other web services I can add to project
 
 ### Week 8
-- [ ] If an appropriate RESTful web service is located, start implementing into project
+- [ ] Implement JavaMail
 - [ ] Create remaining entities
 - [ ] Build out first jsp to view data 
-- [ ]
+- [ ] Assemble full drop data for database
+- [ ] Upload project to AWS
 
 ### Week 9
 - [ ]
