@@ -5,7 +5,10 @@
 
 <h2>Search Results:</h2>
 <p>Item: ${item.name}<br>
-
+    Seed price: ${crop.seedPrice}<br>
+    Sell price: ${crop.sellPrice}<br>
+    Used in recipes: ${crop.hasRecipe}<br>
+    Growth season: ${crop.season}<br>
 </p>
 
 

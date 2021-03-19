@@ -1,7 +1,9 @@
 package edu.matc.controller;
 
+import edu.matc.entity.Crop;
 import edu.matc.entity.Item;
 import edu.matc.persistence.GenericDao;
+import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Log4j2
 @WebServlet(
         name = "searchItem",
         urlPatterns = {"/searchItem"}
@@ -42,12 +45,20 @@ public class SearchItem extends HttpServlet {
         }
     }
 
+    /**
+     * In V1 of this project, all items will be crops, so this seems unnecessary. However, in future
+     * versions, items could be crops, fish, animal products, gems, or something else, and each
+     * type of item will require it's own if statement
+     */
     if (processItem) {
         if (item.getType().equals("crop")) {
-
+            GenericDao<Crop> cropDao = new GenericDao<>(Crop.class);
+            int searchItemId = item.getId();
+            Crop crop = cropDao.getByUniquePropertyEqualInt("itemId", searchItemId);
+            log.info(searchItemId);
+            request.setAttribute("crop", crop);
         }
     }
-
 
     RequestDispatcher dispatcher = request.getRequestDispatcher("/results.jsp");
     dispatcher.forward(request, response);
