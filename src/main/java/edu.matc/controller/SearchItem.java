@@ -42,14 +42,18 @@ public class SearchItem extends HttpServlet {
             processItem = true;
         } else {
             request.setAttribute("message", "The item was not found, please try again");
+//            request.setAttribute("success", "false");
         }
     }
+
+    request.setAttribute("success", processItem);
 
     /**
      * In V1 of this project, all items will be crops, so this seems unnecessary. However, in future
      * versions, items could be crops, fish, animal products, gems, or something else, and each
      * type of item will require it's own if statement
      */
+    //TODO add output message indicating support hasn't been added yet for non-crops
     if (processItem) {
         if (item.getType().equals("crop")) {
             GenericDao<Crop> cropDao = new GenericDao<>(Crop.class);

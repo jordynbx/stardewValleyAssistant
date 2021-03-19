@@ -26,7 +26,6 @@ public class Crop {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
-    @NaturalId
     @JoinColumn(name = "item_id",
             foreignKey = @ForeignKey(name = "crops_item_id_fk")
     )
@@ -42,6 +41,9 @@ public class Crop {
     @Column(name = "sell_price")
     private int sellPrice;
 
-    @Column(name = "recipe")
-    private int hasRecipe;
+    @Column(name = "recipes")
+    private String recipes;
+
+    @Column(name = "bundles")
+    private String bundles;
 }
