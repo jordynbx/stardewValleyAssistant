@@ -58,6 +58,16 @@ public class NoteDaoTest {
     }
 
     /**
+     * verify success get note by user and item
+     */
+    @Test
+    void getByUserAndItemSuccess() {
+        Note retrievedNote = (Note)dao.getByMultipleIds("user", 2, "item", 2);
+        assertNotNull(retrievedNote);
+        assertEquals("Need 2 more gold for bundle", retrievedNote.getNoteContent());
+    }
+
+    /**
      * Verifies successful delete of note
      */
     @Test
@@ -100,4 +110,6 @@ public class NoteDaoTest {
         assertNotNull(insertedNote.getUser());
         assertEquals(expectedUser, insertedNote.getUser().getUsername());
     }
+
+
 }
