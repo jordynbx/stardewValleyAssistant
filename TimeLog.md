@@ -27,3 +27,4 @@
 |3/13/21|Week 8 REST activities, team project planning|1|
 |3/14/21|Week 8 REST activities, Weather API exercise 8|4|
 |3/15/21|Implement javamail|1.5|
+|3/18/21|Add jsps and Crop entity|3|

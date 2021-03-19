@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 
@@ -25,6 +26,7 @@ public class Crop {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
+    @NaturalId
     @JoinColumn(name = "item_id",
             foreignKey = @ForeignKey(name = "crops_item_id_fk")
     )

@@ -68,12 +68,19 @@ public class GenericDao<T> {
      * @param itemId entity id to search by
      * @return a entity
      */
-    public <T>T getByItemId(int itemId) {
-        Session session = getSession();
-        T entity = (T)session.get(type, itemId);
-        session.close();
-        return entity;
-    }
+//    public <T>T getByItemId(int itemId) {
+//        Session session = getSession();
+//        T entity = (T)session.get(type, itemId);
+//        session.close();
+//        return entity;
+//    }
+
+//    public <T>T getByItemId(int thisItemId) {
+//        Session session = getSession();
+//        T entity = (T)session.byNaturalId(type).using("itemId", thisItemId);
+//        session.close();
+//        return entity;
+//    }
 
     /**
      * Deletes the entity.
@@ -135,6 +142,28 @@ public class GenericDao<T> {
 
         session.close();
         return entities;
+    }
+
+    /** Get order by property (exact match)
+     * sample usage: getByPropertyEqualInt("lastName", "Curry")
+     *
+     * @param propertyName entity property to search by
+     * @param value value of the property to search for
+     * @return list of orders meeting the criteria search
+     */
+    public <T>T getByUniquePropertyEqualInt(String propertyName, int value) {
+        Session session = getSession();
+
+        log.debug("Searching for order with " + propertyName + " = " + value);
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = (CriteriaQuery<T>) builder.createQuery( type );
+        Root<T> root = (Root<T>) query.from(type );
+        query.select(root).where(builder.equal(root.get(propertyName), value));
+        T entity = session.createQuery( query ).uniqueResult();
+
+        session.close();
+        return entity;
     }
 
     /**
