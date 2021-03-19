@@ -7,11 +7,12 @@ import lombok.extern.log4j.Log4j2;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Restrictions;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -160,6 +161,39 @@ public class GenericDao<T> {
         CriteriaQuery<T> query = (CriteriaQuery<T>) builder.createQuery( type );
         Root<T> root = (Root<T>) query.from(type );
         query.select(root).where(builder.equal(root.get(propertyName), value));
+        T entity = session.createQuery( query ).uniqueResult();
+
+        session.close();
+        return entity;
+    }
+
+    /**
+     * Gets by multiple ids.
+     *
+     * @param <T>            the type parameter
+     * @param firstProperty  the first property
+     * @param firstValue     the first value
+     * @param secondProperty the second property
+     * @param secondValue    the second value
+     * @return the by multiple ids
+     */
+    public <T>T getByMultipleIds(String firstProperty, int firstValue,
+            String secondProperty, int secondValue) {
+
+        Session session = getSession();
+
+        log.debug("Searching for order with " + firstProperty + " = " + firstValue
+                + " and " + secondProperty + " = " + secondValue);
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = (CriteriaQuery<T>) builder.createQuery( type );
+        Root<T> root = (Root<T>) query.from(type );
+
+        List<Predicate> restrictions = new ArrayList<>();
+        restrictions.add(builder.equal(root.get(firstProperty), firstValue));
+        restrictions.add(builder.equal(root.get(secondProperty), secondValue));
+        query.where(restrictions.toArray(new Predicate[restrictions.size()]));
+
         T entity = session.createQuery( query ).uniqueResult();
 
         session.close();

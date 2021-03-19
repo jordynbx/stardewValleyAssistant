@@ -2,6 +2,7 @@ package edu.matc.controller;
 
 import edu.matc.entity.Crop;
 import edu.matc.entity.Item;
+import edu.matc.entity.User;
 import edu.matc.persistence.GenericDao;
 import lombok.extern.log4j.Log4j2;
 
@@ -62,6 +63,11 @@ public class SearchItem extends HttpServlet {
             log.info(searchItemId);
             request.setAttribute("crop", crop);
         }
+
+        String username = (String) session.getAttribute("currentUser");
+        GenericDao<User> userDao = new GenericDao<>(User.class);
+        //userDao.getByUniquePropertyEqualInt("")
+
     }
 
     RequestDispatcher dispatcher = request.getRequestDispatcher("/results.jsp");
