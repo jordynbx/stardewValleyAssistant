@@ -7,6 +7,10 @@
 ${updateMessage}
 <br>
 <h1>Search for an item</h1>
+<c:if test="${pageContext.request.isUserInRole('user')}">
+<h3>Welcome, ${username}!</h3>
+</c:if>
+
 
 <form method="get" action="searchItem">
     <label for="searchTerm">Enter item name:</label>
@@ -14,9 +18,6 @@ ${updateMessage}
     <button type="submit" name="submit" value="search">Search</button>
 </form>
 
-<c:if test="${pageContext.request.isUserInRole('user')}">
-    <p>You are logged in! In the future, page content will show including fields for notes and checkboxes for logged in users.</p>
-</c:if>
 
 <c:if test="${pageContext.request.isUserInRole('admin')}">
     <p>I don't know if I will have any admin functionality, but if I do, you would be able to see it!</p>
