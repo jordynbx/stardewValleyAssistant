@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO add functionality to display note
 @Log4j2
 @WebServlet(
         name = "searchItem",
@@ -66,7 +67,7 @@ public class SearchItem extends HttpServlet {
 
         String username = (String) session.getAttribute("currentUser");
         GenericDao<User> userDao = new GenericDao<>(User.class);
-        //userDao.getByUniquePropertyEqualInt("")
+        session.setAttribute("username", username);
 
     }
 

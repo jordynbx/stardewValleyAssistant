@@ -25,11 +25,13 @@ public class Favorite {
 
     //@Column(name = "user_id")
     @NonNull
-    private int userId;
+    @ManyToOne
+    private User user;
 
     //@Column(name = "item_id")
     @NonNull
-    private int itemId;
+    @ManyToOne
+    private Item item;
 
 
 }

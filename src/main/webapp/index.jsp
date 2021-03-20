@@ -2,8 +2,9 @@
 <c:set var="title" value="Stardew Valley Assistant" />
 <%@include file="template/head.jsp"%>
 <%@include file="template/header.jsp"%>
+<%@include file="template/nav.jsp"%>
 
-<a href = 'loginAction'><button>Log In</button></a>
+${updateMessage}
 <br>
 <h1>Search for an item</h1>
 

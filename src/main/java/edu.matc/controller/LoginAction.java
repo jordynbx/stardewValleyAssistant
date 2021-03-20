@@ -33,9 +33,15 @@ public class LoginAction extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         log.info("The logged in user: " + req.getRemoteUser() + " has a role of admin: " + req.isUserInRole("admin"));
 
+
         HttpSession session = req.getSession();
         String username = req.getUserPrincipal().getName();
+
+        GenericDao<User> userDao = new GenericDao<>(User.class);
+        User user = (User)userDao.getByUniquePropertyEqualString("username", username);
         session.setAttribute("currentUser", username);
+        int userId = user.getId();
+        session.setAttribute("currentUserId", userId);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
         dispatcher.forward(req, resp);

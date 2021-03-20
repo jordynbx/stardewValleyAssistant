@@ -65,25 +65,6 @@ public class GenericDao<T> {
     }
 
     /**
-     * Gets a entity by the item id
-     * @param itemId entity id to search by
-     * @return a entity
-     */
-//    public <T>T getByItemId(int itemId) {
-//        Session session = getSession();
-//        T entity = (T)session.get(type, itemId);
-//        session.close();
-//        return entity;
-//    }
-
-//    public <T>T getByItemId(int thisItemId) {
-//        Session session = getSession();
-//        T entity = (T)session.byNaturalId(type).using("itemId", thisItemId);
-//        session.close();
-//        return entity;
-//    }
-
-    /**
      * Deletes the entity.
      *
      * @param entity entity to be deleted
@@ -167,6 +148,29 @@ public class GenericDao<T> {
         return entity;
     }
 
+    /** Get order by property (exact match)
+     * sample usage: getByPropertyEqualInt("lastName", "Curry")
+     *
+     * @param propertyName entity property to search by
+     * @param value value of the property to search for
+     * @return list of orders meeting the criteria search
+     */
+    //TODO add test for this method
+    public <T>T getByUniquePropertyEqualString(String propertyName, String value) {
+        Session session = getSession();
+
+        log.debug("Searching for order with " + propertyName + " = " + value);
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = (CriteriaQuery<T>) builder.createQuery( type );
+        Root<T> root = (Root<T>) query.from(type );
+        query.select(root).where(builder.equal(root.get(propertyName), value));
+        T entity = session.createQuery( query ).uniqueResult();
+
+        session.close();
+        return entity;
+    }
+
     /**
      * Gets by multiple ids.
      *
@@ -175,7 +179,7 @@ public class GenericDao<T> {
      * @param firstValue     the first value
      * @param secondProperty the second property
      * @param secondValue    the second value
-     * @return the by multiple ids
+     * @return the entity
      */
     public <T>T getByMultipleIds(String firstProperty, int firstValue,
             String secondProperty, int secondValue) {

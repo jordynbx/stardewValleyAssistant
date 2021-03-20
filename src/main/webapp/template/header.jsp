@@ -13,5 +13,6 @@
         <p class="lead text-warning" id="jumbosub">Get quick facts about Stardew Valley items!</p>
     </div>
 </div>
+
 <div class="bg-image">
     <div class="container" id="wrapper">
