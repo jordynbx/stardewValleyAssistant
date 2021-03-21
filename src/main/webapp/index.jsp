@@ -8,7 +8,7 @@ ${updateMessage}
 <br>
 <h1>Search for an item</h1>
 <c:if test="${pageContext.request.isUserInRole('user')}">
-<h3>Welcome, ${username}!</h3>
+<h3>Welcome, ${currentUser}!</h3>
 </c:if>
 
 
