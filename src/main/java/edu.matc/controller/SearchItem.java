@@ -55,7 +55,8 @@ public class SearchItem extends HttpServlet {
      * versions, items could be crops, fish, animal products, gems, or something else, and each
      * type of item will require it's own if statement
      */
-    //TODO add output message indicating support hasn't been added yet for non-crops
+    //TODO add output message indicating support hasn't been added yet for non-
+        // TODO maybe move this to a bean since it's duplicated?
     if (processItem) {
         if (item.getType().equals("crop")) {
             GenericDao<Crop> cropDao = new GenericDao<>(Crop.class);
@@ -65,9 +66,9 @@ public class SearchItem extends HttpServlet {
             request.setAttribute("crop", crop);
         }
 
-        String username = (String) session.getAttribute("currentUser");
-        GenericDao<User> userDao = new GenericDao<>(User.class);
-        session.setAttribute("username", username);
+//        String username = (String) session.getAttribute("currentUser");
+//        GenericDao<User> userDao = new GenericDao<>(User.class);
+//        session.setAttribute("username", username);
 
     }
 

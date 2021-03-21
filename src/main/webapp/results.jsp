@@ -4,14 +4,22 @@
 <%@include file="template/header.jsp"%>
 <%@include file="template/nav.jsp"%>
 
-<%--TODO remove when done with testing --%>
-<p>Current user: ${username}</p>
+<%--Show alert if note was successfully added--%>
+<c:if test="${showUpdateMessage}">
+    <div class="alert alert-dismissible alert-success pt-1">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Well done!</strong> ${updateMessage}.
+    </div>
+</c:if>
+<%--TODO show alert if there was an issue adding the note?--%>
 
-<%--<c:if test="${success == 'false'}">--%>
+<%--Show alert if the item wasn't found--%>
 <c:if test="${!success}">
     <h2>Search Results:</h2>
     <p>${message}</p>
 </c:if>
+
+<%--If item was found, show the item data--%>
 <c:if test="${success}">
     <h2 class="text-center">${item.name}</h2>
     <p>
@@ -40,11 +48,6 @@
             </div>
             <input type="hidden" id="itemId" name="itemId" value="${item.id}">
             <button type="submit" class="btn btn-primary">Submit</button>
-<%--            <label for="favorite">Add to favorites?</label>--%>
-<%--            <input type="checkbox" id="favorite" value="yes"><br>--%>
-<%--            <label for="userNote">Add a note:</label>--%>
-<%--            <input type="text" id="userNote" name="userNote">--%>
-<%--            <button type="submit" name="submit" value="submit">Submit</button>--%>
         </form>
     </c:if>
 </c:if>

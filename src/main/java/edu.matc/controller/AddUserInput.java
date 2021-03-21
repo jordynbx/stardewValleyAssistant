@@ -1,9 +1,6 @@
 package edu.matc.controller;
 
-import edu.matc.entity.Favorite;
-import edu.matc.entity.Item;
-import edu.matc.entity.Note;
-import edu.matc.entity.User;
+import edu.matc.entity.*;
 import edu.matc.persistence.GenericDao;
 import lombok.extern.log4j.Log4j2;
 
@@ -17,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 // TODO need to differentiate between adding and updating a note
+// TODO cleanup/organize code
 @Log4j2
 @WebServlet(
         name = "addUserInput",
@@ -55,16 +53,30 @@ public class AddUserInput  extends HttpServlet {
             favoriteDao.insert(favorite);
         }
 
+        // Create note
         // TODO echo note content into field?
         if (!noteContent.equals("")) {
             Note note = new Note(item, user, noteContent);
             noteDao.insert(note);
         }
-        // Create note
-        request.setAttribute("updateMessage", "Your item was updated!");
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        // reconfigure item data
+        if (item.getType().equals("crop")) {
+            GenericDao<Crop> cropDao = new GenericDao<>(Crop.class);
+            Crop crop = cropDao.getByUniquePropertyEqualInt("itemId", itemId);
+            request.setAttribute("crop", crop);
+        }
+
+
+
+        // forward into
+        request.setAttribute("success", true);
+        request.setAttribute("updateMessage", "Your item was updated!");
+        request.setAttribute("showUpdateMessage", true);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("results.jsp");
         dispatcher.forward(request, response);
+
     }
 }
 

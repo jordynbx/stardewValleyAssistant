@@ -1,5 +1,6 @@
 .container {
     padding: 1em;
+    background-color: lightblue;
 }
 
 .formfield {
@@ -22,12 +23,6 @@ table td {
 
 }
 
-.bg-image {
-    /*background-image: url(images/title_banner.jpg);*/
-    background-color: lightblue;
-    background-size: cover;
-
-}
 .jumbotron {
     margin-bottom: 0px;
     /*background-image: url(images/sky.png);*/
