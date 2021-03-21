@@ -181,12 +181,12 @@ public class GenericDao<T> {
      * @param secondValue    the second value
      * @return the entity
      */
-    public <T>T getByMultipleIds(String firstProperty, int firstValue,
+    public <T>T getUniqueEntityByMultipleProperties(String firstProperty, int firstValue,
             String secondProperty, int secondValue) {
 
         Session session = getSession();
 
-        log.debug("Searching for order with " + firstProperty + " = " + firstValue
+        log.debug("Searching for something with " + firstProperty + " = " + firstValue
                 + " and " + secondProperty + " = " + secondValue);
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -202,6 +202,39 @@ public class GenericDao<T> {
 
         session.close();
         return entity;
+    }
+
+    /**
+     * Gets by multiple ids.
+     *
+     * @param <T>            the type parameter
+     * @param firstProperty  the first property
+     * @param firstValue     the first value
+     * @param secondProperty the second property
+     * @param secondValue    the second value
+     * @return the entity
+     */
+    public List<T> getListByMultipleProperties(String firstProperty, int firstValue,
+                                                    String secondProperty, int secondValue) {
+
+        Session session = getSession();
+
+        log.debug("Searching for something with " + firstProperty + " = " + firstValue
+                + " and " + secondProperty + " = " + secondValue);
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = (CriteriaQuery<T>) builder.createQuery( type );
+        Root<T> root = (Root<T>) query.from(type );
+
+        List<Predicate> restrictions = new ArrayList<>();
+        restrictions.add(builder.equal(root.get(firstProperty), firstValue));
+        restrictions.add(builder.equal(root.get(secondProperty), secondValue));
+        query.where(restrictions.toArray(new Predicate[restrictions.size()]));
+
+        List<T> entities = session.createQuery( query ).getResultList();
+
+        session.close();
+        return entities;
     }
 
     /**

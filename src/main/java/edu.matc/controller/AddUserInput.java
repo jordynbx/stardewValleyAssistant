@@ -43,7 +43,7 @@ public class AddUserInput  extends HttpServlet {
         int userId = (int) session.getAttribute("currentUserId");
         User user = userDao.getById(userId);
 
-
+        // add item to favorites
         if (request.getParameter("addToFavorites") == null) {
             //TODO remove from favorites
             //TODO figure out how to make checkbox correct if they already checked it

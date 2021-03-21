@@ -2,6 +2,7 @@ package edu.matc.controller;
 
 import edu.matc.entity.Crop;
 import edu.matc.entity.Item;
+import edu.matc.entity.Note;
 import edu.matc.entity.User;
 import edu.matc.persistence.GenericDao;
 import lombok.extern.log4j.Log4j2;
@@ -33,8 +34,8 @@ public class SearchItem extends HttpServlet {
     Item item = null;
     Boolean processItem = false;
 
+    // Get item from form and check if it exists
     GenericDao<Item> itemDao = new GenericDao<>(Item.class);
-    // change everything below
     if (request.getParameter("submit").equals("search")) {
         items = itemDao.getByPropertyEqualString("name",
                request.getParameter("searchTerm"));
@@ -44,7 +45,6 @@ public class SearchItem extends HttpServlet {
             processItem = true;
         } else {
             request.setAttribute("message", "The item was not found, please try again");
-//            request.setAttribute("success", "false");
         }
     }
 
@@ -66,9 +66,9 @@ public class SearchItem extends HttpServlet {
             request.setAttribute("crop", crop);
         }
 
-//        String username = (String) session.getAttribute("currentUser");
-//        GenericDao<User> userDao = new GenericDao<>(User.class);
-//        session.setAttribute("username", username);
+        // Get notes regardless of which type of item
+        GenericDao<Note> noteDao = new GenericDao<>(Note.class);
+
 
     }
 

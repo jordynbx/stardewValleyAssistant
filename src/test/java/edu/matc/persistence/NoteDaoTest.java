@@ -62,10 +62,23 @@ public class NoteDaoTest {
      */
     @Test
     void getByUserAndItemSuccess() {
-        Note retrievedNote = (Note)dao.getByMultipleIds("user", 2, "item", 2);
+        Note retrievedNote =
+                (Note)dao.getUniqueEntityByMultipleProperties("user", 2, "item", 2);
         assertNotNull(retrievedNote);
         assertEquals("Need 2 more gold for bundle", retrievedNote.getNoteContent());
     }
+
+    /**
+     * verify success get list of notes by user and item
+     */
+    @Test
+    void getByUserAndItemListSuccess() {
+        List<Note> retrievedNotes = dao.getListByMultipleProperties("user", 2, "item", 6);
+        assertEquals(2, retrievedNotes.size());
+        assertEquals("save seeds for next spring", retrievedNotes.get(1).getNoteContent());
+    }
+
+
 
     /**
      * Verifies successful delete of note
