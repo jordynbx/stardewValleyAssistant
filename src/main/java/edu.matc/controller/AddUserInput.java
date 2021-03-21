@@ -73,6 +73,7 @@ public class AddUserInput  extends HttpServlet {
                 noteDao.getListByMultipleProperties("user", userId, "item", itemId);
 
         request.setAttribute("itemNotes", notes);
+        request.setAttribute("item", item);
 
 
         // forward into
