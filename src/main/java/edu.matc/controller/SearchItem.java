@@ -30,8 +30,10 @@ public class SearchItem extends HttpServlet {
             IOException {
 
     HttpSession session = request.getSession();
+
     List<Item> items;
     Item item = null;
+
     Boolean processItem = false;
 
     // Get item from form and check if it exists
@@ -58,9 +60,12 @@ public class SearchItem extends HttpServlet {
     //TODO add output message indicating support hasn't been added yet for non-
         // TODO maybe move this to a bean since it's duplicated?
     if (processItem) {
+        int searchItemId = item.getId();
+        int userId = (int) session.getAttribute("currentUserId");
+
         if (item.getType().equals("crop")) {
             GenericDao<Crop> cropDao = new GenericDao<>(Crop.class);
-            int searchItemId = item.getId();
+
             Crop crop = cropDao.getByUniquePropertyEqualInt("itemId", searchItemId);
             log.info(searchItemId);
             request.setAttribute("crop", crop);
@@ -69,6 +74,9 @@ public class SearchItem extends HttpServlet {
         // Get notes regardless of which type of item
         GenericDao<Note> noteDao = new GenericDao<>(Note.class);
 
+        List<Note> notes = noteDao.getListByMultipleProperties("user", userId, "item", searchItemId);
+
+        request.setAttribute("itemNotes", notes);
 
     }
 

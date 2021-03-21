@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 // TODO need to differentiate between adding and updating a note
 // TODO cleanup/organize code
@@ -67,6 +68,11 @@ public class AddUserInput  extends HttpServlet {
             request.setAttribute("crop", crop);
         }
 
+        // reconfigure notes
+        List<Note> notes =
+                noteDao.getListByMultipleProperties("user", userId, "item", itemId);
+
+        request.setAttribute("itemNotes", notes);
 
 
         // forward into

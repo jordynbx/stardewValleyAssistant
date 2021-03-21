@@ -34,7 +34,7 @@ public class NoteDaoTest {
     @Test
     void getAllNotesSuccess() {
         List<Note> notes = dao.getAll();
-        assertEquals(3, notes.size());
+        assertEquals(4, notes.size());
     }
 
     /**

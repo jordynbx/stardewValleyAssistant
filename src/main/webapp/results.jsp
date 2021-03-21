@@ -6,7 +6,7 @@
 
 <%--Show alert if note was successfully added--%>
 <c:if test="${showUpdateMessage}">
-    <div class="alert alert-dismissible alert-success pt-1">
+    <div class="alert alert-dismissible alert-success pt-1 mt-1">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Well done!</strong> ${updateMessage}.
     </div>
@@ -32,8 +32,14 @@
     <c:if test="${pageContext.request.isUserInRole('user')}">
         <p>
             Favorite: ${isFavorite}<br>
-            Your notes: ${notes.note}
+            Your notes:
         </p>
+            <ul>
+            <c:forEach var="note" items="${itemNotes}">
+                <li>${note.noteContent}</li>
+            </c:forEach>
+            </ul>
+
         <h3>Notes</h3>
         <form action="addUserInput" method="get">
             <div class="form-check">
