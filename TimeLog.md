@@ -30,3 +30,4 @@
 |3/18/21|Add JSPs and Crop entity|3|
 |3/19/21|Assemble and update data, work on JSPs and CSS, add methods to GenericDao|2|
 |3/21/21|Work on JSPs and configuring output|3.5|
+|3/22/21|Implement update and delete functionality and error handling|5|
