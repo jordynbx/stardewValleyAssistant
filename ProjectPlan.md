@@ -56,6 +56,7 @@
 ### Week 10
 - [ ] Create JavaMail front end 
 - [ ] Build out full JavaMail functionality 
+- [ ] Implement user sign-ups
 
 ### Week 11
 - [ ] Update and improve styling 

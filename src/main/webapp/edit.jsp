@@ -14,6 +14,6 @@
         <input type="text" class="form-control" id="editNote" name="editNote" value="${note.noteContent}">
     </div>
     <input type="hidden" id="noteId" name="noteId" value="${note.id}">
-    <button type="submit" name="submit" class="btn btn-primary" value="update">Submit</button>
+    <button type="submit" name="submit" class="btn btn-success" value="update">Submit</button>
 </form>
 <%@include file="template/footer.jsp"%>
