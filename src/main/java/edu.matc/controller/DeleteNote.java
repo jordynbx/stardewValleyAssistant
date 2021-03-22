@@ -28,37 +28,46 @@ public class DeleteNote extends HttpServlet {
         String url = null;
         HttpSession session = request.getSession();
         if (request.getParameter("id") != null) {
+
             GenericDao<Note> noteDao = new GenericDao<>(Note.class);
+
+            // Get note id from form
             int noteId = Integer.parseInt(request.getParameter("id"));
 
+            // Get the note, the logged in user, and the user who wrote the note
             Note note = noteDao.getById(noteId);
             User noteWriter = note.getUser();
             User loggedInUser = (User)session.getAttribute("loggedInUser");
 
+            // initialize permission error
+            Boolean permissionError = false;
 
+            /**
+             * If logged in user and user who wrote note both exist,
+             * check if they're the same. If so, set the note as an
+             * attribute and forward to delete jsp. If not, forward
+             * to error page with error message.
+             */
             if (loggedInUser != null && noteWriter != null) {
                 if (noteWriter.getId() == loggedInUser.getId()) {
                     request.setAttribute("note", note);
                     url = "delete.jsp";
                 } else {
-                    String message = "You don't have permission to access this note.";
-                    request.setAttribute("message", message);
-                    url = "error.jsp";
+                    permissionError = true;
                 }
             } else {
+                permissionError = true;
+            }
+
+            /**
+             * If logged in user is not the same as user who wrote note,
+             * forward to error page and output error message
+             */
+            if (permissionError) {
                 String message = "You don't have permission to access this note.";
                 request.setAttribute("message", message);
                 url = "error.jsp";
             }
-
-//            if (noteWriter.getId() == loggedInUser) {
-//                request.setAttribute("note", note);
-//                url = "delete.jsp";
-//            } else {
-//                String message = "You don't have permission to access this note.";
-//                request.setAttribute("message", message);
-//                url = "error.jsp";
-//            }
         } else {
             String message = "There was an error accessing the note to delete";
             request.setAttribute("message", message);
