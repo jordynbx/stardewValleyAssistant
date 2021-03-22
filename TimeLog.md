@@ -27,5 +27,6 @@
 |3/13/21|Week 8 REST activities, team project planning|1|
 |3/14/21|Week 8 REST activities, Weather API exercise 8|4|
 |3/15/21|Implement javamail|1.5|
-|3/18/21|Add jsps and Crop entity|3|
-|3/19/21|Assemble and update data, work on jsps, add methods to GenericDao|2|
+|3/18/21|Add JSPs and Crop entity|3|
+|3/19/21|Assemble and update data, work on JSPs and CSS, add methods to GenericDao|2|
+|3/21/21|Work on JSPs and configuring output|3.5|

@@ -30,17 +30,17 @@
         Growth season: ${crop.season}<br>
     </p>
     <c:if test="${pageContext.request.isUserInRole('user')}">
-        <p>
-            Favorite: ${isFavorite}<br>
-            Your notes:
-        </p>
-            <ul>
-            <c:forEach var="note" items="${itemNotes}">
-                <li>${note.noteContent}</li>
-            </c:forEach>
-            </ul>
-
         <h3>Notes</h3>
+        <table>
+            <c:forEach var="note" items="${itemNotes}">
+                <tr>
+                    <td class="item-td">${note.noteContent}</td>
+                    <td class="item-td"><a href="stardewValleyAssistant/edit?id=${note.id}">Edit</a></td>
+                    <td class="item-td"><a href="#">Delete</a></td>
+                </tr>
+            </c:forEach>
+        </table>
+
         <form action="addUserInput" method="get">
             <div class="form-check">
                 <label class="form-check-label">

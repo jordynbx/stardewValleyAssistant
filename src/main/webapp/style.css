@@ -12,7 +12,7 @@
     min-width: 100px;
 }
 table td {
-    text-align: center;
+    text-align: left;
     vertical-align: center !important;
 }
 
