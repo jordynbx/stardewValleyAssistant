@@ -13,7 +13,8 @@
         <label for="editNote">New note:</label>
         <input type="text" class="form-control" id="editNote" name="editNote" value="${note.noteContent}">
     </div>
-    <input type="hidden" id="noteId" name="noteId" value="${note.id}">
+    <input type="hidden" id="noteIdEdit" name="noteIdEdit" value="${note.id}">
     <button type="submit" name="submit" class="btn btn-success" value="update">Submit</button>
+    <button type="submit" name="submit" class="btn btn-warning" value="cancel">Cancel</button>
 </form>
 <%@include file="template/footer.jsp"%>

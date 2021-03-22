@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-//TODO add checks so that user can only delete their own note
+
 @WebServlet(
         urlPatterns = {"/deleteNoteAction"}
 )
@@ -32,7 +32,7 @@ public class DeleteNoteAction extends HttpServlet {
         Item item = null;
         User user = null;
         Note noteToDelete;
-        Boolean noteIsValid = false;
+        boolean noteIsValid = false;
         String url = "error.jsp";
 
         if (!request.getParameter("noteId").equals("")) {

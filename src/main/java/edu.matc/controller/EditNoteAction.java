@@ -31,44 +31,62 @@ public class EditNoteAction extends HttpServlet {
         GenericDao<Note> noteDao = new GenericDao<>(Note.class);
         String message;
         Note noteToUpdate = null;
-        Boolean noteIsValid = false;
+        boolean noteIsValid = false;
         String url = "error.jsp";
 
-        if ((request.getParameter("submit").equals("update"))
-                && !request.getParameter("noteID").equals("")){
+        if (!request.getParameter("noteIdEdit").equals("")) {
 
             // Get note id and note content from form
-            int noteId = Integer.parseInt(request.getParameter("noteId"));
+            int noteId = Integer.parseInt(request.getParameter("noteIdEdit"));
             String newNote = request.getParameter("editNote");
 
             noteToUpdate = noteDao.getById(noteId);
-            noteToUpdate.setNoteContent(newNote);
-            noteDao.saveOrUpdate(noteToUpdate);
-            message = "Your note was successfully updated!";
+            // If update button was clicked, update note
+            if (request.getParameter("submit").equals("update")) {
+
+                noteToUpdate.setNoteContent(newNote);
+                noteDao.saveOrUpdate(noteToUpdate);
+                message = "Your note was successfully updated!";
+            } else if (request.getParameter("submit").equals("cancel")) {
+                message = "Your note was not updated";
+            } else {
+                message = "There was an error updating the note.";
+            }
+
+            // repopulate the results page
+            noteIsValid = true;
+
         } else {
-            message = "Your note was not updated";
+            message = "There was an error updating the note.";
+            request.setAttribute("message", message);
         }
 
         // Reconfigure note and item output
-        Item item = noteToUpdate.getItem();
-        User user = noteToUpdate.getUser();
-        if (item.getType().equals("crop")) {
-            Crop crop = processor.processCrop(item.getId());
-            request.setAttribute("crop", crop);
+
+        if (noteIsValid) {
+            Item item = noteToUpdate.getItem();
+            User user = noteToUpdate.getUser();
+            if (item.getType().equals("crop")) {
+                Crop crop = processor.processCrop(item.getId());
+                request.setAttribute("crop", crop);
+            }
+
+            // reconfigure notes
+            List<Note> notes = processor.generateNotes(user.getId(), item.getId());
+            request.setAttribute("itemNotes", notes);
+
+            // set display attributes
+            request.setAttribute("item", item);
+            request.setAttribute("success", true);
+            request.setAttribute("updateMessage", message);
+            request.setAttribute("showUpdateMessage", true);
+
+            url = "results.jsp";
         }
 
-        // reconfigure notes
-        List<Note> notes = processor.generateNotes(user.getId(), item.getId());
-        request.setAttribute("itemNotes", notes);
-
-        // set display attributes
-        request.setAttribute("item", item);
-        request.setAttribute("success", true);
-        request.setAttribute("updateMessage", message);
-        request.setAttribute("showUpdateMessage", true);
 
         // forward the request
-        RequestDispatcher dispatcher = request.getRequestDispatcher("results.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);
 
     }
