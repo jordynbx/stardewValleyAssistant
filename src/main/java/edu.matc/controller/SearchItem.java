@@ -30,11 +30,12 @@ public class SearchItem extends HttpServlet {
             IOException {
 
     HttpSession session = request.getSession();
+    ItemProcessor processor = new ItemProcessor();
 
     List<Item> items;
     Item item = null;
 
-    Boolean processItem = false;
+    Boolean itemExists = false;
 
     // Get item from form and check if it exists
     GenericDao<Item> itemDao = new GenericDao<>(Item.class);
@@ -43,14 +44,17 @@ public class SearchItem extends HttpServlet {
                request.getParameter("searchTerm"));
         if (items.size() == 1) {
             item = items.get(0);
-            request.setAttribute("item", item);
-            processItem = true;
+            itemExists = true;
         } else {
             request.setAttribute("message", "The item was not found, please try again");
         }
     }
+//        request = processor.processItem(session, request, item.getId());;
+//        List<Note> notes = processor.generateNotes(session, request, item.getId());
+//        request.setAttribute("itemNotes", notes);
+//        request.setAttribute("item", item);
 
-    request.setAttribute("success", processItem);
+    request.setAttribute("success", itemExists);
 
     /**
      * In V1 of this project, all items will be crops, so this seems unnecessary. However, in future
@@ -58,25 +62,29 @@ public class SearchItem extends HttpServlet {
      * type of item will require it's own if statement
      */
     //TODO add output message indicating support hasn't been added yet for non-
-        // TODO maybe move this to a bean since it's duplicated?
-    if (processItem) {
+    if (itemExists) {
         int searchItemId = item.getId();
         int userId = (int) session.getAttribute("currentUserId");
 
         if (item.getType().equals("crop")) {
-            GenericDao<Crop> cropDao = new GenericDao<>(Crop.class);
+//            GenericDao<Crop> cropDao = new GenericDao<>(Crop.class);
+//
+//            Crop crop = cropDao.getByUniquePropertyEqualInt("itemId", searchItemId);
+//            log.info(searchItemId);
 
-            Crop crop = cropDao.getByUniquePropertyEqualInt("itemId", searchItemId);
-            log.info(searchItemId);
+            Crop crop = processor.processCrop(searchItemId);
             request.setAttribute("crop", crop);
         }
 
-        // Get notes regardless of which type of item
-        GenericDao<Note> noteDao = new GenericDao<>(Note.class);
-
-        List<Note> notes = noteDao.getListByMultipleProperties("user", userId, "item", searchItemId);
-
+        List<Note> notes = processor.generateNotes(userId, searchItemId);
         request.setAttribute("itemNotes", notes);
+
+//        // Get notes regardless of which type of item
+//        GenericDao<Note> noteDao = new GenericDao<>(Note.class);
+//
+//        List<Note> notes = noteDao.getListByMultipleProperties("user", userId, "item", searchItemId);
+
+
 
     }
 

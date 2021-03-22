@@ -1,6 +1,10 @@
 .container {
     padding: 1em;
+}
+
+.bg {
     background-color: lightblue;
+    background-size: cover;
 }
 
 .formfield {

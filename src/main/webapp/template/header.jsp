@@ -14,5 +14,5 @@
     </div>
 </div>
 
-<div class="bg-image">
+<div class="bg">
     <div class="container" id="wrapper">

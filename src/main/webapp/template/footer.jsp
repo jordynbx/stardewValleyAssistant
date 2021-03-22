@@ -1,6 +1,7 @@
+<hr />
 </div>
 </div><!-- closing container div -->
-<hr />
+
 <footer class="container-fluid">
     <p>Copyright &copy;</p>
 </footer>

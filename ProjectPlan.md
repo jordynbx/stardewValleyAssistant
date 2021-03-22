@@ -41,15 +41,24 @@
 - [ ] Research JavaMail or other web services I can add to project
 
 ### Week 8
-- [ ] Implement JavaMail
+- [ ] Implement JavaMail basic functionality
 - [ ] Create remaining entities
 - [ ] Build out first jsp to view data 
 - [ ] Assemble full drop data for database
 - [ ] Upload project to AWS
+- [ ] Add CSS
 
 ### Week 9
-- [ ]
-- [ ]
+- [ ] Create JavaBean to hold main processing methods
+- [ ] Remove duplicate methods from servlets
+- [ ] Build out update and delete functionality 
+
+### Week 10
+- [ ] Create JavaMail front end 
+- [ ] Build out full JavaMail functionality 
+
+### Week 11
+- [ ] Update and improve styling 
 
 #### On deck...
 - [ ]

@@ -35,22 +35,23 @@
             <c:forEach var="note" items="${itemNotes}">
                 <tr>
                     <td class="item-td">${note.noteContent}</td>
-                    <td class="item-td"><a href="stardewValleyAssistant/edit?id=${note.id}">Edit</a></td>
+                    <td class="item-td"><a href="/edit?id=${note.id}">Edit</a></td>
                     <td class="item-td"><a href="#">Delete</a></td>
                 </tr>
             </c:forEach>
         </table>
 
         <form action="addUserInput" method="get">
+
+            <div class="form-group">
+                <label for="userNote">Add a note:</label>
+                <input type="text" class="form-control" id="userNote" name="userNote" placeholder="Enter note">
+            </div>
             <div class="form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" type="checkbox" name="addToFavorites" value="addToFavorites">
                     Add to favorites?
                 </label>
-            </div>
-            <div class="form-group">
-                <label for="userNote">Add a note:</label>
-                <input type="text" class="form-control" id="userNote" name="userNote" placeholder="Enter note">
             </div>
             <input type="hidden" id="itemId" name="itemId" value="${item.id}">
             <button type="submit" class="btn btn-primary">Submit</button>
