@@ -25,8 +25,10 @@ public class DeleteNote extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String url = null;
+
         HttpSession session = request.getSession();
+        String url = null;
+
         if (request.getParameter("id") != null) {
 
             GenericDao<Note> noteDao = new GenericDao<>(Note.class);

@@ -31,8 +31,13 @@ public class EditNoteAction extends HttpServlet {
         GenericDao<Note> noteDao = new GenericDao<>(Note.class);
         String message;
         Note noteToUpdate = null;
+        Boolean noteIsValid = false;
+        String url = "error.jsp";
 
-        if (request.getParameter("submit").equals("update")) {
+        if ((request.getParameter("submit").equals("update"))
+                && !request.getParameter("noteID").equals("")){
+
+            // Get note id and note content from form
             int noteId = Integer.parseInt(request.getParameter("noteId"));
             String newNote = request.getParameter("editNote");
 

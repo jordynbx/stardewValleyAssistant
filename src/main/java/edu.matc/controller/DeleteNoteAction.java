@@ -35,8 +35,7 @@ public class DeleteNoteAction extends HttpServlet {
         Boolean noteIsValid = false;
         String url = "error.jsp";
 
-        if ((request.getParameter("submit").equals("delete"))
-                && (!request.getParameter("noteId").equals(""))) {
+        if (!request.getParameter("noteId").equals("")) {
 
             // Get note id from form
             int noteId = Integer.parseInt(request.getParameter("noteId"));
@@ -46,21 +45,25 @@ public class DeleteNoteAction extends HttpServlet {
             item = noteToDelete.getItem();
             user = noteToDelete.getUser();
 
-            // delete the note
-            noteDao.delete(noteDao.getById(noteId));
+            if (request.getParameter("submit").equals("delete")) {
 
-            // output a success message
-            message = "Your note was successfully deleted!";
+                // delete the note and output success message
+                noteDao.delete(noteDao.getById(noteId));
+                message = "Your note was successfully deleted!";
+
+            } else if (request.getParameter("submit").equals("cancel")) {
+
+                // output confirmation message
+                message = "Your note was not deleted.";
+
+            } else {
+                message = "There was an error deleting the note.";
+            }
 
             // repopulate the results page
             noteIsValid = true;
-
-        } else if ((request.getParameter("submit").equals("cancel"))
-                && (!request.getParameter("noteId").equals(""))) {
-            noteIsValid = true;
-            message = "Your note was note deleted.";
         } else {
-            message = " accessing the note to delete";
+            message = "There was an error deleting the note.";
             request.setAttribute("message", message);
         }
 

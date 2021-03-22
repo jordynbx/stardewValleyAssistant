@@ -1,6 +1,7 @@
 package edu.matc.controller;
 
 import edu.matc.entity.Note;
+import edu.matc.entity.User;
 import edu.matc.persistence.GenericDao;
 import lombok.extern.log4j.Log4j2;
 
@@ -10,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Log4j2
@@ -23,18 +25,58 @@ public class EditNote extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        GenericDao<Note> noteDao = new GenericDao<>(Note.class);
-        int noteId = Integer.parseInt(request.getParameter("id"));
+        HttpSession session = request.getSession();
+        String url = null;
 
-        Note note = noteDao.getById(noteId);
-        String noteContent = note.getNoteContent();
+        if (request.getParameter("id") != null) {
 
-        request.setAttribute("note", note);
+            GenericDao<Note> noteDao = new GenericDao<>(Note.class);
 
-        log.info("The note content: " + noteContent);
+            // Get note id from form
+            int noteId = Integer.parseInt(request.getParameter("id"));
 
+            // Get the note, note content, the logged in user, and the user who wrote the note
+            Note note = noteDao.getById(noteId);
+            String noteContent = note.getNoteContent();
+            User noteWriter = note.getUser();
+            User loggedInUser = (User)session.getAttribute("loggedInUser");
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("edit.jsp");
+            // initialize permission error
+            Boolean permissionError = false;
+
+            /**
+             * If logged in user and user who wrote note both exist,
+             * check if they're the same. If so, set the note as an
+             * attribute and forward to edit jsp. If not, forward
+             * to error page with error message.
+             */
+            if (loggedInUser != null && noteWriter != null) {
+                if (noteWriter.getId() == loggedInUser.getId()) {
+                    request.setAttribute("note", note);
+                    url = "edit.jsp";
+                } else {
+                    permissionError = true;
+                }
+            } else {
+                permissionError = true;
+            }
+
+            /**
+             * If logged in user is not the same as user who wrote note,
+             * forward to error page and output error message
+             */
+            if (permissionError) {
+                String message = "You don't have permission to edit this note.";
+                request.setAttribute("message", message);
+                url = "error.jsp";
+            }
+        } else {
+            String message = "There was an error accessing the note to edit";
+            request.setAttribute("message", message);
+            url = "error.jsp";
+        }
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }
 }
