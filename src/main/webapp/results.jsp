@@ -4,6 +4,7 @@
 <%@include file="template/header.jsp"%>
 <%@include file="template/nav.jsp"%>
 
+<%--TODO edit the update messages and attributes so there is one success and one fail--%>
 <%--Show alert if note was successfully added--%>
 <c:if test="${showUpdateMessage}">
     <div class="alert alert-dismissible alert-success pt-1 mt-1">
@@ -35,7 +36,7 @@
             <c:forEach var="note" items="${itemNotes}">
                 <tr>
                     <td class="item-td">${note.noteContent}</td>
-                    <td class="item-td"><a href="/edit?id=${note.id}">Edit</a></td>
+                    <td class="item-td"><a href="edit?id=${note.id}">Edit</a></td>
                     <td class="item-td"><a href="#">Delete</a></td>
                 </tr>
             </c:forEach>

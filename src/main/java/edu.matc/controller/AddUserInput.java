@@ -27,8 +27,9 @@ public class AddUserInput  extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
+        ItemProcessor processor = new ItemProcessor();
 
-        // create daos
+        // create DAOs
         GenericDao<Note> noteDao = new GenericDao<>(Note.class);
         GenericDao<Favorite> favoriteDao = new GenericDao<>(Favorite.class);
         GenericDao<User> userDao = new GenericDao<>(User.class);
@@ -63,27 +64,22 @@ public class AddUserInput  extends HttpServlet {
 
         // reconfigure item data
         if (item.getType().equals("crop")) {
-            GenericDao<Crop> cropDao = new GenericDao<>(Crop.class);
-            Crop crop = cropDao.getByUniquePropertyEqualInt("itemId", itemId);
+            Crop crop = processor.processCrop(itemId);
             request.setAttribute("crop", crop);
         }
 
         // reconfigure notes
-        List<Note> notes =
-                noteDao.getListByMultipleProperties("user", userId, "item", itemId);
-
+        List<Note> notes = processor.generateNotes(userId, itemId);
         request.setAttribute("itemNotes", notes);
+
+        // set request display attributes
         request.setAttribute("item", item);
-
-
-        // forward into
         request.setAttribute("success", true);
         request.setAttribute("updateMessage", "Your item was updated!");
         request.setAttribute("showUpdateMessage", true);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("results.jsp");
         dispatcher.forward(request, response);
-
     }
 }
 

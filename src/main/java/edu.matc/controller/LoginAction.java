@@ -30,12 +30,13 @@ import java.io.IOException;
 @Log4j2
 public class LoginAction extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        log.info("The logged in user: " + req.getRemoteUser() + " has a role of admin: " + req.isUserInRole("admin"));
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
+        log.info("The logged in user: " + request.getRemoteUser() + " has a role of admin: " + request.isUserInRole("admin"));
 
 
-        HttpSession session = req.getSession();
-        String username = req.getUserPrincipal().getName();
+        HttpSession session = request.getSession();
+        String username = request.getUserPrincipal().getName();
 
         GenericDao<User> userDao = new GenericDao<>(User.class);
         User user = (User)userDao.getByUniquePropertyEqualString("username", username);
@@ -43,7 +44,7 @@ public class LoginAction extends HttpServlet {
         int userId = user.getId();
         session.setAttribute("currentUserId", userId);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
-        dispatcher.forward(req, resp);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        dispatcher.forward(request, response);
     }
 }

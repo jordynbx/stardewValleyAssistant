@@ -29,10 +29,12 @@ public class EditNote extends HttpServlet {
         Note note = noteDao.getById(noteId);
         String noteContent = note.getNoteContent();
 
+        request.setAttribute("note", note);
+
         log.info("The note content: " + noteContent);
 
 
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("results.jsp");
-//        dispatcher.forward(request, response);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("edit.jsp");
+        dispatcher.forward(request, response);
     }
 }

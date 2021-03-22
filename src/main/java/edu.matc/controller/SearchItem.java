@@ -15,10 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-//TODO add functionality to display note
+
 @Log4j2
 @WebServlet(
         name = "searchItem",
@@ -49,10 +48,6 @@ public class SearchItem extends HttpServlet {
             request.setAttribute("message", "The item was not found, please try again");
         }
     }
-//        request = processor.processItem(session, request, item.getId());;
-//        List<Note> notes = processor.generateNotes(session, request, item.getId());
-//        request.setAttribute("itemNotes", notes);
-//        request.setAttribute("item", item);
 
     request.setAttribute("success", itemExists);
 
@@ -67,25 +62,12 @@ public class SearchItem extends HttpServlet {
         int userId = (int) session.getAttribute("currentUserId");
 
         if (item.getType().equals("crop")) {
-//            GenericDao<Crop> cropDao = new GenericDao<>(Crop.class);
-//
-//            Crop crop = cropDao.getByUniquePropertyEqualInt("itemId", searchItemId);
-//            log.info(searchItemId);
-
             Crop crop = processor.processCrop(searchItemId);
             request.setAttribute("crop", crop);
         }
 
         List<Note> notes = processor.generateNotes(userId, searchItemId);
         request.setAttribute("itemNotes", notes);
-
-//        // Get notes regardless of which type of item
-//        GenericDao<Note> noteDao = new GenericDao<>(Note.class);
-//
-//        List<Note> notes = noteDao.getListByMultipleProperties("user", userId, "item", searchItemId);
-
-
-
     }
 
     RequestDispatcher dispatcher = request.getRequestDispatcher("/results.jsp");
