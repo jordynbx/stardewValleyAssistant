@@ -11,13 +11,17 @@
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
+            <c:if test="${!loggedIn}">
             <li class="nav-item">
                 <a class="nav-link" href="loginAction">Login</a>
             </li>
+            </c:if>
+            <c:if test="${loggedIn}">
             <li class="nav-item">
                 <a class="nav-link" href="logoutAction">Log Out</a>
             </li>
-<%--            <li class="nav-item">--%>
+            </c:if>
+        <%--            <li class="nav-item">--%>
 <%--                <a class="nav-link" href="#">About</a>--%>
 <%--            </li>--%>
 <%--            <li class="nav-item dropdown">--%>
