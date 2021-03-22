@@ -43,6 +43,7 @@ public class LoginAction extends HttpServlet {
         session.setAttribute("currentUser", username);
         int userId = user.getId();
         session.setAttribute("currentUserId", userId);
+        session.setAttribute("loggedInUser", user);
         session.setAttribute("loggedIn", true);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");

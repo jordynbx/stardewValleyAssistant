@@ -5,7 +5,7 @@
 <%@include file="template/header.jsp"%>
 <%@include file="template/nav.jsp"%>
 
-<p class="text-danger">There was an error${message}. Please try again.</p>
+<p class="text-danger">${message} Please try again.</p>
 
 <p><a href="index.jsp">Return to home page.</a></p>
 
