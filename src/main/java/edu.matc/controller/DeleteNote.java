@@ -23,17 +23,23 @@ public class DeleteNote extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        GenericDao<Note> noteDao = new GenericDao<>(Note.class);
-        int noteId = Integer.parseInt(request.getParameter("id"));
+        String url = null;
+        if (request.getParameter("id") != null) {
+            GenericDao<Note> noteDao = new GenericDao<>(Note.class);
+            int noteId = Integer.parseInt(request.getParameter("id"));
 
-        Note note = noteDao.getById(noteId);
+            Note note = noteDao.getById(noteId);
+            request.setAttribute("note", note);
 
-        request.setAttribute("note", note);
+            url = "delete.jsp";
+        } else {
+            String message = " accessing the note to delete";
+            request.setAttribute("message", message);
+            url = "error.jsp";
+        }
 
-        log.info("The note to delete: " + noteId);
 
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("delete.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }
 }

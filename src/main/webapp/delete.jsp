@@ -15,5 +15,6 @@
 <form action="deleteNoteAction" method="get">
     <input type="hidden" id="noteId" name="noteId" value="${note.id}">
     <button type="submit" name="submit" class="btn btn-danger" value="delete">Delete Note</button>
+    <button type="submit" name="submit" class="btn btn-warning" value="cancel">Cancel</button>
 </form>
 <%@include file="template/footer.jsp"%>

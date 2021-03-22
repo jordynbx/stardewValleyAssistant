@@ -46,8 +46,10 @@
 
             <div class="form-group">
                 <label for="userNote">Add a new note:</label>
-                <input type="text" class="form-control" id="userNote" name="userNote" placeholder="Enter note">
+                <input type="text" class="form-control" id="userNote" name="userNote" placeholder="Enter note" >
+                <small id="noteLimit" class="form-text text-muted">Notes have a 50 character limit</small>
             </div>
+
 <%--            <div class="form-check">--%>
 <%--                <label class="form-check-label">--%>
 <%--                    <input class="form-check-input" type="checkbox" name="addToFavorites" value="addToFavorites">--%>

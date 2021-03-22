@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+//TODO add checks so that user can only delete their own note
 @WebServlet(
         urlPatterns = {"/deleteNoteAction"}
 )
@@ -28,47 +28,64 @@ public class DeleteNoteAction extends HttpServlet {
 
         ItemProcessor processor = new ItemProcessor();
         GenericDao<Note> noteDao = new GenericDao<>(Note.class);
-        String message;
+        String message = null;
         Item item = null;
         User user = null;
-        Note noteToDelete = null;
+        Note noteToDelete;
+        Boolean noteIsValid = false;
+        String url = "error.jsp";
 
-        if (request.getParameter("submit").equals("delete")) {
+        if ((request.getParameter("submit").equals("delete"))
+                && (!request.getParameter("noteId").equals(""))) {
 
             // Get note id from form
             int noteId = Integer.parseInt(request.getParameter("noteId"));
+            noteToDelete = noteDao.getById(noteId);
 
             // Get user and item data for reload before deleting the note
-            noteToDelete = noteDao.getById(noteId);
             item = noteToDelete.getItem();
             user = noteToDelete.getUser();
 
             // delete the note
             noteDao.delete(noteDao.getById(noteId));
 
+            // output a success message
             message = "Your note was successfully deleted!";
+
+            // repopulate the results page
+            noteIsValid = true;
+
+        } else if ((request.getParameter("submit").equals("cancel"))
+                && (!request.getParameter("noteId").equals(""))) {
+            noteIsValid = true;
+            message = "Your note was note deleted.";
         } else {
-            message = "Please select a note to delete.";
+            message = " accessing the note to delete";
+            request.setAttribute("message", message);
         }
 
-        // Reconfigure note and item output
-        if (item.getType().equals("crop")) {
-            Crop crop = processor.processCrop(item.getId());
-            request.setAttribute("crop", crop);
+        if (noteIsValid) {
+            // Reconfigure note and item output
+            if (item.getType().equals("crop")) {
+                Crop crop = processor.processCrop(item.getId());
+                request.setAttribute("crop", crop);
+            }
+
+            // reconfigure notes
+            List<Note> notes = processor.generateNotes(user.getId(), item.getId());
+            request.setAttribute("itemNotes", notes);
+            // set display attributes
+            request.setAttribute("item", item);
+            request.setAttribute("success", true);
+            request.setAttribute("updateMessage", message);
+            request.setAttribute("showUpdateMessage", true);
+
+            url = "results.jsp";
         }
 
-        // reconfigure notes
-        List<Note> notes = processor.generateNotes(user.getId(), item.getId());
-        request.setAttribute("itemNotes", notes);
-
-        // set display attributes
-        request.setAttribute("item", item);
-        request.setAttribute("success", true);
-        request.setAttribute("updateMessage", message);
-        request.setAttribute("showUpdateMessage", true);
 
         // forward the request
-        RequestDispatcher dispatcher = request.getRequestDispatcher("results.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }
 }

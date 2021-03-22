@@ -68,6 +68,7 @@ public class SearchItem extends HttpServlet {
 
         List<Note> notes = processor.generateNotes(userId, searchItemId);
         request.setAttribute("itemNotes", notes);
+        request.setAttribute("item", item);
     }
 
     RequestDispatcher dispatcher = request.getRequestDispatcher("/results.jsp");
