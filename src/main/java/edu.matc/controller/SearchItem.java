@@ -59,15 +59,17 @@ public class SearchItem extends HttpServlet {
     //TODO add output message indicating support hasn't been added yet for non-
     if (itemExists) {
         int searchItemId = item.getId();
-        int userId = (int) session.getAttribute("currentUserId");
 
         if (item.getType().equals("crop")) {
             Crop crop = processor.processCrop(searchItemId);
             request.setAttribute("crop", crop);
         }
 
-        List<Note> notes = processor.generateNotes(userId, searchItemId);
-        request.setAttribute("itemNotes", notes);
+        if (request.isUserInRole("user") || request.isUserInRole("admin")) {
+            int userId = (int) session.getAttribute("currentUserId");
+            List<Note> notes = processor.generateNotes(userId, searchItemId);
+            request.setAttribute("itemNotes", notes);
+        }
         request.setAttribute("item", item);
     }
 

@@ -13,7 +13,7 @@ ${errorMessage}
     </div>
     <div class="form-group">
         <label for="userEmail">Username</label>
-        <input type="text" class="form-control" name="userUsername" id="userUsername" value="${username}" placeholder="Enter username" required>
+        <input type="text" class="form-control" name="userUsername" id="userUsername" value="${username}" maxlength="20" placeholder="Enter username" required>
     </div>
     <div class="form-group">
         <label for="userPassword">Password</label>
