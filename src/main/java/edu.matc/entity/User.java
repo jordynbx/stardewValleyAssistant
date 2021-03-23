@@ -25,6 +25,10 @@ public class User {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
+    @Column(name = "email")
+    @NonNull
+    private String email;
+
     @Column(name = "username")
     @NonNull
     private String username;

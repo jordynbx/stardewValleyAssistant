@@ -13,6 +13,9 @@
             </li>
             <c:if test="${!loggedIn}">
             <li class="nav-item">
+                <a class="nav-link" href="signup">Sign Up</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="loginAction">Login</a>
             </li>
             </c:if>

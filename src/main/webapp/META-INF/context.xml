@@ -4,5 +4,10 @@
            connectionURL="jdbc:mysql://localhost:3306/stardew_assistant?user=tomcat&amp;password=tomcat"
            userTable="user" userNameCol="username" userCredCol="password"
            userRoleTable="role" roleNameCol="role_name" >
+
+        <CredentialHandler
+                className="org.apache.catalina.realm.MessageDigestCredentialHandler"
+                algorithm="sha-256"
+                encoding="UTF-8" />
     </Realm>
 </Context>

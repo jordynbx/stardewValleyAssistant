@@ -18,27 +18,27 @@ import java.io.IOException;
 
 
 /**
- * A simple servlet whose purpose is to redirect to the home page
- * after a log in attempt
- * @author pwaite
+ * A simple servlet whose purpose is to forward to
+ * the signup JSP
+ *
+ * @author jordynbx
  */
 
 @WebServlet(
-        name = "logoutAction",
-        urlPatterns = {"/logoutAction"}
+        name = "signup",
+        urlPatterns = {"/signup"}
 )
 
 @Log4j2
-public class LogoutAction extends HttpServlet {
+public class SignUp extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
-        session.invalidate();
+        String url = "signup.jsp";
 
-        //TODO how to add message that confirms successful sign out
-
-        response.sendRedirect("index.jsp");
+        // forward the request
+        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+        dispatcher.forward(request, response);
     }
 }

@@ -49,7 +49,7 @@
 - [ ] Add CSS
 
 ### Week 9
-- [ ] Create JavaBean to hold main processing methods
+- [ ] Create JavaBean to hold main item processing methods
 - [ ] Remove duplicate methods from servlets
 - [ ] Build out update and delete functionality 
 
@@ -60,6 +60,7 @@
 
 ### Week 11
 - [ ] Update and improve styling 
+- [ ] Implement user favorites functionality 
 
 #### On deck...
 - [ ]

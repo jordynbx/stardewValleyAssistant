@@ -112,12 +112,7 @@
       <artifactId>jersey-hk2</artifactId>
       <version>${jersey-version}</version>
     </dependency>
-    <!--    simple java mail-->
-<!--    <dependency>-->
-<!--      <groupId>org.simplejavamail</groupId>-->
-<!--      <artifactId>simple-java-mail</artifactId>-->
-<!--      <version>6.5.0</version>-->
-<!--    </dependency>-->
+
     <dependency>
       <groupId>com.sun.mail</groupId>
       <artifactId>jakarta.mail</artifactId>
@@ -129,6 +124,15 @@
       <artifactId>protobuf-java-util</artifactId>
       <version>4.0.0-rc-2</version>
     </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-servlet-api -->
+      <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-catalina -->
+      <dependency>
+          <groupId>org.apache.tomcat</groupId>
+          <artifactId>tomcat-catalina</artifactId>
+          <version>10.0.4</version>
+          <scope>provided</scope>
+      </dependency>
 
   </dependencies>
 

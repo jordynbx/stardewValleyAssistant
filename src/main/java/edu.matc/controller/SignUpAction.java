@@ -1,0 +1,112 @@
+package edu.matc.controller;
+
+import edu.matc.entity.Note;
+import edu.matc.entity.Role;
+import edu.matc.entity.User;
+import edu.matc.persistence.GenericDao;
+import lombok.extern.log4j.Log4j2;
+import org.apache.catalina.realm.MessageDigestCredentialHandler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import javax.mail.Session;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+
+
+/**
+ * A simple servlet whose purpose is
+ *
+ * @author jordynbx
+ */
+
+@WebServlet(
+        name = "signUpAction",
+        urlPatterns = {"/signUpAction"}
+)
+
+@Log4j2
+public class SignUpAction extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        GenericDao<User> userDao = new GenericDao<>(User.class);
+        GenericDao<Role> roleDao = new GenericDao<>(Role.class);
+
+        // initialize variables that are attributes
+        String errorMessage = "";
+        String message = "";
+        String username = "";
+        String email = "";
+
+        // Get parameters from form
+        email = request.getParameter("userEmail");
+        username = request.getParameter("userUsername");
+        String userPassword = request.getParameter("userPassword");
+        String confirmPassword = request.getParameter("confirmPassword");
+
+        String url = "";
+        boolean createUser = false;
+
+        // Check if username is already in use
+        User existingUser = userDao.getByUniquePropertyEqualString("username", username);
+
+        if (existingUser == null) {
+
+            // Verify passwords match
+            if (userPassword.equals(confirmPassword)) {
+                createUser = true;
+            } else {
+                errorMessage = "Your passwords do not match. Please re-enter.";
+                request.setAttribute("enteredEmail", email);
+                request.setAttribute("enteredUsername", username);
+                url = "signup";
+            }
+        } else {
+            errorMessage = "That username is already in use. Please select another username.";
+            request.setAttribute("enteredEmail", email);
+            url = "signup";
+        }
+
+        // Hash password and create user
+        if (createUser) {
+            MessageDigestCredentialHandler credentialHandler
+                    = new MessageDigestCredentialHandler();
+
+            // Hash password
+            try {
+                credentialHandler.setAlgorithm("sha-256");
+            } catch (NoSuchAlgorithmException e) {
+                log.error("Error hashing password: " + e);
+            }
+            credentialHandler.setEncoding("UTF-8");
+            String hashedPassword = credentialHandler.mutate(userPassword);
+
+            // Create user
+            User user = new User(email, username, hashedPassword);
+            userDao.insert(user);
+
+            // Assign role
+            Role role = new Role(username, "user", user);
+            roleDao.insert(role);
+
+            message = "Your account has been created. Please log in.";
+
+            request.setAttribute("updateMessage", message);
+
+            url = "index.jsp";
+        }
+
+        // forward the request
+        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+        dispatcher.forward(request, response);
+    }
+}
