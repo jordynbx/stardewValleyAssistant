@@ -53,3 +53,42 @@ I believe I've been comparing my potential application to already completed appl
 
 I'm happy with my new direction and spent yesterday building out all the tables I needed for V1. Unfortunately, I then ran into a number of issues when trying to load up the data before each unit test because of the all the foreign keys and dependencies. I had originally planning on all items, no matter what they were, living in the Item column and linking foreign keys back to item_id, but I realized that won't be possible because then in some other tables, I'll need two separate columns to each have the same Item id column as the foreign key. My solution to this is to move recipes outside of the item column since they are groups of other items. However, I haven't yet figured out how I will deal with recipes that use other recipes as ingredients. Am planning on pulling in some others to help me troubleshoot that! 
 
+### Week 7
+
+Tasks completed:
+- Implemented GenericDao
+- Added role table 
+- Created unit tests for Item and Note
+- Implemented authorization and login
+
+This week I added the GenericDao and converted all of my unit tests to use it. I was a bit concerned about it at first, but after getting used to it it is so easy! And works so much better than having a separate DAO for every entity. 
+
+I also implemented authorization in my project. I haven't added sign up yet, but I am fully able to log in with users created directly in my database. Yay!
+
+### Week 8
+
+Tasks completed:
+ 
+- Implemented basic javamail structure
+- Added JSPs and Crop entity 
+- Added CSS
+- Added all crop data to database
+- Added ProcessItem class to reduce duplicate 
+- Added insert note functionality
+
+I got a lot done this week! Technically it was two weeks because of spring break, and the extra time really paid off. I added styling to my project using the Bootstrap theme Sketchy from Bootswatch which I love working with and fits really well for Stardew Valley. I added template jsps to hold my header, nav, footer, etc to reduce duplicate code.
+
+I also gathered and assembled all of the crop data and loaded it into the database, and it's really cool to be able to look up all the different items! While I'm not planning on including fish/forage/etc in V1 of my project, if I have enough time I may add them to the Item table so that they come up when users search for them, and I can output a message that the website doesn't yet support those items. I think that would be a nice touch! 
+
+One issue that came up this week as I set up my different JSPs and servlets that link out from the results page and then return to it is realizing that I had to duplicate the same code over and over. The item data is sent with a request, so every time a user inserted a note they would go back to the same results page, but all of the item data would be gone. I sovled this by creating a Javabean that holds a few methods that reconfigure the item data, and I can call those methods and then reset the attributes every time I need it to reappear. I was hoping to set the attributes in the javabean as well but I couldn't get it to work - I'm not sure if the functionality isn't supported or if I was doing it wrong. When I have more time for nice-to-have project improvements I hope to go back to this.
+
+### Week 9
+
+Tasks completed:
+- Added update note and delete note functionality 
+- Added error handling for update and delete
+- Added sign up functionality 
+- Added Role entity 
+
+This week I added update and delete functionality to my project along with user sign ups, which is very exciting! I've gotten a few weird error with logging in that have worried me a little, but they seem to resolve themselves if I refresh the page. It seems to come from logging in and out and back in too quickly when I'm testing different users. I'll need to keep an eye on that. 
+I'm very excited about the update and delete functionality. Getting it working was very satisfying, although it took a bit of thinking on my part to figure out every way a user might try to access those pages and make sure they got appropriate error messages instead of null pointer exceptions. I'm hoping I caught them all, but I'm sure more will come up with time.  
