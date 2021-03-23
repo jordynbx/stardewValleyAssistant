@@ -68,10 +68,12 @@ public class SignUpAction extends HttpServlet {
                 errorMessage = "Your passwords do not match. Please re-enter.";
                 request.setAttribute("enteredEmail", email);
                 request.setAttribute("enteredUsername", username);
+                request.setAttribute("errorMessage", errorMessage);
                 url = "signup";
             }
         } else {
             errorMessage = "That username is already in use. Please select another username.";
+            request.setAttribute("errorMessage", errorMessage);
             request.setAttribute("enteredEmail", email);
             url = "signup";
         }
@@ -93,9 +95,10 @@ public class SignUpAction extends HttpServlet {
             // Create user
             User user = new User(email, username, hashedPassword);
             userDao.insert(user);
+            User insertedUser = userDao.getByUniquePropertyEqualString("username", username);
 
             // Assign role
-            Role role = new Role(username, "user", user);
+            Role role = new Role("user", username, insertedUser);
             roleDao.insert(role);
 
             message = "Your account has been created. Please log in.";

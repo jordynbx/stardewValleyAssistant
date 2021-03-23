@@ -61,6 +61,7 @@
 ### Week 11
 - [ ] Update and improve styling 
 - [ ] Implement user favorites functionality 
+- [ ] Add sign up validation
 
 #### On deck...
 - [ ]

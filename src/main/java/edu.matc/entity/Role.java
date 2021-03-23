@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @RequiredArgsConstructor
+@ToString
 public class Role {
 
     @Id
@@ -18,20 +19,19 @@ public class Role {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
+    @NonNull
+    @Column(name="role_name")
+    private String roleName;
+
     @Column(name="username")
     @NonNull
     private String userName;
 
-
-    @Column(name="role_name")
     @NonNull
-    private String roleName;
-
     @ManyToOne
     @JoinColumn(name = "user_id",
             foreignKey = @ForeignKey(name = "role_user_user_id_fk")
     )
-    @NonNull
     private User user;
 
 }
