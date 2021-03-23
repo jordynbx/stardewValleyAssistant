@@ -30,8 +30,11 @@
         Bundles: ${crop.bundles}<br>
         Growth season: ${crop.season}<br>
     </p>
+    <h3>Notes</h3>
+    <c:if test="${!pageContext.request.isUserInRole('user')}">
+        <p><a href="signup">Create an account</a> or <a href="login.jsp">log in</a> to manage your notes!</p>
+    </c:if>
     <c:if test="${pageContext.request.isUserInRole('user')}">
-        <h3>Notes</h3>
         <table>
             <c:forEach var="note" items="${itemNotes}">
                 <tr>
