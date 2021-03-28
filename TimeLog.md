@@ -32,3 +32,5 @@
 |3/21/21|Work on JSPs and configuring note output, deploy to AWS|3.5|
 |3/22/21|Implement update and delete functionality and error handling|5|
 |3/23/21|Implement sign ups|2.5|
+|3/25/21|Week 9 work|3|
+|3/26/21|Work on team project|1.25|
