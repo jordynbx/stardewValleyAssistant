@@ -105,7 +105,7 @@ public class SignUpAction extends HttpServlet {
 
             request.setAttribute("updateMessage", message);
 
-            url = "index.jsp";
+            url = "login.jsp";
         }
 
         // forward the request

@@ -3,7 +3,8 @@
 <%@include file="template/head.jsp"%>
 <%@include file="template/header.jsp"%>
 <%@include file="template/nav.jsp"%>
-
+<%--TODO make sure this update message works--%>
+${updateMessage}
 <FORM ACTION="j_security_check" METHOD="POST">
 <%--    <TABLE>--%>
 <%--        <TR><TD>User name: <INPUT TYPE="TEXT" NAME="j_username">--%>

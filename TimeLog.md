@@ -33,5 +33,5 @@
 |3/22/21|Implement update and delete functionality and error handling|5|
 |3/23/21|Implement sign ups|2.5|
 |3/25/21|Week 9 work|3|
-|3/26/21|Work on team project|1.25|
-|4/1/21|Create API in team project|1.5|
+|3/26/21|Work on team project|3|
+|4/1/21|Create API, time log, and journal in team project|2.5|
