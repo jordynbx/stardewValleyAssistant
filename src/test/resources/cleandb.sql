@@ -1,4 +1,5 @@
 delete from role;
+delete from user_searches;
 delete from user;
 delete from user_favorites;
 delete from notes;
@@ -12,3 +13,4 @@ INSERT INTO `crops` VALUES (1,3,'Spring',80,175,'Escargot, Fiddlehead Rissoto','
 INSERT INTO `user_favorites` VALUES (1,1,1),(2,1,6),(3,2,7),(4,3,2),(5,1,3),(6,3,1);
 INSERT INTO `notes` VALUES (1,2,2,'Need 2 more gold for bundle'),(2,1,1,'lucky lunch'),(3,2,6,'cant buy seeds til spring 13'),(4,2,6,'save seeds for next spring');
 INSERT INTO `role` VALUES (1,'admin','user1', 1);
+INSERT INTO `user_searches` VALUES (1, 2, 6, '2021-04-02 10:54:41'),(2, 2, 2, '2021-04-02 10:54:41'),(3, 1, 3, '2021-04-02 10:54:41'),(4, 2, 6, '2021-04-02 10:54:41'),(5, 2, 1, '2021-04-02 10:54:41'),(6, 2, 4, '2021-04-02 10:54:41'),(7, 2, 3, '2021-04-02 10:54:41'), (8, 2, 5, '2021-04-02 10:54:41');
