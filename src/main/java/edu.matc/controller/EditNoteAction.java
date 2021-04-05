@@ -75,6 +75,11 @@ public class EditNoteAction extends HttpServlet {
             List<Note> notes = processor.generateNotes(user.getId(), item.getId());
             request.setAttribute("itemNotes", notes);
 
+            // reconfigure recent searches
+            processor.addSearch(user.getId(), item.getId());
+            List<String> searches = processor.generateSearches(user.getId());
+            request.setAttribute("userSearchItemNames", searches);
+
             // set display attributes
             request.setAttribute("item", item);
             request.setAttribute("success", true);
@@ -83,7 +88,6 @@ public class EditNoteAction extends HttpServlet {
 
             url = "results.jsp";
         }
-
 
         // forward the request
         RequestDispatcher dispatcher = request.getRequestDispatcher(url);

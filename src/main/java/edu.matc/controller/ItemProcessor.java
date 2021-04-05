@@ -61,7 +61,7 @@ public class ItemProcessor {
      * @param userId the user id
      * @return the list
      */
-    public List<Integer> generateSearches(int userId) {
+    public List<String> generateSearches(int userId) {
 
         GenericDao<UserSearch> searchDao = new GenericDao<>(UserSearch.class);
         List<UserSearch> searches =
@@ -77,20 +77,20 @@ public class ItemProcessor {
      * @param searches the searches
      * @return the most recent searches
      */
-    public List<Integer> getMostRecentSearches(List<UserSearch> searches) {
+    public List<String> getMostRecentSearches(List<UserSearch> searches) {
 
-        List<Integer> uniqueSearches = new ArrayList<>();
-        List<Integer> mostRecentSearches = new ArrayList<>();
+        List<String> uniqueSearches = new ArrayList<>();
+        List<String> mostRecentSearches = new ArrayList<>();
 
 
-        // add all searches to list in reverse order
+        // add all search item ids to list in reverse order
         for (int i = searches.size() - 1; i >= 0; i--) {
 
             Item item = searches.get(i).getItem();
-            int itemId = item.getId();
+            String itemName = item.getName();
 
-            if (!uniqueSearches.contains(itemId)) {
-                uniqueSearches.add(itemId);
+            if (!uniqueSearches.contains(itemName)) {
+                uniqueSearches.add(itemName);
             }
         }
 
@@ -99,8 +99,8 @@ public class ItemProcessor {
 
         for (int i = 0; i < 5; i++) {
             if (i < listSize) {
-                int itemId = uniqueSearches.get(i);
-                mostRecentSearches.add(itemId);
+                String itemName = uniqueSearches.get(i);
+                mostRecentSearches.add(itemName);
             }
         }
 

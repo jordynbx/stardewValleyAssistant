@@ -63,17 +63,20 @@ public class SearchItem extends HttpServlet {
         }
 
         if (request.isUserInRole("user") || request.isUserInRole("admin")) {
+
             int userId = (int) session.getAttribute("currentUserId");
 
-            processor.addSearch(userId, searchItemId);
-
+            // configure notes
             List<Note> notes = processor.generateNotes(userId, searchItemId);
+            request.setAttribute("itemNotes", notes);
 
-            List<Integer> searches = processor.generateSearches(userId);
+            // configure recent searches
+            processor.addSearch(userId, searchItemId);
+            List<String> searches = processor.generateSearches(userId);
+            request.setAttribute("userSearchItemNames", searches);
+
             log.info("searches: " + searches);
 
-            request.setAttribute("userSearchItemIds", searches);
-            request.setAttribute("itemNotes", notes);
         }
         request.setAttribute("item", item);
     }

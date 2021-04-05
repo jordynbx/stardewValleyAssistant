@@ -64,3 +64,9 @@ table td {
     background-color: #70F4E0 !important;
     border: 1px solid black;
 }
+
+@media only screen and (max-width: 900px) {
+    .float {
+        float:none;
+    }
+}
