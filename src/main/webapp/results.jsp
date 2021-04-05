@@ -19,7 +19,7 @@
     <h2>Search Results:</h2>
     <p>${message}</p>
 </c:if>
-
+<%--TODO make recent searches only visible for logged in users--%>
 <%--If item was found, show the item data--%>
 <c:if test="${success}">
     <h1 class="text-center">${item.name}</h1>
