@@ -95,3 +95,15 @@ table td {
         float: right;
     }
 }
+
+@media only screen and (min-width: 1200px) {
+    .my-cards {
+        width: 80%;
+        float: left;
+    }
+
+    #results-searches {
+        width: 20%;
+        float: right;
+    }
+}
