@@ -35,3 +35,6 @@
 |3/25/21|Week 9 work|3|
 |3/26/21|Work on team project|3|
 |4/1/21|Create API, time log, and journal in team project|2.5|
+|4/2/21|Work on adding recent searches functionality|1|
+|4/4/21|Week 10 activities|1|
+|4/5/21|Troubleshoot cleandb.sql in team project|1.5|
