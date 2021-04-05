@@ -69,7 +69,7 @@ public class SearchItem extends HttpServlet {
 
             List<Note> notes = processor.generateNotes(userId, searchItemId);
 
-            List<Integer> searches = processor.generateSearches(userId);
+            List<String> searches = processor.generateSearches(userId);
             log.info("searches: " + searches);
 
             request.setAttribute("userSearchItemIds", searches);
