@@ -62,9 +62,19 @@
             <input type="hidden" id="itemId" name="itemId" value="${item.id}">
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+
+        <%--TODO format this in the page after making it work--%>
+        <h3>Recent Searches</h3>
+        <c:forEach var="searchString" items="${userSearchItemNames}">
+            <a href="searchItem?searchTerm=${searchString}&submit=search">${searchString}</a>
+            <br>
+        </c:forEach>
+
     </c:if>
 </c:if>
 <br>
+
+
 <a href="index.jsp">Search again</a>
 
 
