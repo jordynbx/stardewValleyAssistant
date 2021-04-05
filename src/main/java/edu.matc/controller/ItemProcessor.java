@@ -1,42 +1,27 @@
 package edu.matc.controller;
 
-import edu.matc.entity.Crop;
-import edu.matc.entity.Item;
-import edu.matc.entity.Note;
+import edu.matc.entity.*;
 import edu.matc.persistence.GenericDao;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.net.http.HttpRequest;
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Item processor.
+ */
 @Log4j2
 public class ItemProcessor {
 
     /**
-     * This method processes items for output on results.jsp
-     * @param session
-     * @param request
-     * @param itemId
+     * Process crop crop.
+     *
+     * @param itemId the item id
+     * @return the crop
      */
-//    public HttpServletRequest processItem(HttpSession session, HttpServletRequest request, int itemId) {
-//
-//        GenericDao<Item> itemDao = new GenericDao<>(Item.class);
-//        Item item = itemDao.getById(itemId);
-//
-//        if (item.getType().equals("crop")) {
-//            GenericDao<Crop> cropDao = new GenericDao<>(Crop.class);
-//
-//            Crop crop = cropDao.getByUniquePropertyEqualInt("itemId", itemId);
-//            request.setAttribute("crop", crop);
-//        } else if (item.getType().equals("forage")) {
-//            // In the future there will be processing here
-//        }
-//
-//        return request;
-//    }
-
     public Crop processCrop(int itemId) {
 
         GenericDao<Crop> cropDao = new GenericDao<>(Crop.class);
@@ -44,10 +29,11 @@ public class ItemProcessor {
     }
 
     /**
-     * This method processes user notes for output on results.jsp
-     * @param session
-     * @param request
-     * @param itemId
+     * Generate notes list.
+     *
+     * @param userId the user id
+     * @param itemId the item id
+     * @return the list
      */
     public List<Note> generateNotes(int userId, int itemId) {
 
@@ -57,4 +43,67 @@ public class ItemProcessor {
         return notes;
     }
 
+    public void addSearch(int userId, int itemId) {
+        GenericDao<UserSearch> searchDao = new GenericDao<>(UserSearch.class);
+        GenericDao<User> userDao = new GenericDao<>(User.class);
+        GenericDao<Item> itemDao = new GenericDao<>(Item.class);
+
+        User user = userDao.getById(userId);
+        Item item = itemDao.getById(itemId);
+
+        UserSearch search = new UserSearch(user, item);
+        searchDao.insert(search);
+    }
+
+    /**
+     * Generate searches list.
+     *
+     * @param userId the user id
+     * @return the list
+     */
+    public List<Integer> generateSearches(int userId) {
+
+        GenericDao<UserSearch> searchDao = new GenericDao<>(UserSearch.class);
+        List<UserSearch> searches =
+                searchDao.getByPropertyEqualInt("user", userId);
+
+
+        return getMostRecentSearches(searches);
+    }
+
+    /**
+     * Gets most recent searches.
+     *
+     * @param searches the searches
+     * @return the most recent searches
+     */
+    public List<Integer> getMostRecentSearches(List<UserSearch> searches) {
+
+        List<Integer> uniqueSearches = new ArrayList<>();
+        List<Integer> mostRecentSearches = new ArrayList<>();
+
+
+        // add all searches to list in reverse order
+        for (int i = searches.size() - 1; i >= 0; i--) {
+
+            Item item = searches.get(i).getItem();
+            int itemId = item.getId();
+
+            if (!uniqueSearches.contains(itemId)) {
+                uniqueSearches.add(itemId);
+            }
+        }
+
+        // get five most recent searches
+        int listSize = uniqueSearches.size();
+
+        for (int i = 0; i < 5; i++) {
+            if (i < listSize) {
+                int itemId = uniqueSearches.get(i);
+                mostRecentSearches.add(itemId);
+            }
+        }
+
+        return mostRecentSearches;
+    }
 }

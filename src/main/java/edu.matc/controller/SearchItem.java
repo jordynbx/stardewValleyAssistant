@@ -1,9 +1,6 @@
 package edu.matc.controller;
 
-import edu.matc.entity.Crop;
-import edu.matc.entity.Item;
-import edu.matc.entity.Note;
-import edu.matc.entity.User;
+import edu.matc.entity.*;
 import edu.matc.persistence.GenericDao;
 import lombok.extern.log4j.Log4j2;
 
@@ -56,7 +53,7 @@ public class SearchItem extends HttpServlet {
      * versions, items could be crops, fish, animal products, gems, or something else, and each
      * type of item will require it's own if statement
      */
-    //TODO add output message indicating support hasn't been added yet for non-
+    //TODO add output message indicating support hasn't been added yet for non-crops
     if (itemExists) {
         int searchItemId = item.getId();
 
@@ -67,7 +64,15 @@ public class SearchItem extends HttpServlet {
 
         if (request.isUserInRole("user") || request.isUserInRole("admin")) {
             int userId = (int) session.getAttribute("currentUserId");
+
+            processor.addSearch(userId, searchItemId);
+
             List<Note> notes = processor.generateNotes(userId, searchItemId);
+
+            List<Integer> searches = processor.generateSearches(userId);
+            log.info("searches: " + searches);
+
+            request.setAttribute("userSearchItemIds", searches);
             request.setAttribute("itemNotes", notes);
         }
         request.setAttribute("item", item);

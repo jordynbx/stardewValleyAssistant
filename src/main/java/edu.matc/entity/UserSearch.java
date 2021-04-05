@@ -41,7 +41,4 @@ public class UserSearch {
     @JoinColumn(name = "item_id",
             foreignKey = @ForeignKey(name = "user_searches_item_id_fk"))
     private Item item;
-
-    @Column(name="time")
-    private String time;
 }
