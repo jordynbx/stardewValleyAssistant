@@ -1,5 +1,6 @@
 .container {
     padding: 1em;
+    min-width: 350px;
 }
 
 .bg {
@@ -65,8 +66,44 @@ table td {
     border: 1px solid black;
 }
 
-@media only screen and (max-width: 900px) {
-    .float {
-        float:none;
+[class*="col-"] {
+    width: 100%;
+}
+
+#results-searches {
+    min-width: 140px;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .my-cards, #results-searches, .my-card {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+@media only screen and (min-width: 600px) {
+    .my-cards {
+        width: 75%;
+        float: left;
+    }
+
+    #results-searches {
+        width: 25%;
+        float: right;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .my-cards {
+        width: 80%;
+        float: left;
+    }
+
+    #results-searches {
+        width: 20%;
+        float: right;
     }
 }

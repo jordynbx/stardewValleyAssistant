@@ -23,24 +23,52 @@
 <%--If item was found, show the item data--%>
 <c:if test="${success}">
     <h1 class="text-center">${item.name}</h1>
+
     <div class="clearfix">
-        <div id="results-item-info" class="w-75 float-left">
-            <p>
-                Seed price: ${crop.seedPrice}<br>
-                Sell price: ${crop.sellPrice}<br>
-                Recipes: ${crop.recipes}<br>
-                Bundles: ${crop.bundles}<br>
-                Growth season: ${crop.season}<br>
-            </p>
 
-        </div>
-
-        <div class="card border-info mb-3 float-right" id="results-searches" style="max-width: 20rem;">
+        <div class="card border-info mb-3" id="results-searches" style="max-width: 20rem;">
             <div class="card-body">
                 <h4 class="card-title">Recent Searches</h4>
                 <c:forEach var="searchString" items="${userSearchItemNames}">
                     <p class="card-text"><a href="searchItem?searchTerm=${searchString}&submit=search">${searchString}</a></p>
                 </c:forEach>
+            </div>
+        </div>
+
+        <div class="card-deck my-cards">
+
+            <div class="card text-white bg-success mb-3 my-card" style="max-width: 20rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Seeds</h4>
+                    <p class="card-text">
+                        Purchase price: ${crop.seedPrice}<br>
+                        Sell price: ${crop.sellPrice}<br>
+                    </p>
+                </div>
+            </div>
+
+            <div class="card text-white bg-warning mb-3 my-card" style="max-width: 20rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Season</h4>
+                    <p class="card-text">${crop.season}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-deck my-cards">
+
+            <div class="card text-white bg-info mb-3 my-card" style="max-width: 20rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Bundles</h4>
+                    <p class="card-text">${crop.bundles}</p>
+                </div>
+            </div>
+
+            <div class="card text-white bg-danger mb-3 my-card" style="max-width: 20rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Recipes</h4>
+                    <p class="card-text">${crop.recipes}</p>
+                </div>
             </div>
         </div>
 
