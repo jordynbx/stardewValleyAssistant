@@ -26,7 +26,7 @@
 
     <div class="clearfix">
 
-        <div class="card border-info mb-3 float-right" id="results-searches" style="max-width: 20rem;">
+        <div class="card border-info mb-3" id="results-searches" style="max-width: 20rem;">
             <div class="card-body">
                 <h4 class="card-title">Recent Searches</h4>
                 <c:forEach var="searchString" items="${userSearchItemNames}">
@@ -35,9 +35,9 @@
             </div>
         </div>
 
-        <div class="card-deck w-75 float-left">
+        <div class="card-deck my-cards">
 
-            <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+            <div class="card text-white bg-success mb-3 my-card" style="max-width: 20rem;">
                 <div class="card-body">
                     <h4 class="card-title">Seeds</h4>
                     <p class="card-text">
@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
+            <div class="card text-white bg-warning mb-3 my-card" style="max-width: 20rem;">
                 <div class="card-body">
                     <h4 class="card-title">Season</h4>
                     <p class="card-text">${crop.season}</p>
@@ -55,7 +55,7 @@
             </div>
         </div>
 
-        <div class="card-deck w-75 float-left">
+        <div class="card-deck my-cards">
 
             <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
                 <div class="card-body">
