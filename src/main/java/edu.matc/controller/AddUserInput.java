@@ -72,6 +72,11 @@ public class AddUserInput  extends HttpServlet {
         List<Note> notes = processor.generateNotes(userId, itemId);
         request.setAttribute("itemNotes", notes);
 
+        // reconfigure recent searches
+        processor.addSearch(userId, itemId);
+        List<String> searches = processor.generateSearches(userId);
+        request.setAttribute("userSearchItemNames", searches);
+
         // set request display attributes
         request.setAttribute("item", item);
         request.setAttribute("success", true);

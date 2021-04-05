@@ -73,10 +73,16 @@ public class DeleteNoteAction extends HttpServlet {
                 Crop crop = processor.processCrop(item.getId());
                 request.setAttribute("crop", crop);
             }
-
+//            TODO maybe change this to work mroe like AddUserInput?
             // reconfigure notes
             List<Note> notes = processor.generateNotes(user.getId(), item.getId());
             request.setAttribute("itemNotes", notes);
+
+            // reconfigure recent searches
+            processor.addSearch(user.getId(), item.getId());
+            List<String> searches = processor.generateSearches(user.getId());
+            request.setAttribute("userSearchItemNames", searches);
+
             // set display attributes
             request.setAttribute("item", item);
             request.setAttribute("success", true);

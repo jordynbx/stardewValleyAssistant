@@ -22,7 +22,7 @@
 
 <%--If item was found, show the item data--%>
 <c:if test="${success}">
-    <h2 class="text-center">${item.name}</h2>
+    <h1 class="text-center">${item.name}</h1>
     <div class="clearfix">
         <div id="results-item-info" class="w-75 float-left">
             <p>
@@ -45,7 +45,7 @@
         </div>
 
         <div class="w-75 float-left">
-        <h3>Notes</h3>
+        <h2>Notes</h2>
         <c:if test="${!pageContext.request.isUserInRole('user')}">
             <p><a href="signup">Create an account</a> or <a href="login.jsp">log in</a> to manage your notes!</p>
         </c:if>
