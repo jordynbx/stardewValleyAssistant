@@ -48,6 +48,10 @@ public class ConfigureOutput extends HttpServlet {
         List<String> searches = processor.generateSearches(user.getId());
         request.setAttribute("userSearchItemNames", searches);
 
+        // reconfigure favorite
+        boolean isFavoriteItem = processor.isFavorite(user.getId(), item.getId());
+        request.setAttribute("isFavoriteItem", isFavoriteItem);
+
         // set display attributes
         request.setAttribute("item", item);
         request.setAttribute("success", true);

@@ -25,7 +25,6 @@ public class AddFavoriteAction extends HttpServlet {
             IOException {
 
         HttpSession session = request.getSession();
-        ItemProcessor processor = new ItemProcessor();
         GenericDao<Favorite> favoriteDao = new GenericDao<>(Favorite.class);
         GenericDao<Item> itemDao = new GenericDao<>(Item.class);
         String message;
@@ -69,33 +68,11 @@ public class AddFavoriteAction extends HttpServlet {
             request.setAttribute("message", message);
         }
         if (favoriteIsValid) {
-            // Reconfigure note and item output
-            if (item.getType().equals("crop")) {
-                Crop crop = processor.processCrop(item.getId());
-                request.setAttribute("crop", crop);
-            }
-//
-            // reconfigure notes
-            List<Note> notes = processor.generateNotes(user.getId(), item.getId());
-            request.setAttribute("itemNotes", notes);
-
-            // reconfigure recent searches
-            processor.addSearch(user.getId(), item.getId());
-            List<String> searches = processor.generateSearches(user.getId());
-            request.setAttribute("userSearchItemNames", searches);
-
-            // reconfigure favorites
-            Boolean isFavoriteItem = processor.isFavorite(user.getId(), item.getId());
-            request.setAttribute("isFavoriteItem", isFavoriteItem);
-
-            // set display attributes
-            request.setAttribute("item", item);
-            request.setAttribute("success", true);
-            request.setAttribute("updateMessage", message);
+            request.setAttribute("message", message);
             request.setAttribute("messageType", messageType);
-            request.setAttribute("showUpdateMessage", true);
-
-            url = "results.jsp";
+            request.setAttribute("user", user);
+            request.setAttribute("item", item);
+            url = "configureOutput";
         }
 
         // forward the request

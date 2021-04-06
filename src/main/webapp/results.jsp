@@ -83,10 +83,10 @@
         <div class="w-75 float-left">
             <c:if test="${pageContext.request.isUserInRole('user')}">
                 <c:if test="${isFavoriteItem}">
-                    <p><a href="removeFavorite?id=${item.id}">Remove from favorites</a></p>
+                    <p>${item.name} is on your <a href="#">favorites</a> list! (<a href="removeFavorite?id=${item.id}">Remove from favorites</a>)</p>
                 </c:if>
                 <c:if test="${!isFavoriteItem}">
-                    <p><a href="addFavorite?id=${item.id}">Add to favorites</a></p>
+                    <p>${item.name} is not on your <a href="#">favorites</a> list. (<a href="addFavorite?id=${item.id}">Add to favorites</a>)</p>
                 </c:if>
 
             </c:if>

@@ -27,11 +27,9 @@ public class AddNote extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        ItemProcessor processor = new ItemProcessor();
 
         // create DAOs
         GenericDao<Note> noteDao = new GenericDao<>(Note.class);
-        GenericDao<Favorite> favoriteDao = new GenericDao<>(Favorite.class);
         GenericDao<User> userDao = new GenericDao<>(User.class);
         GenericDao<Item> itemDao = new GenericDao<>(Item.class);
 
@@ -46,35 +44,21 @@ public class AddNote extends HttpServlet {
         User user = userDao.getById(userId);
 
         // Create note
-        // TODO echo note content into field?
         if (!noteContent.equals("")) {
             Note note = new Note(item, user, noteContent);
             noteDao.insert(note);
         }
 
-        // reconfigure item data
-        if (item.getType().equals("crop")) {
-            Crop crop = processor.processCrop(itemId);
-            request.setAttribute("crop", crop);
-        }
+        String message = "Your note was added!";
+        String messageType = "success";
 
-        // reconfigure notes
-        List<Note> notes = processor.generateNotes(userId, itemId);
-        request.setAttribute("itemNotes", notes);
-
-        // reconfigure recent searches
-        processor.addSearch(userId, itemId);
-        List<String> searches = processor.generateSearches(userId);
-        request.setAttribute("userSearchItemNames", searches);
-
-        // set request display attributes
+        request.setAttribute("message", message);
+        request.setAttribute("messageType", messageType);
+        request.setAttribute("user", user);
         request.setAttribute("item", item);
-        request.setAttribute("success", true);
-        request.setAttribute("updateMessage", "Your item was updated!");
-        request.setAttribute("messageType", "success");
-        request.setAttribute("showUpdateMessage", true);
+        String url = "configureOutput";
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("results.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }
 }

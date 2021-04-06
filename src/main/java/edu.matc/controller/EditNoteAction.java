@@ -26,8 +26,6 @@ public class EditNoteAction extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
 
-        ItemProcessor processor = new ItemProcessor();
-
         GenericDao<Note> noteDao = new GenericDao<>(Note.class);
         String message;
         String messageType;
@@ -69,33 +67,17 @@ public class EditNoteAction extends HttpServlet {
             request.setAttribute("message", message);
         }
 
-        // TODO is there any way to not duplicate code between here and DeleteNoteAction?
         // Reconfigure note and item output
         if (noteIsValid) {
             Item item = noteToUpdate.getItem();
             User user = noteToUpdate.getUser();
-            if (item.getType().equals("crop")) {
-                Crop crop = processor.processCrop(item.getId());
-                request.setAttribute("crop", crop);
-            }
 
-            // reconfigure notes
-            List<Note> notes = processor.generateNotes(user.getId(), item.getId());
-            request.setAttribute("itemNotes", notes);
-
-            // reconfigure recent searches
-            processor.addSearch(user.getId(), item.getId());
-            List<String> searches = processor.generateSearches(user.getId());
-            request.setAttribute("userSearchItemNames", searches);
-
-            // set display attributes
-            request.setAttribute("item", item);
-            request.setAttribute("success", true);
-            request.setAttribute("updateMessage", message);
+            request.setAttribute("message", message);
             request.setAttribute("messageType", messageType);
-            request.setAttribute("showUpdateMessage", true);
+            request.setAttribute("user", user);
+            request.setAttribute("item", item);
 
-            url = "results.jsp";
+            url = "configureOutput";
         }
 
         // forward the request
