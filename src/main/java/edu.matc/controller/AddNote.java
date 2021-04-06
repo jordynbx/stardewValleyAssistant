@@ -18,10 +18,10 @@ import java.util.List;
 // TODO cleanup/organize code
 @Log4j2
 @WebServlet(
-        name = "addUserInput",
-        urlPatterns = {"/addUserInput"}
+        name = "addNote",
+        urlPatterns = {"/addNote"}
 )
-public class AddUserInput  extends HttpServlet {
+public class AddNote extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -44,16 +44,6 @@ public class AddUserInput  extends HttpServlet {
         Item item = itemDao.getById(itemId);
         int userId = (int) session.getAttribute("currentUserId");
         User user = userDao.getById(userId);
-
-        // add item to favorites
-        if (request.getParameter("addToFavorites") == null) {
-            //TODO remove from favorites
-            //TODO figure out how to make checkbox correct if they already checked it
-            log.info("inside addToFavorites is null");
-        } else {
-            Favorite favorite = new Favorite(user, item);
-            favoriteDao.insert(favorite);
-        }
 
         // Create note
         // TODO echo note content into field?

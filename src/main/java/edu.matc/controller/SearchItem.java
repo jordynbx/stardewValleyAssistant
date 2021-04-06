@@ -75,7 +75,9 @@ public class SearchItem extends HttpServlet {
             List<String> searches = processor.generateSearches(userId);
             request.setAttribute("userSearchItemNames", searches);
 
-            log.info("searches: " + searches);
+            // figure out if item is a favorite
+            Boolean isFavoriteItem = processor.isFavorite(userId, searchItemId);
+            request.setAttribute("isFavoriteItem", isFavoriteItem);
 
         }
         request.setAttribute("item", item);

@@ -1,9 +1,6 @@
 package edu.matc.controller;
 
-import edu.matc.entity.Crop;
-import edu.matc.entity.Item;
-import edu.matc.entity.Note;
-import edu.matc.entity.User;
+import edu.matc.entity.*;
 import edu.matc.persistence.GenericDao;
 import lombok.extern.log4j.Log4j2;
 
@@ -13,66 +10,65 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet(
-        urlPatterns = {"/deleteNoteAction"}
+        urlPatterns = {"/addFavoriteAction"}
 )
 @Log4j2
-public class DeleteNoteAction extends HttpServlet {
+public class AddFavoriteAction extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
 
+        HttpSession session = request.getSession();
         ItemProcessor processor = new ItemProcessor();
-        GenericDao<Note> noteDao = new GenericDao<>(Note.class);
+        GenericDao<Favorite> favoriteDao = new GenericDao<>(Favorite.class);
+        GenericDao<Item> itemDao = new GenericDao<>(Item.class);
         String message;
         String messageType;
         Item item = null;
         User user = null;
-        Note noteToDelete;
-        boolean noteIsValid = false;
+        boolean favoriteIsValid = false;
         String url = "error.jsp";
 
-        if (!request.getParameter("noteId").equals("")) {
+        if (!request.getParameter("favoriteItemId").equals("")) {
 
-            // Get note id from form
-            int noteId = Integer.parseInt(request.getParameter("noteId"));
-            noteToDelete = noteDao.getById(noteId);
+            // Get item id and user id
+            int itemId = Integer.parseInt(request.getParameter("favoriteItemId"));
+            item = itemDao.getById(itemId);
 
-            // Get user and item data for reload before deleting the note
-            item = noteToDelete.getItem();
-            user = noteToDelete.getUser();
+            user = (User) session.getAttribute("loggedInUser");
 
-            if (request.getParameter("submit").equals("delete")) {
+            if (request.getParameter("submit").equals("confirm")) {
 
-                // delete the note and output success message
-                noteDao.delete(noteDao.getById(noteId));
-                message = "Your note was successfully deleted!";
+                // Add the item to favorites and output success message
+                Favorite favorite = new Favorite(user, item);
+                favoriteDao.insert(favorite);
+                message = "THe item was successfully added as a favorite!";
                 messageType ="success";
-
             } else if (request.getParameter("submit").equals("cancel")) {
 
                 // output confirmation message
-                message = "Your note was not deleted.";
+                message = "The item was not added as a favorite.";
                 messageType = "danger";
 
             } else {
-                message = "There was an error deleting the note.";
+                message = "There was an error adding the item as a favorite.";
                 messageType = "danger";
             }
 
             // repopulate the results page
-            noteIsValid = true;
+            favoriteIsValid = true;
         } else {
-            message = "There was an error deleting the note.";
+            message = "There was an error adding the item as a favorite.";
             messageType = "danger";
             request.setAttribute("message", message);
         }
-
-        if (noteIsValid) {
+        if (favoriteIsValid) {
             // Reconfigure note and item output
             if (item.getType().equals("crop")) {
                 Crop crop = processor.processCrop(item.getId());
@@ -88,6 +84,10 @@ public class DeleteNoteAction extends HttpServlet {
             List<String> searches = processor.generateSearches(user.getId());
             request.setAttribute("userSearchItemNames", searches);
 
+            // reconfigure favorites
+            Boolean isFavoriteItem = processor.isFavorite(user.getId(), item.getId());
+            request.setAttribute("isFavoriteItem", isFavoriteItem);
+
             // set display attributes
             request.setAttribute("item", item);
             request.setAttribute("success", true);
@@ -98,9 +98,9 @@ public class DeleteNoteAction extends HttpServlet {
             url = "results.jsp";
         }
 
-
         // forward the request
         RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);
+
     }
 }

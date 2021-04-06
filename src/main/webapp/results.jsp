@@ -18,7 +18,7 @@
     <h2>Search Results:</h2>
     <p>${message}</p>
 </c:if>
-<%--TODO make recent searches only visible for logged in users--%>
+
 <%--If item was found, show the item data--%>
 <c:if test="${success}">
     <h1 class="text-center">${item.name}</h1>
@@ -26,16 +26,20 @@
     <div class="clearfix">
 
     <%--    Display a list of recent searches for logged in users    --%>
-    <c:if test="${pageContext.request.isUserInRole('user')}">
         <div class="card border-info mb-3" id="results-searches" style="max-width: 20rem;">
             <div class="card-body">
                 <h4 class="card-title">Recent Searches</h4>
-                <c:forEach var="searchString" items="${userSearchItemNames}">
-                    <p class="card-text"><a href="searchItem?searchTerm=${searchString}&submit=search">${searchString}</a></p>
-                </c:forEach>
+                <c:if test="${pageContext.request.isUserInRole('user')}">
+                    <c:forEach var="searchString" items="${userSearchItemNames}">
+                        <p class="card-text"><a href="searchItem?searchTerm=${searchString}&submit=search">${searchString}</a></p>
+                    </c:forEach>
+                </c:if>
+                <c:if test="${!pageContext.request.isUserInRole('user')}">
+                    <p><a href="signup">Create an account</a> or <a href="login.jsp">log in</a> to track your recent searches.</p>
+                </c:if>
             </div>
         </div>
-    </c:if>
+
 
 <%--        Display a card deck showing details about the searched-for item--%>
         <div class="card-deck my-cards">
@@ -77,6 +81,15 @@
 
 <%--        Display a user's notes and a form where they can add new notes if they are logged in--%>
         <div class="w-75 float-left">
+            <c:if test="${pageContext.request.isUserInRole('user')}">
+                <c:if test="${isFavoriteItem}">
+                    <p><a href="removeFavorite?id=${item.id}">Remove from favorites</a></p>
+                </c:if>
+                <c:if test="${!isFavoriteItem}">
+                    <p><a href="addFavorite?id=${item.id}">Add to favorites</a></p>
+                </c:if>
+
+            </c:if>
         <h2>Notes</h2>
         <c:if test="${!pageContext.request.isUserInRole('user')}">
             <p><a href="signup">Create an account</a> or <a href="login.jsp">log in</a> to manage your notes!</p>
@@ -92,7 +105,7 @@
                 </c:forEach>
             </table>
             <br/>
-            <form action="addUserInput" method="get">
+            <form action="addNote" method="get">
 
                 <div class="form-group">
                     <label for="userNote">Add a new note:</label>

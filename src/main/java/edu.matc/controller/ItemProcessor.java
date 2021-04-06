@@ -43,6 +43,17 @@ public class ItemProcessor {
         return notes;
     }
 
+    public Boolean isFavorite(int userId, int itemId) {
+        GenericDao<Favorite> favoriteDao = new GenericDao<>(Favorite.class);
+        Favorite favoriteItem = favoriteDao.getUniqueEntityByMultipleProperties("user", userId, "item", itemId);
+        if (favoriteItem != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     public void addSearch(int userId, int itemId) {
         GenericDao<UserSearch> searchDao = new GenericDao<>(UserSearch.class);
         GenericDao<User> userDao = new GenericDao<>(User.class);

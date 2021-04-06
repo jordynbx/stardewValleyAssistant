@@ -1,6 +1,7 @@
 package edu.matc.controller;
 
-import edu.matc.entity.Note;
+import edu.matc.entity.Favorite;
+import edu.matc.entity.Item;
 import edu.matc.entity.User;
 import edu.matc.persistence.GenericDao;
 import lombok.extern.log4j.Log4j2;
@@ -16,44 +17,50 @@ import java.io.IOException;
 
 @Log4j2
 @WebServlet(
-        name = "delete",
-        urlPatterns = {"/delete"}
+        name = "deleteFavorite",
+        urlPatterns = {"/deleteFavorite"}
 )
-public class DeleteNote extends HttpServlet {
-
+public class DeleteFavorite extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
         HttpSession session = request.getSession();
         String url = null;
 
+
         if (request.getParameter("id") != null) {
 
-            GenericDao<Note> noteDao = new GenericDao<>(Note.class);
+            GenericDao<Item> itemDao = new GenericDao<>(Item.class);
+            GenericDao<User> userDao = new GenericDao<>(User.class);
+            GenericDao<Favorite> favoriteDao = new GenericDao<>(Favorite.class);
 
-            // Get note id from form
-            int noteId = Integer.parseInt(request.getParameter("id"));
+            // Get user and item data
+            int itemId = Integer.parseInt(request.getParameter("id"));
+            int userId = (int) session.getAttribute("currentUserId");
+            Item item = itemDao.getById(itemId);
 
-            // Get the note, the logged in user, and the user who wrote the note
-            Note note = noteDao.getById(noteId);
-            User noteWriter = note.getUser();
+
+            // Get the favorite, logged in user, and user with the favorite
+            Favorite favorite =
+                    favoriteDao.getUniqueEntityByMultipleProperties("user", userId, "item", itemId);
+            User favoriteUser = favorite.getUser();
             User loggedInUser = (User)session.getAttribute("loggedInUser");
 
             // initialize permission error
             boolean permissionError = false;
 
             /**
-             * If logged in user and user who wrote note both exist,
-             * check if they're the same. If so, set the note as an
-             * attribute and forward to delete jsp. If not, forward
+             * If logged in user and user who with favorite both exist,
+             * check if they're the same. If so, set the favorite as an
+             * attribute and forward. If not, forward
              * to error page with error message.
              */
-            if (loggedInUser != null && noteWriter != null) {
-                if (noteWriter.getId() == loggedInUser.getId()) {
-                    request.setAttribute("note", note);
-                    url = "delete.jsp";
+            if (loggedInUser != null && favoriteUser != null) {
+                if (favoriteUser.getId() == loggedInUser.getId()) {
+//                    request.setAttribute("favorite", favorite);
+                    request.setAttribute("item", item);
+                    url = "addFavoriteItem.jsp";
                 } else {
                     permissionError = true;
                 }
@@ -66,18 +73,21 @@ public class DeleteNote extends HttpServlet {
              * forward to error page and output error message
              */
             if (permissionError) {
-                String message = "You don't have permission to access this note.";
+                String message = "You don't have permission to access this favorite.";
                 request.setAttribute("message", message);
                 url = "error.jsp";
             }
         } else {
-            String message = "There was an error accessing the note to delete";
+            String message = "There was an error accessing the favorite";
             request.setAttribute("message", message);
             url = "error.jsp";
         }
 
-
         RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);
+
     }
+
 }
+
+
