@@ -46,7 +46,7 @@ public class GetFavorites extends HttpServlet {
                 int itemId = item.getId();
 
                 if (item.getType().equals("crop")) {
-                    Crop crop = cropDao.getByUniquePropertyEqualInt("itemId", itemId);
+                    Crop crop = cropDao.getByUniquePropertyEqualInt("item", itemId);
                     favoriteCrops.add(crop);
                 }
             }
