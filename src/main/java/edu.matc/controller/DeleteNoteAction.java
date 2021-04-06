@@ -26,7 +26,6 @@ public class DeleteNoteAction extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
 
-        ItemProcessor processor = new ItemProcessor();
         GenericDao<Note> noteDao = new GenericDao<>(Note.class);
         String message;
         String messageType;
@@ -73,29 +72,11 @@ public class DeleteNoteAction extends HttpServlet {
         }
 
         if (noteIsValid) {
-            // Reconfigure note and item output
-            if (item.getType().equals("crop")) {
-                Crop crop = processor.processCrop(item.getId());
-                request.setAttribute("crop", crop);
-            }
-//
-            // reconfigure notes
-            List<Note> notes = processor.generateNotes(user.getId(), item.getId());
-            request.setAttribute("itemNotes", notes);
-
-            // reconfigure recent searches
-            processor.addSearch(user.getId(), item.getId());
-            List<String> searches = processor.generateSearches(user.getId());
-            request.setAttribute("userSearchItemNames", searches);
-
-            // set display attributes
-            request.setAttribute("item", item);
-            request.setAttribute("success", true);
-            request.setAttribute("updateMessage", message);
+            request.setAttribute("message", message);
             request.setAttribute("messageType", messageType);
-            request.setAttribute("showUpdateMessage", true);
-
-            url = "results.jsp";
+            request.setAttribute("user", user);
+            request.setAttribute("item", item);
+            url = "configureOutput";
         }
 
 

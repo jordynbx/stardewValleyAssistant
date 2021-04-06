@@ -56,7 +56,7 @@
 
             <div class="card text-white bg-warning mb-3 my-card" style="max-width: 20rem;">
                 <div class="card-body">
-                    <h4 class="card-title">Season</h4>
+                    <h4 class="card-title">Seasons</h4>
                     <p class="card-text">${crop.season}</p>
                 </div>
             </div>
