@@ -14,7 +14,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@RequiredArgsConstructor
 public class Note {
 
     @Id
