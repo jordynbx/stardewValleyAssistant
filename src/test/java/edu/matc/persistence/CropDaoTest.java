@@ -45,4 +45,5 @@ public class CropDaoTest {
         assertNotNull(retrievedCrop);
         assertEquals(80, retrievedCrop.getSeedPrice());
     }
+    
 }

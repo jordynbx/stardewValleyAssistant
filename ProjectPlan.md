@@ -63,6 +63,7 @@
 ### Week 11
 - [ ] Create JavaMail front end
 - [ ] Build out full JavaMail functionality
+- [ ] Create revised design documents                            
 
 #### On deck...
 - [ ]

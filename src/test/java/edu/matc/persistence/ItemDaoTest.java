@@ -1,5 +1,6 @@
 package edu.matc.persistence;
 
+import edu.matc.entity.Crop;
 import edu.matc.entity.Item;
 import edu.matc.entity.Note;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,6 +45,15 @@ public class ItemDaoTest {
         List<Item> items = dao.getByPropertyEqualString("name", "strawberry");
         assertEquals(1, items.size());
         assertEquals(6, items.get(0).getId());
+    }
+
+    @Test
+    void getItemByUniqueNameSuccess() {
+        String itemName = "garlic";
+        Item retrievedItem = (Item)dao.getByUniquePropertyEqualString("name", itemName);
+        assertNotNull(retrievedItem);
+        assertEquals(itemName, retrievedItem.getName());
+
     }
 
     /**
