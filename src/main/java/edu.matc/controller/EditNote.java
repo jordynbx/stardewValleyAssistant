@@ -78,7 +78,7 @@ public class EditNote extends HttpServlet {
          * forward to error page and output error message
          */
         if (permissionError) {
-            String message = "You don't have permission to edit this note.";
+            String message = ": you don't have permission to edit this note";
             request.setAttribute("message", message);
             url = "error.jsp";
         }
@@ -88,7 +88,7 @@ public class EditNote extends HttpServlet {
          * the note, forward to error page and output error message
          */
         if (validityError) {
-            String message = "There was an error accessing the note to edit.";
+            String message = ": there was an error accessing this note";
             request.setAttribute("message", message);
             url = "error.jsp";
         }

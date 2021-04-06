@@ -66,12 +66,12 @@ public class DeleteNote extends HttpServlet {
              * forward to error page and output error message
              */
             if (permissionError) {
-                String message = "You don't have permission to access this note.";
+                String message = ": you don't have permission to access this note";
                 request.setAttribute("message", message);
                 url = "error.jsp";
             }
         } else {
-            String message = "There was an error accessing the note to delete";
+            String message = ": there was an error accessing the note to delete";
             request.setAttribute("message", message);
             url = "error.jsp";
         }

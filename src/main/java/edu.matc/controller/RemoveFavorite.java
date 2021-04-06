@@ -17,10 +17,10 @@ import java.io.IOException;
 
 @Log4j2
 @WebServlet(
-        name = "deleteFavorite",
-        urlPatterns = {"/deleteFavorite"}
+        name = "removeFavorite",
+        urlPatterns = {"/removeFavorite"}
 )
-public class DeleteFavorite extends HttpServlet {
+public class RemoveFavorite extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -58,9 +58,9 @@ public class DeleteFavorite extends HttpServlet {
              */
             if (loggedInUser != null && favoriteUser != null) {
                 if (favoriteUser.getId() == loggedInUser.getId()) {
-//                    request.setAttribute("favorite", favorite);
+                    request.setAttribute("favorite", favorite);
                     request.setAttribute("item", item);
-                    url = "addFavoriteItem.jsp";
+                    url = "removeFavoriteItem.jsp";
                 } else {
                     permissionError = true;
                 }
@@ -73,12 +73,16 @@ public class DeleteFavorite extends HttpServlet {
              * forward to error page and output error message
              */
             if (permissionError) {
-                String message = "You don't have permission to access this favorite.";
+                String message = "You don't have permission to remove this favorite.";
                 request.setAttribute("message", message);
                 url = "error.jsp";
             }
-        } else {
+        } else if (request.getParameter("id").equals("")) {
             String message = "There was an error accessing the favorite";
+            request.setAttribute("message", message);
+            url = "error.jsp";
+        } else {
+            String message = "There was an error accessing the favorite";;
             request.setAttribute("message", message);
             url = "error.jsp";
         }
