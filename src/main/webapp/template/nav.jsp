@@ -18,6 +18,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="loginAction">Login</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+            </li>
             </c:if>
             <c:if test="${loggedIn}">
             <li class="nav-item">
