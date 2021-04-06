@@ -30,6 +30,7 @@ public class EditNoteAction extends HttpServlet {
 
         GenericDao<Note> noteDao = new GenericDao<>(Note.class);
         String message;
+        String messageType;
         Note noteToUpdate = null;
         boolean noteIsValid = false;
         String url = "error.jsp";
@@ -47,10 +48,16 @@ public class EditNoteAction extends HttpServlet {
                 noteToUpdate.setNoteContent(newNote);
                 noteDao.saveOrUpdate(noteToUpdate);
                 message = "Your note was successfully updated!";
+                messageType ="success";
+
             } else if (request.getParameter("submit").equals("cancel")) {
                 message = "Your note was not updated";
+                messageType = "danger";
+
             } else {
                 message = "There was an error updating the note.";
+                messageType = "danger";
+
             }
 
             // repopulate the results page
@@ -58,11 +65,12 @@ public class EditNoteAction extends HttpServlet {
 
         } else {
             message = "There was an error updating the note.";
+            messageType = "danger";
             request.setAttribute("message", message);
         }
 
+        // TODO is there any way to not duplicate code between here and DeleteNoteAction?
         // Reconfigure note and item output
-
         if (noteIsValid) {
             Item item = noteToUpdate.getItem();
             User user = noteToUpdate.getUser();
@@ -84,6 +92,7 @@ public class EditNoteAction extends HttpServlet {
             request.setAttribute("item", item);
             request.setAttribute("success", true);
             request.setAttribute("updateMessage", message);
+            request.setAttribute("messageType", messageType);
             request.setAttribute("showUpdateMessage", true);
 
             url = "results.jsp";

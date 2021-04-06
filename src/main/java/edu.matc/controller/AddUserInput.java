@@ -81,6 +81,7 @@ public class AddUserInput  extends HttpServlet {
         request.setAttribute("item", item);
         request.setAttribute("success", true);
         request.setAttribute("updateMessage", "Your item was updated!");
+        request.setAttribute("messageType", "success");
         request.setAttribute("showUpdateMessage", true);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("results.jsp");

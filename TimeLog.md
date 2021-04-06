@@ -38,4 +38,4 @@
 |4/2/21|Work on adding recent searches functionality|1|
 |4/4/21|Week 10 activities|1|
 |4/5/21|Troubleshoot cleandb.sql in team project|1.5|
-|4/5/21|Finish recent searches functionality and add card styling to results page|4|
+|4/5/21|Finish recent searches functionality and add card styling to results page|4.5|

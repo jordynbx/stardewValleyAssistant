@@ -4,10 +4,9 @@
 <%@include file="template/header.jsp"%>
 <%@include file="template/nav.jsp"%>
 
-<%--TODO edit the update messages and attributes so there is one success and one fail--%>
 <%--Show alert if note was successfully added--%>
 <c:if test="${showUpdateMessage}">
-    <div class="alert alert-dismissible alert-success pt-1 mt-1">
+    <div class="alert alert-dismissible alert-${messageType} pt-1 mt-1">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         ${updateMessage}
     </div>
@@ -26,6 +25,8 @@
 
     <div class="clearfix">
 
+    <%--    Display a list of recent searches for logged in users    --%>
+    <c:if test="${pageContext.request.isUserInRole('user')}">
         <div class="card border-info mb-3" id="results-searches" style="max-width: 20rem;">
             <div class="card-body">
                 <h4 class="card-title">Recent Searches</h4>
@@ -34,7 +35,9 @@
                 </c:forEach>
             </div>
         </div>
+    </c:if>
 
+<%--        Display a card deck showing details about the searched-for item--%>
         <div class="card-deck my-cards">
 
             <div class="card text-white bg-success mb-3 my-card" style="max-width: 20rem;">
@@ -72,6 +75,7 @@
             </div>
         </div>
 
+<%--        Display a user's notes and a form where they can add new notes if they are logged in--%>
         <div class="w-75 float-left">
         <h2>Notes</h2>
         <c:if test="${!pageContext.request.isUserInRole('user')}">
@@ -92,16 +96,10 @@
 
                 <div class="form-group">
                     <label for="userNote">Add a new note:</label>
-                    <input type="text" class="form-control" id="userNote" name="userNote" placeholder="Enter note" >
+                    <input type="text" class="form-control" id="userNote" name="userNote" placeholder="Enter note" required>
                     <small id="noteLimit" class="form-text text-muted">Notes have a 50 character limit</small>
                 </div>
 
-                    <%--            <div class="form-check">--%>
-                    <%--                <label class="form-check-label">--%>
-                    <%--                    <input class="form-check-input" type="checkbox" name="addToFavorites" value="addToFavorites">--%>
-                    <%--                    Add to favorites?--%>
-                    <%--                </label>--%>
-                    <%--            </div>--%>
                 <input type="hidden" id="itemId" name="itemId" value="${item.id}">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -113,8 +111,6 @@
 </c:if>
 <br>
 
-
 <a href="index.jsp">Search again</a>
-
 
 <%@include file="template/footer.jsp"%>

@@ -29,6 +29,7 @@ public class DeleteNoteAction extends HttpServlet {
         ItemProcessor processor = new ItemProcessor();
         GenericDao<Note> noteDao = new GenericDao<>(Note.class);
         String message = null;
+        String messageType;
         Item item = null;
         User user = null;
         Note noteToDelete;
@@ -50,20 +51,24 @@ public class DeleteNoteAction extends HttpServlet {
                 // delete the note and output success message
                 noteDao.delete(noteDao.getById(noteId));
                 message = "Your note was successfully deleted!";
+                messageType ="success";
 
             } else if (request.getParameter("submit").equals("cancel")) {
 
                 // output confirmation message
                 message = "Your note was not deleted.";
+                messageType = "danger";
 
             } else {
                 message = "There was an error deleting the note.";
+                messageType = "danger";
             }
 
             // repopulate the results page
             noteIsValid = true;
         } else {
             message = "There was an error deleting the note.";
+            messageType = "danger";
             request.setAttribute("message", message);
         }
 
@@ -73,7 +78,7 @@ public class DeleteNoteAction extends HttpServlet {
                 Crop crop = processor.processCrop(item.getId());
                 request.setAttribute("crop", crop);
             }
-//            TODO maybe change this to work mroe like AddUserInput?
+//
             // reconfigure notes
             List<Note> notes = processor.generateNotes(user.getId(), item.getId());
             request.setAttribute("itemNotes", notes);
@@ -87,6 +92,7 @@ public class DeleteNoteAction extends HttpServlet {
             request.setAttribute("item", item);
             request.setAttribute("success", true);
             request.setAttribute("updateMessage", message);
+            request.setAttribute("messageType", messageType);
             request.setAttribute("showUpdateMessage", true);
 
             url = "results.jsp";
