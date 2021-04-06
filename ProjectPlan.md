@@ -52,16 +52,17 @@
 - [ ] Create JavaBean to hold main item processing methods
 - [ ] Remove duplicate methods from servlets
 - [ ] Build out update and delete functionality 
+- [ ] Implement user sign-ups
+- [ ] Add sign up validation
 
 ### Week 10
-- [ ] Create JavaMail front end 
-- [ ] Build out full JavaMail functionality 
-- [ ] Implement user sign-ups
+- [ ] Update and improve styling
+- [ ] Implement user favorites functionality
+- [ ] Implement user favorites front end
 
 ### Week 11
-- [ ] Update and improve styling 
-- [ ] Implement user favorites functionality 
-- [ ] Add sign up validation
+- [ ] Create JavaMail front end
+- [ ] Build out full JavaMail functionality
 
 #### On deck...
 - [ ]
