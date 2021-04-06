@@ -1,10 +1,7 @@
 package edu.matc.entity;
 
 import com.sun.xml.bind.v2.TODO;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -17,6 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class Note {
 
     @Id
@@ -24,14 +22,15 @@ public class Note {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
-//    //TODO: figure out if this should be an int or an Item, and if an Item, how to configure that
-//    @Column(name = "item_id")
+    @NonNull
     @ManyToOne
     private Item item;
 
+    @NonNull
     @ManyToOne
     private User user;
 
+    @NonNull
     @Column(name = "note")
     private String noteContent;
 

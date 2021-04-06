@@ -24,7 +24,7 @@
             </c:if>
             <c:if test="${loggedIn}">
             <li class="nav-item">
-                <a class="nav-link" href="#">Favorites</a>
+                <a class="nav-link" href="getFavorites">Favorites</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="logoutAction">Log Out</a>

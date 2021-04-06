@@ -1,9 +1,6 @@
 package edu.matc.entity;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -17,7 +14,8 @@ import java.util.Set;
 @Table(name = "user")
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Data
+@Getter
+@Setter
 public class User {
 
     @Id
@@ -40,6 +38,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Note> notes = new HashSet<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<Favorite> favorites = new HashSet<>();
+
     /**
      * Add note.
      *
@@ -58,5 +59,17 @@ public class User {
     public void removeNote(Note note) {
         notes.remove(note);
         note.setUser(null);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", notes=" + notes +
+                ", favorites=" + favorites +
+                '}';
     }
 }

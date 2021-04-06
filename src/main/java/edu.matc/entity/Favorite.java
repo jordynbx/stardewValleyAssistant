@@ -1,9 +1,6 @@
 package edu.matc.entity;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -15,7 +12,8 @@ import javax.persistence.*;
 @Table(name = "user_favorites")
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Data
+@Getter
+@Setter
 public class Favorite {
 
     @Id
@@ -33,5 +31,11 @@ public class Favorite {
     @ManyToOne
     private Item item;
 
-
+    @Override
+    public String toString() {
+        return "Favorite{" +
+                "id=" + id +
+                ", item=" + item +
+                '}';
+    }
 }
