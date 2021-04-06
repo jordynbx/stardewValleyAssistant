@@ -37,17 +37,13 @@ public class GetFavorites extends HttpServlet {
 
         int userId = (int) session.getAttribute("currentUserId");
         List<Favorite> favorites = favoriteDao.getByPropertyEqualInt("user", userId);
-        List<Integer> favoriteItemIds = new ArrayList<>();
         List<Crop> favoriteCrops = new ArrayList<>();
-        List<Item> favoriteItems = new ArrayList<>();
 
         if (favorites.size() > 0) {
 
             for (Favorite favorite : favorites) {
                 Item item = favorite.getItem();
                 int itemId = item.getId();
-                favoriteItemIds.add(itemId);
-                favoriteItems.add(item);
 
                 if (item.getType().equals("crop")) {
                     Crop crop = cropDao.getByUniquePropertyEqualInt("itemId", itemId);
@@ -55,24 +51,17 @@ public class GetFavorites extends HttpServlet {
                 }
             }
 
-
             message = "";
         } else {
             message = "Add some favorites to see them on your list!";
 
         }
 
-
         session.setAttribute("favoriteMessage", message);
-//        session.setAttribute("userFavorites", favorites);
-//        session.setAttribute("favoriteItemIds", favoriteItemIds);
         session.setAttribute("favoriteCrops", favoriteCrops);
-//        session.setAttribute("favoriteItems", favoriteItems);
-
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("favorites");
         dispatcher.forward(request, response);
-
 
     }
 }

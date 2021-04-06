@@ -31,7 +31,7 @@ public class CropDaoTest {
      */
     @Test
     void getCropByItemIdSuccess() {
-        Crop retrievedCrop = (Crop)dao.getByUniquePropertyEqualInt("itemId", 3);
+        Crop retrievedCrop = (Crop)dao.getByUniquePropertyEqualInt("item", 3);
         assertNotNull(retrievedCrop);
         assertEquals(80, retrievedCrop.getSeedPrice());
     }
@@ -45,5 +45,5 @@ public class CropDaoTest {
         assertNotNull(retrievedCrop);
         assertEquals(80, retrievedCrop.getSeedPrice());
     }
-    
+
 }

@@ -1,8 +1,6 @@
 package edu.matc.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NaturalId;
 
@@ -18,6 +16,7 @@ import javax.persistence.*;
 @Table(name = "crops")
 @NoArgsConstructor
 @Getter
+@Setter
 @ToString
 public class Crop {
 
@@ -26,11 +25,12 @@ public class Crop {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "item_id",
             foreignKey = @ForeignKey(name = "crops_item_id_fk")
     )
-    @Column(name = "item_id")
-    private int itemId;
+    @NonNull
+    private Item item;
 
     @Column(name = "season")
     private String season;

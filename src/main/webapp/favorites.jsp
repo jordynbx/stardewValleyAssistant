@@ -18,7 +18,7 @@
     <c:forEach var="crop" items="${favoriteCrops}">
         <tr>
 <%--            TODO how do i get the crop name here if it's in another table?--%>
-            <td>${crop.itemId}</td>
+            <td>${crop.itemId.name}</td>
             <td>${crop.seedPrice}</td>
             <td>${crop.sellPrice}</td>
             <td>${crop.bundles}</td>

@@ -3,6 +3,8 @@ package edu.matc.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A class to represent an item
@@ -22,6 +24,9 @@ public class Item {
 
     @Column(name = "type")
     private String type;
+
+    @OneToOne(mappedBy = "item")
+    private Crop crop;
 
     /**
      * Instantiates a new item
