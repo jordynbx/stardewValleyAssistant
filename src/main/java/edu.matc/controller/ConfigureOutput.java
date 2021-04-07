@@ -21,7 +21,7 @@ import java.util.List;
 )
 @Log4j2
 public class ConfigureOutput extends HttpServlet {
-    // TODO investigate if i still need this class after switching to sessions
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
