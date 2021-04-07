@@ -40,3 +40,4 @@
 |4/5/21|Troubleshoot cleandb.sql in team project|1.5|
 |4/5/21|Finish recent searches functionality and add card styling to results page|4.5|
 |4/6/21|Implemented user favorites functionality and creating configuring class to reduce duplicate code||
+|4/7/21|Refactoring and optimizing||
