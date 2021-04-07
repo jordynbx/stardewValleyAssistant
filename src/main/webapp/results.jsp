@@ -4,6 +4,7 @@
 <%@include file="template/header.jsp"%>
 <%@include file="template/nav.jsp"%>
 
+<%--TODO figure out how to update url and prevent action refreshes--%>
 <%--Show alert if note was successfully added--%>
 <c:if test="${showUpdateMessage}">
     <div class="alert alert-dismissible alert-${messageType} pt-1 mt-1">
