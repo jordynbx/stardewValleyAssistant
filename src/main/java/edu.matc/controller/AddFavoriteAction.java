@@ -44,11 +44,21 @@ public class AddFavoriteAction extends HttpServlet {
 
             if (request.getParameter("submit").equals("confirm")) {
 
-                // Add the item to favorites and output success message
-                Favorite favorite = new Favorite(user, item);
-                favoriteDao.insert(favorite);
-                message = "THe item was successfully added as a favorite!";
-                messageType ="success";
+                // make sure item isn't already in favorites list
+                Favorite existingFavorite =
+                        favoriteDao.getUniqueEntityByMultipleProperties("user", user.getId(), "item",
+                        item.getId());
+
+                if (existingFavorite != null) {
+                    message = "This item was already added as a favorite";
+                    messageType = "danger";
+                } else {
+                    // Add the item to favorites and output success message
+                    Favorite favorite = new Favorite(user, item);
+                    favoriteDao.insert(favorite);
+                    message = "The item was successfully added as a favorite!";
+                    messageType ="success";
+                }
             } else if (request.getParameter("submit").equals("cancel")) {
 
                 // output confirmation message

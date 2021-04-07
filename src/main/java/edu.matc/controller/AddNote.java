@@ -14,8 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-// TODO need to differentiate between adding and updating a note
-// TODO cleanup/organize code
+
 @Log4j2
 @WebServlet(
         name = "addNote",
