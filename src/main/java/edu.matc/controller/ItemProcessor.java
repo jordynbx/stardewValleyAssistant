@@ -25,7 +25,7 @@ public class ItemProcessor {
     public Crop processCrop(int itemId) {
 
         GenericDao<Crop> cropDao = new GenericDao<>(Crop.class);
-        return cropDao.getByUniquePropertyEqualInt("itemId", itemId);
+        return cropDao.getByUniquePropertyEqualInt("item", itemId);
     }
 
     /**
@@ -43,7 +43,7 @@ public class ItemProcessor {
         return notes;
     }
 
-    public Boolean isFavorite(int userId, int itemId) {
+    public boolean isFavorite(int userId, int itemId) {
         GenericDao<Favorite> favoriteDao = new GenericDao<>(Favorite.class);
         Favorite favoriteItem = favoriteDao.getUniqueEntityByMultipleProperties("user", userId, "item", itemId);
         if (favoriteItem != null) {
