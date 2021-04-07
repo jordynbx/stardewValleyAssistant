@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -25,6 +26,8 @@ public class ConfigureOutput extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
+
         ItemProcessor processor = new ItemProcessor();
         User user = (User)request.getAttribute("user");
         Item item = (Item)request.getAttribute("item");
@@ -36,32 +39,35 @@ public class ConfigureOutput extends HttpServlet {
         // Reconfigure note and item output
         if (item.getType().equals("crop")) {
             Crop crop = processor.processCrop(item.getId());
-            request.setAttribute("crop", crop);
+            session.setAttribute("crop", crop);
         }
 //
         // reconfigure notes
         List<Note> notes = processor.generateNotes(user.getId(), item.getId());
-        request.setAttribute("itemNotes", notes);
+        session.setAttribute("itemNotes", notes);
 
         // reconfigure recent searches
         processor.addSearch(user.getId(), item.getId());
         List<String> searches = processor.generateSearches(user.getId());
-        request.setAttribute("userSearchItemNames", searches);
+        session.setAttribute("userSearchItemNames", searches);
 
         // reconfigure favorite
         boolean isFavoriteItem = processor.isFavorite(user.getId(), item.getId());
-        request.setAttribute("isFavoriteItem", isFavoriteItem);
+        session.setAttribute("isFavoriteItem", isFavoriteItem);
 
         // set display attributes
-        request.setAttribute("item", item);
-        request.setAttribute("success", true);
-        request.setAttribute("updateMessage", message);
-        request.setAttribute("messageType", messageType);
-        request.setAttribute("showUpdateMessage", true);
+        session.setAttribute("item", item);
+        session.setAttribute("success", true);
+        session.setAttribute("updateMessage", message);
+        session.setAttribute("messageType", messageType);
+        session.setAttribute("showUpdateMessage", true);
 
         // forward the request
-        RequestDispatcher dispatcher = request.getRequestDispatcher("results.jsp");
-        dispatcher.forward(request, response);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("results.jsp");
+//        dispatcher.forward(request, response);
+
+        String url = "results";
+        response.sendRedirect(url);
 
     }
 }

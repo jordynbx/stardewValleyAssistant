@@ -46,7 +46,7 @@ public class SearchItem extends HttpServlet {
         }
     }
 
-    request.setAttribute("success", itemExists);
+    session.setAttribute("success", itemExists);
 
     /**
      * In V1 of this project, all items will be crops, so this seems unnecessary. However, in future
@@ -59,7 +59,7 @@ public class SearchItem extends HttpServlet {
 
         if (item.getType().equals("crop")) {
             Crop crop = processor.processCrop(searchItemId);
-            request.setAttribute("crop", crop);
+            session.setAttribute("crop", crop);
         }
 
         if (request.isUserInRole("user") || request.isUserInRole("admin")) {
@@ -68,22 +68,24 @@ public class SearchItem extends HttpServlet {
 
             // configure notes
             List<Note> notes = processor.generateNotes(userId, searchItemId);
-            request.setAttribute("itemNotes", notes);
+            session.setAttribute("itemNotes", notes);
 
             // configure recent searches
             processor.addSearch(userId, searchItemId);
             List<String> searches = processor.generateSearches(userId);
-            request.setAttribute("userSearchItemNames", searches);
+            session.setAttribute("userSearchItemNames", searches);
 
             // figure out if item is a favorite
             Boolean isFavoriteItem = processor.isFavorite(userId, searchItemId);
-            request.setAttribute("isFavoriteItem", isFavoriteItem);
+            session.setAttribute("isFavoriteItem", isFavoriteItem);
 
         }
-        request.setAttribute("item", item);
+        session.setAttribute("item", item);
     }
-
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/results.jsp");
-    dispatcher.forward(request, response);
+//
+//    RequestDispatcher dispatcher = request.getRequestDispatcher("results");
+//    dispatcher.forward(request, response);
+        String url = "results";
+        response.sendRedirect(url);
     }
 }
