@@ -31,7 +31,7 @@ public class SearchItem extends HttpServlet {
     List<Item> items;
     Item item = null;
 
-    Boolean itemExists = false;
+    boolean itemExists = false;
 
     // Get item from form and check if it exists
     GenericDao<Item> itemDao = new GenericDao<>(Item.class);
