@@ -5,15 +5,16 @@
 <%@include file="template/nav.jsp"%>
 
 ${errorMessage}
+<c:set var="errorMessage" value="" scope="session" />
 <form action="signUpAction">
 
     <div class="form-group">
         <label for="userEmail">Email address</label>
-        <input type="email" class="form-control" name="userEmail" id="userEmail" value="${email}" placeholder="Enter email" required>
+        <input type="email" class="form-control" name="userEmail" id="userEmail" value="${enteredEmail}" placeholder="Enter email" required>
     </div>
     <div class="form-group">
         <label for="userEmail">Username</label>
-        <input type="text" class="form-control" name="userUsername" id="userUsername" value="${username}" maxlength="20" placeholder="Enter username" required>
+        <input type="text" class="form-control" name="userUsername" id="userUsername" value="${enteredUsername}" maxlength="20" placeholder="Enter username" required>
     </div>
     <div class="form-group">
         <label for="userPassword">Password</label>

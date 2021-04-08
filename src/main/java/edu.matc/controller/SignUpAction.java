@@ -38,6 +38,8 @@ public class SignUpAction extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
+
         GenericDao<User> userDao = new GenericDao<>(User.class);
         GenericDao<Role> roleDao = new GenericDao<>(Role.class);
 
@@ -47,13 +49,14 @@ public class SignUpAction extends HttpServlet {
         String username = "";
         String email = "";
 
+        String url = "";
+
         // Get parameters from form
         email = request.getParameter("userEmail");
         username = request.getParameter("userUsername");
         String userPassword = request.getParameter("userPassword");
         String confirmPassword = request.getParameter("confirmPassword");
 
-        String url = "";
         boolean createUser = false;
 
         // Check if username is already in use
@@ -66,15 +69,15 @@ public class SignUpAction extends HttpServlet {
                 createUser = true;
             } else {
                 errorMessage = "Your passwords do not match. Please re-enter.";
-                request.setAttribute("enteredEmail", email);
-                request.setAttribute("enteredUsername", username);
-                request.setAttribute("errorMessage", errorMessage);
+                session.setAttribute("enteredEmail", email);
+                session.setAttribute("enteredUsername", username);
+                session.setAttribute("errorMessage", errorMessage);
                 url = "signup";
             }
         } else {
             errorMessage = "That username is already in use. Please select another username.";
-            request.setAttribute("errorMessage", errorMessage);
-            request.setAttribute("enteredEmail", email);
+            session.setAttribute("errorMessage", errorMessage);
+            session.setAttribute("enteredEmail", email);
             url = "signup";
         }
 
@@ -102,14 +105,19 @@ public class SignUpAction extends HttpServlet {
             roleDao.insert(role);
 
             message = "Your account has been created. Please log in.";
+            session.setAttribute("updateMessage", message);
 
-            request.setAttribute("updateMessage", message);
+            // clear form fields
+            session.setAttribute("enteredEmail", "");
+            session.setAttribute("enteredUsername", "");
 
-            url = "login.jsp";
+            url = "loginAction";
         }
 
         // forward the request
-        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-        dispatcher.forward(request, response);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+//        dispatcher.forward(request, response);
+
+        response.sendRedirect(url);
     }
 }
