@@ -7,6 +7,10 @@ class SendEmailTest {
     @Test
     void createEmail() {
         SendEmail email = new SendEmail();
-        email.createEmail();
+        String messageSubject = "Testing Gmail TLS";
+        String messageText = "This is a test email.";
+        String returnAddress = "email@example.com";
+        email.createEmail(messageSubject, messageText, returnAddress);
+
     }
 }

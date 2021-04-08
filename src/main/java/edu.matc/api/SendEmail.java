@@ -2,6 +2,7 @@ package edu.matc.api;
 
 
 import edu.matc.utilities.PropertiesLoader;
+import lombok.extern.log4j.Log4j2;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -9,11 +10,11 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.Authenticator;
 import java.util.Properties;
 
-
+@Log4j2
 public class SendEmail implements PropertiesLoader {
 
 
-    void createEmail() {
+    public boolean createEmail(String messageSubject, String messageText, String returnAddress) {
 
         Properties properties = loadProperties("/email.properties");
 
@@ -34,15 +35,16 @@ public class SendEmail implements PropertiesLoader {
             message.setRecipients(
                     MimeMessage.RecipientType.TO, InternetAddress.parse(username));
             
-            message.setSubject("Testing Gmail TLS");
-            message.setText("Dear Mail Crawler,"
-                    + "\n\n Please do not spam my email!");
+            message.setSubject(messageSubject);
+            message.setText("User email: " + returnAddress
+                    + "\n\n" + messageText);
 
             Transport.send(message);
 
-            System.out.println("Done");
+            return true;
         } catch (MessagingException e) {
-            e.printStackTrace();
+            log.error(e);
+            return false;
         }
     }
 }

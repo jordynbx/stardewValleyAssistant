@@ -3,14 +3,11 @@
 <%@include file="template/head.jsp"%>
 <%@include file="template/header.jsp"%>
 <%@include file="template/nav.jsp"%>
-<%--TODO make sure this update message works--%>
+
 ${updateMessage}
+<c:set var="updateMessage" value="" scope="session" />
 <FORM ACTION="j_security_check" METHOD="POST">
-<%--    <TABLE>--%>
-<%--        <TR><TD>User name: <INPUT TYPE="TEXT" NAME="j_username">--%>
-<%--        <TR><TD>Password: <INPUT TYPE="PASSWORD" NAME="j_password">--%>
-<%--        <TR><TH><INPUT TYPE="SUBMIT" VALUE="Log In">--%>
-<%--    </TABLE> --%>
+
     <div class="form-group">
         <label for="user-username">Username</label>
         <input TYPE="TEXT" NAME="j_username"  class="form-control" id="user-username"
