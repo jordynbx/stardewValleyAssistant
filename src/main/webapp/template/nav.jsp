@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="index.jsp">Home
+                <a class="nav-link" href="home">Home
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
@@ -18,18 +18,21 @@
             <li class="nav-item">
                 <a class="nav-link" href="loginAction">Login</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
-            </li>
             </c:if>
             <c:if test="${loggedIn}">
             <li class="nav-item">
                 <a class="nav-link" href="getFavorites">Favorites</a>
             </li>
+            </c:if>
+            <li class="nav-item">
+                <a class="nav-link" href="contact">Contact</a>
+            </li>
+            <c:if test="${loggedIn}">
             <li class="nav-item">
                 <a class="nav-link" href="logoutAction">Log Out</a>
             </li>
             </c:if>
+
         <%--            <li class="nav-item">--%>
 <%--                <a class="nav-link" href="#">About</a>--%>
 <%--            </li>--%>
