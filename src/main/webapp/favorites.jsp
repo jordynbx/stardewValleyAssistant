@@ -6,7 +6,7 @@
 <%@include file="template/nav.jsp"%>
 
 <h1>Favorites</h1>
-
+<%--            TODO hide table if they don't have any favorites--%>
 <table>
     <tr>
         <th>Crop</th>
@@ -17,7 +17,7 @@
     </tr>
     <c:forEach var="crop" items="${favoriteCrops}">
         <tr>
-<%--            TODO how do i get the crop name here if it's in another table?--%>
+
             <td>${crop.item.name}</td>
             <td>${crop.seedPrice}</td>
             <td>${crop.sellPrice}</td>
