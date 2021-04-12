@@ -19,7 +19,7 @@ import java.util.List;
 @Log4j2
 @WebServlet(
         name = "home",
-        urlPatterns = {"/"}
+        urlPatterns = {"/home"}
 )
 public class Home extends HttpServlet {
 
