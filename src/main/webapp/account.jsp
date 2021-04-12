@@ -11,6 +11,7 @@
 ${message}
 <c:set var="message" value="" scope="session" />
 
+<h4>Change Password</h4>
 <form action="changePasswordAction" method="get">
     <div class="form-group">
         <label for="currentPassword">Password</label>
@@ -22,9 +23,8 @@ ${message}
     </div>
     <div class="form-group">
         <label for="confirmNewPassword">Re-enter Password</label>
-        <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" placeholder="Password" required>
+        <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" placeholder="Confirm new password" required>
     </div>
     <button type="submit" name="submit" class="btn btn-success" value="confirm">Confirm</button>
-    <button type="submit" name="submit" class="btn btn-warning" value="cancel">Cancel</button>
 </form>
 <%@include file="template/footer.jsp"%>

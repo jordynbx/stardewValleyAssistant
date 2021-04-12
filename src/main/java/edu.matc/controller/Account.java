@@ -1,6 +1,7 @@
 package edu.matc.controller;
 
 import edu.matc.entity.Favorite;
+import edu.matc.entity.User;
 import edu.matc.persistence.GenericDao;
 import lombok.extern.log4j.Log4j2;
 
@@ -28,10 +29,22 @@ public class Account extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("account.jsp");
+        User user = (User) session.getAttribute("loggedInUser");
+
+        String url;
+
+        if (user != null) {
+            url = "account.jsp";
+        } else {
+            url = "error.jsp";
+            String message = ": you don't have access to this page";
+            request.setAttribute("message", message);
+        }
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);
-
 
     }
 }

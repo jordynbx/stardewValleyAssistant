@@ -56,11 +56,6 @@ public class ChangePasswordAction extends HttpServlet {
                 log.error("Error hashing password: " + e);
             }
             credentialHandler.setEncoding("UTF-8");
-//
-//            String hashedEnteredCurrentPassword = credentialHandler.mutate(currentPassword);
-//            String hashedStoredCurrentPassword = user.getPassword();
-//            log.info("entered current password: " + hashedEnteredCurrentPassword);
-//            log.info("stored current password: " + hashedStoredCurrentPassword);
 
             passwordsMatch = credentialHandler.matches(currentPassword, user.getPassword());
 

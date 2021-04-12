@@ -17,10 +17,22 @@
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>favorites</web-resource-name>
-      <url-pattern>/favorites.jsp</url-pattern>
+      <url-pattern>/favorites</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>admin</role-name>
+        <role-name>user</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+<!--   Protect the user account page. -->
+  <security-constraint>
+    <web-resource-collection>
+        <web-resource-name>account</web-resource-name>
+        <url-pattern>/account</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+        <role-name>admin</role-name>
         <role-name>user</role-name>
     </auth-constraint>
   </security-constraint>
