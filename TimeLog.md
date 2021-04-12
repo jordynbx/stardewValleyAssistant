@@ -41,3 +41,6 @@
 |4/5/21|Finish recent searches functionality and add card styling to results page|4.5|
 |4/6/21|Implemented user favorites functionality and creating configuring class to reduce duplicate code|5|
 |4/7/21|Refactoring and optimizing|5|
+|4/8/21|Setup Javascript for GET demonstration on index page and added styling (team project)|4.5|
+|4/11/21|Troubleshooting AWS|2|
+|4/12/21|Troubleshooting AWS, adding change password to indie project|4|
