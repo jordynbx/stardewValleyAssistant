@@ -63,7 +63,12 @@
 ### Week 11
 - [ ] Create JavaMail front end
 - [ ] Build out full JavaMail functionality
-- [ ] Create revised design documents                            
+                     
+
+### Week 12
+- [ ] Create JavaMail reply email 
+- [ ] Create revised design documents
+- [ ] Implement password reset functionality
 
 #### On deck...
 - [ ]

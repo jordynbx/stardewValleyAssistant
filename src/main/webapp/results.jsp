@@ -12,7 +12,9 @@
         ${updateMessage}
     </div>
     <c:set var="showUpdateMessage" value="" scope="session" />
-<%--    <c:set var="messageType" value="" scope="session" />--%>
+    <c:set var="updateMessage" value="" scope="session" />
+
+    <%--    <c:set var="messageType" value="" scope="session" />--%>
 <%--    <c:set var="showUpdateMessage" value="" scope="session" />--%>
 </c:if>
 
