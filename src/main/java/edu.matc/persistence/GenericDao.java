@@ -204,6 +204,40 @@ public class GenericDao<T> {
         return entity;
     }
 
+//    TODO add test for this method
+    /**
+     * Gets by multiple ids.
+     *
+     * @param <T>            the type parameter
+     * @param firstProperty  the first property
+     * @param firstValue     the first value
+     * @param secondProperty the second property
+     * @param secondValue    the second value
+     * @return the entity
+     */
+    public <T>T getUniqueEntityByMultiplePropertyStrings(String firstProperty, String firstValue,
+                                                    String secondProperty, String secondValue) {
+
+        Session session = getSession();
+
+        log.debug("Searching for something with " + firstProperty + " = " + firstValue
+                + " and " + secondProperty + " = " + secondValue);
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = (CriteriaQuery<T>) builder.createQuery( type );
+        Root<T> root = (Root<T>) query.from(type );
+
+        List<Predicate> restrictions = new ArrayList<>();
+        restrictions.add(builder.equal(root.get(firstProperty), firstValue));
+        restrictions.add(builder.equal(root.get(secondProperty), secondValue));
+        query.where(restrictions.toArray(new Predicate[restrictions.size()]));
+
+        T entity = session.createQuery( query ).uniqueResult();
+
+        session.close();
+        return entity;
+    }
+
     /**
      * Gets by multiple ids.
      *

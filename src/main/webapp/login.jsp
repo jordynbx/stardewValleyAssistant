@@ -20,5 +20,7 @@ ${updateMessage}
      <INPUT TYPE="SUBMIT" class="btn btn-info" VALUE="Log In">
 </FORM>
 
+<a href="forgotPassword.jsp">Forgot password?</a>
+
 
 <%@include file="template/footer.jsp"%>
