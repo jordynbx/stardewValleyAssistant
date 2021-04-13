@@ -44,6 +44,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<UserSearch> searches = new HashSet<>();
 
+    @OneToOne(mappedBy = "user")
+    private Token token;
+
     /**
      * Add note.
      *

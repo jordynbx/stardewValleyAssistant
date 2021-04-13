@@ -114,7 +114,7 @@ public class GenericDao<T> {
     public List<T> getByPropertyEqualInt(String propertyName, int value) {
         Session session = getSession();
 
-        log.debug("Searching for order with " + propertyName + " = " + value);
+//        log.debug("Searching for order with " + propertyName + " = " + value);
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<T> query = builder.createQuery( type );
@@ -136,7 +136,7 @@ public class GenericDao<T> {
     public <T>T getByUniquePropertyEqualInt(String propertyName, int value) {
         Session session = getSession();
 
-        log.debug("Searching for order with " + propertyName + " = " + value);
+//        log.debug("Searching for order with " + propertyName + " = " + value);
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<T> query = (CriteriaQuery<T>) builder.createQuery( type );
@@ -159,7 +159,7 @@ public class GenericDao<T> {
     public <T>T getByUniquePropertyEqualString(String propertyName, String value) {
         Session session = getSession();
 
-        log.debug("Searching for order with " + propertyName + " = " + value);
+//        log.debug("Searching for order with " + propertyName + " = " + value);
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<T> query = (CriteriaQuery<T>) builder.createQuery( type );
@@ -186,8 +186,8 @@ public class GenericDao<T> {
 
         Session session = getSession();
 
-        log.debug("Searching for something with " + firstProperty + " = " + firstValue
-                + " and " + secondProperty + " = " + secondValue);
+//        log.debug("Searching for something with " + firstProperty + " = " + firstValue
+//                + " and " + secondProperty + " = " + secondValue);
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<T> query = (CriteriaQuery<T>) builder.createQuery( type );
@@ -214,13 +214,45 @@ public class GenericDao<T> {
      * @param secondValue    the second value
      * @return the entity
      */
+    public <T>T getUniqueEntityByMultiplePropertyStrings(String firstProperty, String firstValue,
+                                                    String secondProperty, String secondValue) {
+
+        Session session = getSession();
+
+//        log.debug("Searching for something with " + firstProperty + " = " + firstValue
+//                + " and " + secondProperty + " = " + secondValue);
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = (CriteriaQuery<T>) builder.createQuery( type );
+        Root<T> root = (Root<T>) query.from(type );
+
+        List<Predicate> restrictions = new ArrayList<>();
+        restrictions.add(builder.equal(root.get(firstProperty), firstValue));
+        restrictions.add(builder.equal(root.get(secondProperty), secondValue));
+        query.where(restrictions.toArray(new Predicate[restrictions.size()]));
+
+        T entity = session.createQuery( query ).uniqueResult();
+
+        session.close();
+        return entity;
+    }
+
+    /**
+     * Gets by multiple ids.
+     *
+     * @param firstProperty  the first property
+     * @param firstValue     the first value
+     * @param secondProperty the second property
+     * @param secondValue    the second value
+     * @return the entity
+     */
     public List<T> getListByMultipleProperties(String firstProperty, int firstValue,
                                                     String secondProperty, int secondValue) {
 
         Session session = getSession();
 
-        log.debug("Searching for something with " + firstProperty + " = " + firstValue
-                + " and " + secondProperty + " = " + secondValue);
+//        log.debug("Searching for something with " + firstProperty + " = " + firstValue
+//                + " and " + secondProperty + " = " + secondValue);
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<T> query = (CriteriaQuery<T>) builder.createQuery( type );
@@ -245,7 +277,7 @@ public class GenericDao<T> {
     public List<T> getByPropertyEqualString(String propertyName, String value) {
         Session session = getSession();
 
-        log.debug("Searching for order with " + propertyName + " = " + value);
+//        log.debug("Searching for order with " + propertyName + " = " + value);
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<T> query = builder.createQuery( type );

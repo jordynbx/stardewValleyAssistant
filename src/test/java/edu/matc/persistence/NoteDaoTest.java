@@ -81,12 +81,19 @@ public class NoteDaoTest {
 
 
     /**
-     * Verifies successful delete of note
+     * Verifies successful delete of note and not user
      */
     @Test
     void deleteSuccess() {
-        dao.delete(dao.getById(3));
+        GenericDao<User> userDao = new GenericDao<>(User.class);
+        Note note = dao.getById(3);
+        User user = userDao.getById(note.getUser().getId());
+
+        dao.delete(note);
+        user = userDao.getById(user.getId());
+
         assertNull(dao.getById(3));
+        assertNotNull(user);
     }
 
     /**

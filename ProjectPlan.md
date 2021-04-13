@@ -70,6 +70,9 @@
 - [ ] Create revised design documents
 - [ ] Implement password reset functionality
 
+### Week 13 
+- [ ] Update JavaDoc
+
 #### On deck...
 - [ ]
 - [ ]
