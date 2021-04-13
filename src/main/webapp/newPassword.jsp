@@ -9,11 +9,11 @@ ${updateMessage}
 <form action="newPasswordAction">
     <input type="hidden" id="token" name="token" value="${token}">
     <div class="form-group">
-        <label for="newPassword">Password</label>
+        <label for="newPassword">Enter new password</label>
         <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Password" required>
     </div>
     <div class="form-group">
-        <label for="confirmNewPassword">Re-enter Password</label>
+        <label for="confirmNewPassword">Re-enter new password</label>
         <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" placeholder="Password" required>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>

@@ -67,10 +67,15 @@ public class NewPasswordAction extends HttpServlet {
                     } catch (NoSuchAlgorithmException e) {
                         log.error("Error hashing password: " + e);
                     }
+
+                    // update password
                     credentialHandler.setEncoding("UTF-8");
                     String hashedNewPassword = credentialHandler.mutate(newPassword);
                     user.setPassword(hashedNewPassword);
                     userDao.saveOrUpdate(user);
+
+                    // remove used token from db so it can't be reused
+                    tokenDao.delete(token);
 
                     message = "Your password has been updated.";
                     url = "loginAction";
@@ -82,10 +87,12 @@ public class NewPasswordAction extends HttpServlet {
                 message = "Your password reset link has expired; please request a new one.";
                 url = "loginAction";
             }
-
-            session.setAttribute("updateMessage", message);
-
+        } else {
+            message = "This password link has expired.PLease request a new link.";
+            url = "loginAction";
         }
+
+        session.setAttribute("updateMessage", message);
 
         response.sendRedirect(url);
 
