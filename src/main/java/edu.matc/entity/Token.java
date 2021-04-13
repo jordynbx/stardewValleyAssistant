@@ -20,7 +20,7 @@ public class Token {
     private int id;
 
     @NonNull
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "user_id",
             foreignKey = @ForeignKey(name = "tokens_user_id_fk")
     )
