@@ -44,3 +44,4 @@
 |4/8/21|Setup Javascript for GET demonstration on index page and added styling (team project)|4.5|
 |4/11/21|Troubleshooting AWS|2|
 |4/12/21|Troubleshooting AWS, adding change password to indie project|4|
+|4/13/21|Add password resetting vie email to indie project|4|
