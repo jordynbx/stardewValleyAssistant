@@ -13,7 +13,9 @@ import java.io.IOException;
 
 
 /**
- * The purpose of this servlet is to forward to
+ * The purpose of this servlet is to forward to newPassword.jsp,
+ * which is the form used for users to reset their password from
+ * a forgotten password link
  */
 @Log4j2
 @WebServlet(

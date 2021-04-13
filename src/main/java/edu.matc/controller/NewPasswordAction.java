@@ -18,6 +18,11 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 import java.util.Date;
 
+/**
+ * The purpose of this servlet is to process password updates
+ * for users who forgot their password and requested a change
+ * password link
+ */
 @WebServlet(
         name = "newPasswordAction",
         urlPatterns = {"/newPasswordAction"}
