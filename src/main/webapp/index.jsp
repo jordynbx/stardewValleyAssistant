@@ -5,6 +5,7 @@
 <%@include file="template/nav.jsp"%>
 
 ${updateMessage}
+<c:set var="updateMessage" value="" scope="session" />
 <br>
 <h1>Search for an item</h1>
 <c:if test="${pageContext.request.isUserInRole('user')}">

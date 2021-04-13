@@ -4,8 +4,8 @@
 <%@include file="template/header.jsp"%>
 <%@include file="template/nav.jsp"%>
 
-<%--${updateMessage}--%>
-<%--<c:set var="updateMessage" value="" scope="session" />--%>
+${updateMessage}
+<c:set var="updateMessage" value="" scope="session" />
 <form action="newPasswordAction">
     <input type="hidden" id="token" name="token" value="${token}">
     <div class="form-group">

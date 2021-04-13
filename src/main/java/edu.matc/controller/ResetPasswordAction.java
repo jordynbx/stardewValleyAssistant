@@ -41,6 +41,7 @@ public class ResetPasswordAction extends HttpServlet {
         GenericDao<User> userDao = new GenericDao<>(User.class);
         GenericDao<Token> tokenDao = new GenericDao<>(Token.class);
 
+        String message = "";
 
         // Check if username and email match valid user
         String email = request.getParameter("userEmail");
@@ -79,16 +80,16 @@ public class ResetPasswordAction extends HttpServlet {
             boolean sendEmailSuccess = resetEmail.resetPassword(email, generatedToken);
 
             if (sendEmailSuccess) {
-//                TODO success message
+                message = "Please check your email for a link to reset your password.";
             } else {
-//                TODO fail message
+                message = "There was an error. Please try again again later or contact stardewvalleyassistant@gmail" +
+                        ".com for help.";
             }
-
         } else {
-            // TODO error message
+            message = "The username and email combination was not found. Please try again.";
         }
 
-
+        request.setAttribute("updateMessage", message);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("forgotPassword.jsp");
         dispatcher.forward(request, response);

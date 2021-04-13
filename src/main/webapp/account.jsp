@@ -14,7 +14,7 @@ ${message}
 <h4>Change Password</h4>
 <form action="changePasswordAction" method="get">
     <div class="form-group">
-        <label for="currentPassword">Password</label>
+        <label for="currentPassword">Current Password</label>
         <input type="password" class="form-control" id="currentPassword" name="currentPassword" placeholder="Enter current password" required>
     </div>
     <div class="form-group">

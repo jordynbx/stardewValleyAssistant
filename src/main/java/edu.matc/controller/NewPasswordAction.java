@@ -12,8 +12,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @WebServlet(
         name = "newPasswordAction",
@@ -24,45 +27,67 @@ public class NewPasswordAction extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+
         GenericDao<User> userDao = new GenericDao<>(User.class);
         GenericDao<Token> tokenDao = new GenericDao<>(Token.class);
 
+        String message = "";
+        String url = "";
         String userToken = request.getParameter("token");
-        log.info("TOKEN: " + userToken);
+
 
         // Get username to update password for
         Token token = tokenDao.getByUniquePropertyEqualString("token", userToken);
-        log.info("TOKEN: " + token);
+
         if (token != null) {
-            User user = userDao.getById(token.getUser().getId());
-            log.info("USER: " + user);
-            // somehow check if the date is before the expiration time
 
-            // if it is, update the password
-            String newPassword = request.getParameter("newPassword");
-            String confirmPassword = request.getParameter("confirmNewPassword");
+            // Get the user associated with the token
+            User user = userDao.getById(token.getUser().getId());;
 
-            if (newPassword.equals(confirmPassword)) {
-                log.debug("passwords match");
-                MessageDigestCredentialHandler credentialHandler
-                        = new MessageDigestCredentialHandler();
-                // Hash password
-                try {
-                    credentialHandler.setAlgorithm("sha-256");
-                } catch (NoSuchAlgorithmException e) {
-                    log.error("Error hashing password: " + e);
+            // Check if timestamp is expired
+            Timestamp expirationTime = token.getExpiration();
+            Date date = new Date();
+            Timestamp currentTime = new Timestamp(date.getTime());
+
+            if (expirationTime.after(currentTime)) {
+                // if it is not expired, continue
+                String newPassword = request.getParameter("newPassword");
+                String confirmPassword = request.getParameter("confirmNewPassword");
+
+                // verify entered passwords match
+                if (newPassword.equals(confirmPassword)) {
+                    log.debug("passwords match");
+                    MessageDigestCredentialHandler credentialHandler
+                            = new MessageDigestCredentialHandler();
+                    // Hash password
+                    try {
+                        credentialHandler.setAlgorithm("sha-256");
+                    } catch (NoSuchAlgorithmException e) {
+                        log.error("Error hashing password: " + e);
+                    }
+                    credentialHandler.setEncoding("UTF-8");
+                    String hashedNewPassword = credentialHandler.mutate(newPassword);
+                    user.setPassword(hashedNewPassword);
+                    userDao.saveOrUpdate(user);
+
+                    message = "Your password has been updated.";
+                    url = "loginAction";
+                } else {
+                    message = "Your passwords do not match. Please try again.";
+                    url = "newPassword?token=" + userToken;
                 }
-                credentialHandler.setEncoding("UTF-8");
-                String hashedNewPassword = credentialHandler.mutate(newPassword);
-                user.setPassword(hashedNewPassword);
-                userDao.saveOrUpdate(user);
+            } else {
+                message = "Your password reset link has expired; please request a new one.";
+                url = "loginAction";
             }
+
+            session.setAttribute("updateMessage", message);
+
         }
 
-        response.sendRedirect("loginAction");
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/loginAction");
-//        dispatcher.forward(request, response);
-
+        response.sendRedirect(url);
 
     }
 }
