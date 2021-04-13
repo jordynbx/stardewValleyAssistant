@@ -1,5 +1,6 @@
 package edu.matc.controller;
 
+import edu.matc.api.SendEmail;
 import edu.matc.entity.Favorite;
 import edu.matc.entity.Token;
 import edu.matc.entity.User;
@@ -22,7 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * The purpose of this servlet is to forward to favorites.jsp
+ * The purpose of this servlet is to
  */
 @Log4j2
 @WebServlet(
@@ -48,8 +49,6 @@ public class ResetPasswordAction extends HttpServlet {
         User user = userDao.getUniqueEntityByMultiplePropertyStrings
                 ("email", email, "username", username);
 
-        log.info("THE FOUND USER: " + user);
-
         if (user != null) {
             // get token
             String generatedToken = generateToken();
@@ -57,9 +56,9 @@ public class ResetPasswordAction extends HttpServlet {
             // get time 30 minutes away
             Calendar date = Calendar.getInstance();
             long timeInSecs = date.getTimeInMillis();
-            log.info("orig time: " + date);
+//            log.info("orig time: " + date);
             Timestamp expiration = new Timestamp(timeInSecs + (30 * 60 * 1000));
-            log.info("new time: " + expiration);
+//            log.info("new time: " + expiration);
 
             // check if there is an existing token for this user
             Token existingToken = tokenDao.getByUniquePropertyEqualInt("user", user.getId());
@@ -74,11 +73,25 @@ public class ResetPasswordAction extends HttpServlet {
                 Token newToken = new Token(user, generatedToken, expiration);
                 tokenDao.insert(newToken);
             }
+
+            // send user email with link to reset password
+            SendEmail resetEmail = new SendEmail();
+            boolean sendEmailSuccess = resetEmail.resetPassword(email, generatedToken);
+
+            if (sendEmailSuccess) {
+//                TODO success message
+            } else {
+//                TODO fail message
+            }
+
+        } else {
+            // TODO error message
         }
 
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("favorites.jsp");
-//        dispatcher.forward(request, response);
 
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("forgotPassword.jsp");
+        dispatcher.forward(request, response);
 
     }
 

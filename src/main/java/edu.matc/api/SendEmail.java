@@ -47,5 +47,39 @@ public class SendEmail implements PropertiesLoader {
             return false;
         }
     }
+
+    public boolean resetPassword(String email, String token) {
+        Properties properties = loadProperties("/email.properties");
+
+        final String username = properties.getProperty("email.username");
+        final String password = properties.getProperty("email.password");
+
+        Session session = Session.getInstance(properties,
+                new Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+
+        try {
+            String emailList = email + ", " + username;
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.setRecipients(
+                    MimeMessage.RecipientType.TO, InternetAddress.parse(emailList));
+
+            message.setSubject("Stardew Valley Assistant Password Reset");
+            message.setText("Please paste the following link into your browser to reset your password." +
+                    " Please note this link expires in 30 minutes.\n" +
+                    "http://localhost:8080/stardewValleyAssistant/newPassword?token=" + token);
+
+            Transport.send(message);
+
+            return true;
+        } catch (MessagingException e) {
+            log.error(e);
+            return false;
+        }
+    }
 }
 
