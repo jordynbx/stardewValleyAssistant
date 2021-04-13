@@ -204,7 +204,6 @@ public class GenericDao<T> {
         return entity;
     }
 
-//    TODO add test for this method
     /**
      * Gets by multiple ids.
      *

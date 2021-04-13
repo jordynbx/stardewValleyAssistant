@@ -1,17 +1,16 @@
 package edu.matc.persistence;
 
-import edu.matc.entity.Note;
 import edu.matc.entity.Token;
 import edu.matc.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class TokenDaoTest {
+public class UserDaoTest {
 
-    GenericDao<Token> dao;
+    GenericDao<User> dao;
 
     /**
      * Run set up tasks before each test:
@@ -24,27 +23,19 @@ public class TokenDaoTest {
         edu.matc.test.util.Database database = edu.matc.test.util.Database.getInstance();
         database.runSQL("cleandb.sql");
 
-        dao = new GenericDao<>(Token.class);
+        dao = new GenericDao<>(User.class);
     }
 
     /**
-     * Verifies successful deletion of token without user assigned to it
+     * Verifies get of user by username and email
      */
     @Test
-    void deleteTokenSuccess() {
-        GenericDao<User> userDao = new GenericDao<>(User.class);
-        Token token = dao.getById(3);
-        User user = userDao.getById(token.getUser().getId());
+    void getByUsernameAndEmailSuccess() {
+        User retrievedUser = (User)dao.getUniqueEntityByMultiplePropertyStrings("username", "user1", "email",
+                "test@example.com");
 
-        dao.delete(token);
-
-        user = userDao.getById(user.getId());
-
-        assertNull(dao.getById(3));
-        assertNotNull(user);
+        assertNotNull(retrievedUser);
+        assertEquals(1, retrievedUser.getId());
     }
 
-    /**
-     *
-     */
 }
