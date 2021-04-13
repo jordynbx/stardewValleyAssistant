@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity(name = "Token")
 @Table(name = "tokens")
@@ -19,7 +20,10 @@ public class Token {
     private int id;
 
     @NonNull
-    @OneToOne(mappedBy = "user")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",
+            foreignKey = @ForeignKey(name = "tokens_user_id_fk")
+    )
     private User user;
 
     @NonNull
@@ -28,5 +32,5 @@ public class Token {
 
     @NonNull
     @Column(name="expiration")
-    private String expiration;
+    private Timestamp expiration;
 }

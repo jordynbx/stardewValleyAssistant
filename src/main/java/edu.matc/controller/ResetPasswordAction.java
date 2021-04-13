@@ -1,6 +1,7 @@
 package edu.matc.controller;
 
 import edu.matc.entity.Favorite;
+import edu.matc.entity.Token;
 import edu.matc.entity.User;
 import edu.matc.persistence.GenericDao;
 import lombok.extern.log4j.Log4j2;
@@ -13,6 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.security.SecureRandom;
+import java.sql.Timestamp;
+import java.util.Base64;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,21 +38,63 @@ public class ResetPasswordAction extends HttpServlet {
         HttpSession session = request.getSession();
 
         GenericDao<User> userDao = new GenericDao<>(User.class);
+        GenericDao<Token> tokenDao = new GenericDao<>(Token.class);
+
 
         // Check if username and email match valid user
         String email = request.getParameter("userEmail");
         String username = request.getParameter("userUsername");
 
-        User user = (User) userDao.getUniqueEntityByMultiplePropertyStrings
+        User user = userDao.getUniqueEntityByMultiplePropertyStrings
                 ("email", email, "username", username);
 
-        if (user != null) {
+        log.info("THE FOUND USER: " + user);
 
+        if (user != null) {
+            // get token
+            String generatedToken = generateToken();
+
+            // get time 30 minutes away
+            Calendar date = Calendar.getInstance();
+            long timeInSecs = date.getTimeInMillis();
+            log.info("orig time: " + date);
+            Timestamp expiration = new Timestamp(timeInSecs + (30 * 60 * 1000));
+            log.info("new time: " + expiration);
+
+            // check if there is an existing token for this user
+            Token existingToken = tokenDao.getByUniquePropertyEqualInt("user", user.getId());
+
+            // if token exists, replace it with new token
+            // if it doesn't exist, create a new token
+            if (existingToken != null) {
+                existingToken.setToken(generatedToken);
+                existingToken.setExpiration(expiration);
+                tokenDao.saveOrUpdate(existingToken);
+            } else {
+                Token newToken = new Token(user, generatedToken, expiration);
+                tokenDao.insert(newToken);
+            }
         }
 
 //        RequestDispatcher dispatcher = request.getRequestDispatcher("favorites.jsp");
 //        dispatcher.forward(request, response);
 
 
+    }
+
+    /**
+     * Generate unique token
+     * Credit to Dmitriy Dumanskiy (https://stackoverflow
+     * .com/questions/13992972/how-to-create-a-authentication-token-using-java)
+     *
+     * @return token
+     */
+    public String generateToken() {
+        SecureRandom secureRandom = new SecureRandom();
+        Base64.Encoder base64Encoder = Base64.getUrlEncoder();
+
+        byte[] randomBytes = new byte[24];
+        secureRandom.nextBytes(randomBytes);
+        return base64Encoder.encodeToString(randomBytes);
     }
 }
