@@ -62,11 +62,11 @@ public class SendEmail implements PropertiesLoader {
                 });
 
         try {
-            String emailList = email + ", " + username;
+//            String emailList = email + ", " + username;
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipients(
-                    MimeMessage.RecipientType.TO, InternetAddress.parse(emailList));
+                    MimeMessage.RecipientType.TO, InternetAddress.parse(email));
 
             message.setSubject("Stardew Valley Assistant Password Reset");
             message.setText("Please paste the following link into your browser to reset your password." +
