@@ -72,6 +72,7 @@ public class SendEmail implements PropertiesLoader {
             message.setText("Please paste the following link into your browser to reset your password." +
                     " Please note this link expires in 30 minutes.\n" +
                     "http://localhost:8080/stardewValleyAssistant/newPassword?token=" + token);
+//                    "http://18.219.146.156:8080/StardewValleyAssistant/newPassword?token=" + token);
 
             Transport.send(message);
 
