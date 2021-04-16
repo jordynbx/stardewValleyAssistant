@@ -42,7 +42,7 @@ public class SearchItem extends HttpServlet {
             item = items.get(0);
             itemExists = true;
         } else {
-            request.setAttribute("message", "The item was not found, please try again");
+            session.setAttribute("message", "The item was not found, please try again");
         }
     }
 
