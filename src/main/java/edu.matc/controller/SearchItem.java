@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+//TODO add in logic for forage items in table
 
 @Log4j2
 @WebServlet(
