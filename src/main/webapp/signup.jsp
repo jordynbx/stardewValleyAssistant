@@ -6,7 +6,7 @@
 
 ${errorMessage}
 <c:set var="errorMessage" value="" scope="session" />
-<form action="signUpAction">
+<form action="signUpAction" method="post">
 
     <div class="form-group">
         <label for="userEmail">Email address</label>
