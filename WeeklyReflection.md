@@ -91,4 +91,48 @@ Tasks completed:
 - Added Role entity 
 
 This week I added update and delete functionality to my project along with user sign ups, which is very exciting! I've gotten a few weird error with logging in that have worried me a little, but they seem to resolve themselves if I refresh the page. It seems to come from logging in and out and back in too quickly when I'm testing different users. I'll need to keep an eye on that. 
-I'm very excited about the update and delete functionality. Getting it working was very satisfying, although it took a bit of thinking on my part to figure out every way a user might try to access those pages and make sure they got appropriate error messages instead of null pointer exceptions. I'm hoping I caught them all, but I'm sure more will come up with time.  
+I'm very excited about the update and delete functionality. Getting it working was very satisfying, although it took a bit of thinking on my part to figure out every way a user might try to access those pages and make sure they got appropriate error messages instead of null pointer exceptions. I'm hoping I caught them all, but I'm sure more will come up with time.
+
+### Week 10
+
+Tasks completed:
+- Added recent searches functionality 
+- Updated sign in page to forward to login page
+
+This week I added recent searches functionality to my project. This shows a logged in users five most recent searches and I am very proud of it! It took a bit of thinking to figure out how I wanted it to work, but once I mapped it out I was able to implement it without much trouble. I wanted to make sure that each searched for item only appeared once in the recent searches list, so that the user wouldn't see a list of only two items if they kept referring to them back and forth. I have no yet come up with a way to clear out the recent searches table in the DB because I'm sure it will get quite large, but I am okay with saving that for later.
+
+### Week 11
+
+Tasks completed: 
+- Added user favorites page
+- Created configuration class to reduce duplicative code 
+- Added styling 
+- Added the ability to add and remove items from favorites 
+- Added missing Hibernate mapping
+- Implemented contact form using Javamail 
+
+This week I added the ability to add and remove items from a favorites list and made a nice page that shows all the users favorites in a table on one page. It's not actually what I pictured in my original design docs, but I think it might actually be more useful. It's an easy way to see the data for a bunch of crops at once when a user is looking to compare and contrast seed and sell prices. I also created a configuring class that allowed me to move a bunch of duplicate code out of each of the servlets that I used to refresh all the item and page data after a user took action. I hated having the same code on so many pages, and having all the servlets forward to the configuring class instead of back to the results page fixed this. I also changed the majority of info sent via request to be sent via sessions.
+
+I fleshed out the Javamail functionality to add a contact form where users can send an email directly to my email. I haven't set up anything to send a confirmation email to the user's email, but that is something I will consider in the future.
+
+Finally, I added more card styling to the results page which made it look colorful and pretty!
+
+### Week 12
+
+Tasks completed: 
+- Added ability for logged in users to change their password 
+- Added ability for logged out users to reset their password via email using Javamail 
+- Added extra error handling to protect Account page 
+
+This week I focused on passwords - the ability to change a password for a logged in user and the ability to reset a password via email. This was the functionality I was most worried about adding to my project because I hadn't done it before or thought it through when I mapped out my MVPs. Luckily the addition of Javamail to my project really paid off, and after looking up the general process for using tokens to reset a password, I was able to implement password resets. There are a number of APIs that would have done this for, and I'm not sure if it's "cheating" or not to do it myself. It was great to learn how it worked, but it also seemed much easier than adding a new API to my project this late in the semester. Using an API to manage all fo this for me will definitely be something I will practice with in the future.
+
+### Week 13
+No project work for me this week - I moved to a new house and didn't have a computer for most of it! But I feel good about where my project is and feel confident I will be able to finish any additional styling and refactoring next week.
+
+### Week 14
+
+Tasks completed: 
+- Changed servlets handling sensitive info using GET to use POST 
+- Peer code review 
+
+I feel a little bit silly right now. Due to an initially shaky understanding of GET vs POST I defaulted to using GET for all of my project without really thinking about it. However, I had a little extra time this morning and decided that once and for all I was going to understand the difference. Imagine my shock to realize that the difference was quite simple once I found a good explanation that made sense to me, and that I've done a ton of extra work on my project due to using GETs instead of POSTs. I correctly realized that having sensitive info in my URLs was a no-go so I used a bunch of servlets and sessions in order to hide that data, but much of my work could have been expedited by using POSTs from the start. I took the time today to convert all my GETs that should be POSTs into POSTs, and now I am sure I will always remember the difference. I have a lot of error handling in my project that I'm now wondering if it's even necessary, but for now I'm sure extra error handling won't hurt anything. 
