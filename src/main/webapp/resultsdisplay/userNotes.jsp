@@ -25,7 +25,7 @@
         </c:forEach>
     </table>
     <br/>
-        <form action="addNote" method="get">
+        <form action="addNote" method="post">
 
             <div class="form-group">
                 <label for="userNote">Add a new note:</label>

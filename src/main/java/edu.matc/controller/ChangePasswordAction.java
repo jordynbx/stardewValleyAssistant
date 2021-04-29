@@ -27,7 +27,7 @@ import java.security.NoSuchAlgorithmException;
 @Log4j2
 public class ChangePasswordAction extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();

@@ -6,7 +6,7 @@
 
 ${updateMessage}
 <c:set var="updateMessage" value="" scope="session" />
-<form action="newPasswordAction">
+<form action="newPasswordAction" method="post">
     <input type="hidden" id="token" name="token" value="${token}">
     <div class="form-group">
         <label for="newPassword">Enter new password</label>

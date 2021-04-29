@@ -23,7 +23,7 @@ import java.util.List;
 public class DeleteNoteAction extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
 
         GenericDao<Note> noteDao = new GenericDao<>(Note.class);

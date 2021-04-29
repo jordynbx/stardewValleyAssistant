@@ -12,7 +12,7 @@ ${message}
 <c:set var="message" value="" scope="session" />
 
 <h4>Change Password</h4>
-<form action="changePasswordAction" method="get">
+<form action="changePasswordAction" method="post">
     <div class="form-group">
         <label for="currentPassword">Current Password</label>
         <input type="password" class="form-control" id="currentPassword" name="currentPassword" placeholder="Enter current password" required>

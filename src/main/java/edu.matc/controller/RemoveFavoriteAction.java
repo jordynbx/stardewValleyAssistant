@@ -22,7 +22,7 @@ import java.util.List;
 public class RemoveFavoriteAction extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
 
         HttpSession session = request.getSession();

@@ -8,7 +8,7 @@
 <h2>Edit Note</h2>
 <p>Current note: ${note.noteContent}</p>
 
-<form action="editNoteAction" method="get">
+<form action="editNoteAction" method="post">
     <div class="form-group">
         <label for="editNote">New note:</label>
         <input type="text" class="form-control" id="editNote" name="editNote" value="${note.noteContent}">

@@ -8,7 +8,7 @@
 <h2>Remove from favorites</h2>
 <p>Remove ${item.name} from favorites? </p>
 
-<form action="removeFavoriteAction" method="get">
+<form action="removeFavoriteAction" method="post">
     <input type="hidden" id="favoriteItemId" name="favoriteItemId" value="${item.id}">
     <input type="hidden" id="favoriteId" name="favoriteId" value="${favorite.id}">
     <button type="submit" name="submit" class="btn btn-danger" value="confirm">Confirm</button>

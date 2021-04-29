@@ -6,7 +6,7 @@
 
 ${updateMessage}
 <c:set var="updateMessage" value="" scope="session" />
-<form action="resetPasswordAction">
+<form action="resetPasswordAction" method="post">
 
     <div class="form-group">
         <label for="userEmail">Enter email address</label>
