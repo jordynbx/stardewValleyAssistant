@@ -4,10 +4,10 @@
 
         <div class="card text-white bg-success mb-3 my-card" style="max-width: 20rem;">
             <div class="card-body">
-                <h4 class="card-title">Seeds</h4>
+                <h4 class="card-title">Crop Data</h4>
                 <p class="card-text">
-                    Purchase price: ${crop.seedPrice}<br>
-                    Sell price: ${crop.sellPrice}<br>
+                    Sell price (base): ${crop.sellPrice}<br>
+                    Seed purchase price: ${crop.seedPrice}<br>
                 </p>
             </div>
         </div>
