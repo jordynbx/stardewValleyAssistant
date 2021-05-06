@@ -149,7 +149,6 @@ public class GenericDao<T> {
      * @param value value of the property to search for
      * @return list of orders meeting the criteria search
      */
-    //TODO add test for this method
     public <T>T getByUniquePropertyEqualString(String propertyName, String value) {
         Session session = getSession();
 

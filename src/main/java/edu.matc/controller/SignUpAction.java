@@ -31,7 +31,7 @@ import java.security.NoSuchAlgorithmException;
         name = "signUpAction",
         urlPatterns = {"/signUpAction"}
 )
-//TODO navigate right to log in after successful signup instead of index
+
 @Log4j2
 public class SignUpAction extends HttpServlet {
     @Override

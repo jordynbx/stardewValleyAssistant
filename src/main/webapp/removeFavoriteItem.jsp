@@ -4,7 +4,7 @@
 <%@include file="template/head.jsp"%>
 <%@include file="template/header.jsp"%>
 <%@include file="template/nav.jsp"%>
-<%--TODO implement cancel button that returns to the results page--%>
+
 <h2>Remove from favorites</h2>
 <p>Remove ${item.name} from favorites? </p>
 

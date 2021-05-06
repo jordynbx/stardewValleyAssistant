@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-//TODO cleanup and organize when i'm less tired
 @WebServlet(
         urlPatterns = {"/removeFavoriteAction"}
 )

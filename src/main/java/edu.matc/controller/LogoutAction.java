@@ -37,8 +37,6 @@ public class LogoutAction extends HttpServlet {
         HttpSession session = request.getSession();
         session.invalidate();
 
-        //TODO how to add message that confirms successful sign out
-
         response.sendRedirect("index.jsp");
     }
 }

@@ -28,7 +28,6 @@ public class Item {
     @OneToOne(mappedBy = "item")
     private Crop crop;
 
-//    TODO why is searches underlined?
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<UserSearch> searches = new HashSet<>();
 
