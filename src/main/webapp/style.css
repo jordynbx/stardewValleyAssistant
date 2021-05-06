@@ -27,7 +27,7 @@ table td {
 }
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-    background-color: #CE7DA5;
+    background-color: #CE7DA5 !important;
 }
 
 #wrapper {
@@ -50,7 +50,6 @@ table td {
 #jumbohead {
     text-transform: uppercase;
 }
-
 
 
 .error {
@@ -89,7 +88,7 @@ table td {
 
 
 @media only screen and (min-width: 600px) {
-    .my-cards {
+    .my-cards, .item-alert {
         width: 75%;
         float: left;
     }
@@ -101,7 +100,7 @@ table td {
 }
 
 @media only screen and (min-width: 1200px) {
-    .my-cards {
+    .my-cards, .item-alert {
         width: 80%;
         float: left;
     }

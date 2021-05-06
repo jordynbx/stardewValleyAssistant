@@ -4,7 +4,6 @@ import edu.matc.entity.*;
 import edu.matc.persistence.GenericDao;
 import lombok.extern.log4j.Log4j2;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,8 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
-
-//TODO add in logic for forage items in table
 
 @Log4j2
 @WebServlet(
@@ -49,25 +46,56 @@ public class SearchItem extends HttpServlet {
 
     session.setAttribute("success", itemExists);
 
-    /**
-     * In V1 of this project, all items will be crops, so this seems unnecessary. However, in future
-     * versions, items could be crops, fish, animal products, gems, or something else, and each
-     * type of item will require it's own if statement
+    /*
+      In V1 of this project, all items will be crops, so this seems unnecessary. However, in future
+      versions, items could be crops, fish, animal products, gems, or something else, and each
+      type of item will require it's own if statement
      */
-    //TODO add output message indicating support hasn't been added yet for non-crops
     if (itemExists) {
         int searchItemId = item.getId();
+
+        /*
+            Initialize attributes for item types
+         */
         session.setAttribute("isCrop", "false");
         session.setAttribute("isForage", "false");
+        session.setAttribute("isFish", "false");
+        session.setAttribute("isRecipe", "false");
+        session.setAttribute("isMineral", "false");
+        session.setAttribute("isWeapon", "false");
+        session.setAttribute("isAnimalProduct", "false");
 
+        /*
+            Process item based on type
+         */
         if (item.getType().equals("crop")) {
             Crop crop = processor.processCrop(searchItemId);
             session.setAttribute("crop", crop);
             session.setAttribute("isCrop", "true");
         }
 
-        if (item.getType().equals("forage")) { ;
-            session.setAttribute("isForage", "true");
+        if (item.getType().equals("forage")) {
+            itemNotYetImplemented(session, "forage items");
+        }
+
+        if (item.getType().equals("fish")) {
+            itemNotYetImplemented(session, "fish");
+        }
+
+        if (item.getType().equals("recipe")) {
+            itemNotYetImplemented(session, "recipes");
+        }
+
+        if (item.getType().equals("mineral")) {
+            itemNotYetImplemented(session, "minerals");
+        }
+
+        if (item.getType().equals("weapon")) {
+            itemNotYetImplemented(session, "weapons");
+        }
+
+        if (item.getType().equals("animal product")) {
+            itemNotYetImplemented(session, "animal products");
         }
 
         if (request.isUserInRole("user") || request.isUserInRole("admin")) {
@@ -90,10 +118,18 @@ public class SearchItem extends HttpServlet {
         }
         session.setAttribute("item", item);
     }
-//
-//    RequestDispatcher dispatcher = request.getRequestDispatcher("results");
-//    dispatcher.forward(request, response);
+
         String url = "results";
         response.sendRedirect(url);
+    }
+
+    public void itemNotYetImplemented(HttpSession session, String itemType) {
+        String thisMessage = "<strong>We're sorry!</strong>\n" +
+                "Support for " + itemType + " has not yet been added.\n" +
+                "<a href=\"index.jsp\" class=\"alert-link\"> Try searching again.</a>";
+        session.setAttribute("itemType", itemType);
+        session.setAttribute("showUpdateMessage", "true");
+        session.setAttribute("messageType", "danger");
+        session.setAttribute("updateMessage", thisMessage);
     }
 }

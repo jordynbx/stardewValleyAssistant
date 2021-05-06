@@ -37,7 +37,3 @@
         </div>
     </div>
 </c:if>
-
-<c:if test="${isForage}">
-    <p>Support for forage items has not been added yet. Check back soon!</p>
-</c:if>
