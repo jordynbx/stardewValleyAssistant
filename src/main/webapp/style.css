@@ -16,9 +16,18 @@
 .formlabel{
     min-width: 100px;
 }
+
 table td {
     text-align: left;
     vertical-align: center !important;
+}
+
+.tablecell {
+    width: 300px;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #CE7DA5;
 }
 
 #wrapper {
@@ -42,9 +51,7 @@ table td {
     text-transform: uppercase;
 }
 
-.tablecell {
-    width: 300px;
-}
+
 
 .error {
     color: red;
@@ -56,9 +63,6 @@ table td {
     border: 1px solid black;
 }
 
-.tableheading {
-    background-color: #FADEFF;
-}
 
 #croptable-fall{
     border-radius: 1em;

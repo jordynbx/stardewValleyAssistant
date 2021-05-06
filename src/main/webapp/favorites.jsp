@@ -4,28 +4,40 @@
 <%@include file="template/head.jsp"%>
 <%@include file="template/header.jsp"%>
 <%@include file="template/nav.jsp"%>
-
+<%--5F71BA--%>
+<%--gold CFA913--%>
+<%--fuschia B31B7D--%>
+<%--light green 7DCFB6--%>
 <h1>Favorites</h1>
-<%--            TODO hide table if they don't have any favorites--%>
-<table>
-    <tr>
-        <th>Crop</th>
-        <th>Seed Price</th>
-        <th>Sell Price</th>
-        <th>Bundles</th>
-        <th>Recipes</th>
-    </tr>
-    <c:forEach var="crop" items="${favoriteCrops}">
-        <tr>
-
-            <td>${crop.item.name}</td>
-            <td>${crop.seedPrice}</td>
-            <td>${crop.sellPrice}</td>
-            <td>${crop.bundles}</td>
-            <td>${crop.recipes}</td>
-        </tr>
-    </c:forEach>
-</table>
+<c:if test="${favoriteCrops.size() >= 1}">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col" class="th-fave" style="background-color: #4DADAF;">Crop</th>
+                <th scope="col" class="th-fave" style="background-color: #4DADAF;">Seed Price</th>
+                <th scope="col" class="th-fave" style="background-color: #4DADAF;">Sell Price</th>
+                <th scope="col" class="th-fave" style="background-color: #4DADAF;">Seasons</th>
+                <th scope="col" class="th-fave" style="background-color: #4DADAF;">Bundles</th>
+                <th scope="col" class="th-fave" style="background-color: #4DADAF;">Recipes</th>
+            </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="crop" items="${favoriteCrops}">
+            <tr>
+                <td class="td-fave" style="background-color: #D08AAD;">${crop.item.name}</td>
+                <td class="td-fave" style="background-color: #D08AAD;">${crop.seedPrice}</td>
+                <td class="td-fave" style="background-color: #D08AAD;">${crop.sellPrice}</td>
+                <td class="td-fave" style="background-color: #D08AAD;">${crop.season}</td>
+                <td class="td-fave" style="background-color: #D08AAD;">${crop.bundles}</td>
+                <td class="td-fave" style="background-color: #D08AAD;">${crop.recipes}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</c:if>
+<c:if test="${favoriteCrops.size() == 0}">
+    <p>Add some items to your favorites to see their data here.</p>
+</c:if>
 
 
 <%@include file="template/footer.jsp"%>
