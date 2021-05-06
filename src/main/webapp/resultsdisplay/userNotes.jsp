@@ -24,7 +24,6 @@
             </tr>
         </c:forEach>
     </table>
-    <br/>
         <form action="addNote" method="post">
 
             <div class="form-group">

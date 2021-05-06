@@ -57,10 +57,17 @@ public class SearchItem extends HttpServlet {
     //TODO add output message indicating support hasn't been added yet for non-crops
     if (itemExists) {
         int searchItemId = item.getId();
+        session.setAttribute("isCrop", "false");
+        session.setAttribute("isForage", "false");
 
         if (item.getType().equals("crop")) {
             Crop crop = processor.processCrop(searchItemId);
             session.setAttribute("crop", crop);
+            session.setAttribute("isCrop", "true");
+        }
+
+        if (item.getType().equals("forage")) { ;
+            session.setAttribute("isForage", "true");
         }
 
         if (request.isUserInRole("user") || request.isUserInRole("admin")) {

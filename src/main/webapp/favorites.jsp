@@ -4,10 +4,7 @@
 <%@include file="template/head.jsp"%>
 <%@include file="template/header.jsp"%>
 <%@include file="template/nav.jsp"%>
-<%--5F71BA--%>
-<%--gold CFA913--%>
-<%--fuschia B31B7D--%>
-<%--light green 7DCFB6--%>
+
 <h1>Favorites</h1>
 <c:if test="${favoriteCrops.size() >= 1}">
     <table class="table table-hover">
