@@ -36,7 +36,7 @@ public class Crop {
     private String season;
 
     @Column(name = "seed_price")
-    private int seedPrice;
+    private String seedPrice;
 
     @Column(name = "sell_price")
     private int sellPrice;
