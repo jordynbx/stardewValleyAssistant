@@ -12,9 +12,6 @@
     </div>
     <c:set var="showUpdateMessage" value="" scope="session" />
     <c:set var="updateMessage" value="" scope="session" />
-
-    <%--    <c:set var="messageType" value="" scope="session" />--%>
-<%--    <c:set var="showUpdateMessage" value="" scope="session" />--%>
 </c:if>
 
 <%--Show alert if the item wasn't found--%>

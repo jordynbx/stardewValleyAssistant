@@ -27,7 +27,8 @@ table td {
 }
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-    background-color: #CE7DA5 !important;
+    /*background-color: #CE7DA5 !important;*/
+    background-color: #D4B483 !important;
 }
 
 #wrapper {
