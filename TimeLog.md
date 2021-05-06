@@ -49,4 +49,4 @@
 |4/29/21|Refactored several GETs to POSTs|1.5|
 |4/29/21|Code review demo|1|
 |5/2/21|Code review|2|
-|5/6/21|Add styling to Favorites table, added error handling, other clean-up|4|
+|5/6/21|Add styling to Favorites table, added error handling, other clean-up|5|
