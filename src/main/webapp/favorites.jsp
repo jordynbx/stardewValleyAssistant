@@ -22,6 +22,8 @@
         <c:forEach var="crop" items="${favoriteCrops}">
             <tr class="clickable"
                     onclick="window.location='http://localhost:8080/stardewValleyAssistant/searchItem?submit=search&searchTerm=${crop.item.name}'">
+                    <%--onclick="window.location='http://18.219.146.156:8080/stardewValleyAssistant/searchItem?submit=search&searchTerm=${crop.item.name}'">--%>
+
                 <td class="td-fave" style="background-color: #D08AAD;">${crop.item.name}</td>
                 <td class="td-fave" style="background-color: #D08AAD;">${crop.seedPrice}</td>
                 <td class="td-fave" style="background-color: #D08AAD;">${crop.sellPrice}</td>

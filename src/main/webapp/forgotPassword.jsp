@@ -13,7 +13,7 @@ ${updateMessage}
         <input type="email" class="form-control" name="userEmail" id="userEmail" placeholder="Enter email associated with account" required>
     </div>
     <div class="form-group">
-        <label for="userEmail">Enter username</label>
+        <label for="userUsername">Enter username</label>
         <input type="text" class="form-control" name="userUsername" id="userUsername" placeholder="Enter username" required>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>

@@ -1,16 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: jordyn
-  Date: 3/6/2021
-  Time: 2:32 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Login Failed</title>
-</head>
-<body>
-Log-in failed... please try again
-</body>
-</html>
+<%@include file="taglib.jsp"%>
+<c:set var="title" value="Login failed " />
+<%@include file="template/head.jsp"%>
+<%@include file="template/header.jsp"%>
+<%@include file="template/nav.jsp"%>
+
+<p>Log-in failed... please try again</p>
+
+<%@include file="template/footer.jsp"%>

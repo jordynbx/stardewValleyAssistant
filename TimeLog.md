@@ -47,5 +47,6 @@
 |4/13/21|Add password resetting vie email to indie project|4|
 |4/14/21|Write additional unit tests, upload to AWS|1|
 |4/29/21|Refactored several GETs to POSTs|1.5|
-|TBD|Code review demo||
-|TBD|Code review||
+|4/29/21|Code review demo|1|
+|5/2/21|Code review|2|
+|5/6/21|Add styling to Favorites table, added error handling, other clean-up|4|

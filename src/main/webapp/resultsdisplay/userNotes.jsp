@@ -15,15 +15,16 @@
     <p><a href="signup">Create an account</a> or <a href="loginAction">log in</a> to manage your notes!</p>
     </c:if>
     <c:if test="${pageContext.request.isUserInRole('user')}">
-    <table>
-        <c:forEach var="note" items="${itemNotes}">
-            <tr>
-                <td class="item-td">${note.noteContent}</td>
-                <td class="item-td"><a href="edit?id=${note.id}">Edit</a></td>
-                <td class="item-td"><a href="delete?id=${note.id}">Delete</a></td>
-            </tr>
-        </c:forEach>
-    </table>
+        <table>
+            <c:forEach var="note" items="${itemNotes}">
+                <tr>
+                    <td class="item-td">${note.noteContent}</td>
+                    <td class="item-td"><a href="edit?id=${note.id}">Edit</a></td>
+                    <td class="item-td"><a href="delete?id=${note.id}">Delete</a></td>
+                </tr>
+            </c:forEach>
+        </table>
+        <br>
         <form action="addNote" method="post">
 
             <div class="form-group">

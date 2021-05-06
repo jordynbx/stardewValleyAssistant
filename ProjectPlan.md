@@ -70,6 +70,17 @@
 
 ### Week 13 
 - [ ] Update JavaDoc
+- [ ] Add error handling and item data for other item types
+
+### Week 14 
+- [ ] Complete all remaining ToDos
+- [ ] Remove unnecessary commented out code 
+- [ ] Clean up code 
+
+### Week 15 
+= [ ] Record presentations 
+- [ ] Upload final project to AWS
+
 
 #### On deck...
 - [ ]

@@ -89,11 +89,11 @@ public class NewPasswordAction extends HttpServlet {
                     url = "newPassword?token=" + userToken;
                 }
             } else {
-                message = "Your password reset link has expired; please request a new one.";
+                message = "Your password reset link has expired, please request a new link.";
                 url = "loginAction";
             }
         } else {
-            message = "This password link has expired.PLease request a new link.";
+            message = "This password link has expired. PLease request a new link.";
             url = "loginAction";
         }
 
