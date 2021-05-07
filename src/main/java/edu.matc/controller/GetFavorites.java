@@ -19,8 +19,8 @@ import java.util.List;
 
 @Log4j2
 @WebServlet(
-        name = "getFavorites",
-        urlPatterns = {"/getFavorites"}
+        name = "favorites",
+        urlPatterns = {"/favorites"}
 )
 public class GetFavorites extends HttpServlet {
 
@@ -60,7 +60,7 @@ public class GetFavorites extends HttpServlet {
         session.setAttribute("favoriteMessage", message);
         session.setAttribute("favoriteCrops", favoriteCrops);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("favorites");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("favorites.jsp");
         dispatcher.forward(request, response);
 
     }
