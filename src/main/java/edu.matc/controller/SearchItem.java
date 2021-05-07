@@ -65,6 +65,7 @@ public class SearchItem extends HttpServlet {
         session.setAttribute("isWeapon", "false");
         session.setAttribute("isAnimalProduct", "false");
         session.setAttribute("isArtisanGood", "false");
+        session.setAttribute("isArtifact", "false");
 
         /*
             Process item based on type
@@ -101,6 +102,10 @@ public class SearchItem extends HttpServlet {
 
         if (item.getType().equals("artisan good")) {
             itemNotYetImplemented(session, "artisan goods");
+        }
+
+        if (item.getType().equals("artifact")) {
+            itemNotYetImplemented(session, "artifacts");
         }
 
         if (request.isUserInRole("user") || request.isUserInRole("admin")) {
