@@ -31,6 +31,15 @@ table td {
     background-color: #D4B483 !important;
 }
 
+#results-note-content {
+    width: 250px;
+}
+
+#results-note-edit, #results-note-delete {
+    min-width: 30px;
+    text-align: right;
+}
+
 #wrapper {
     background-color: white;
     margin-top: 0px;

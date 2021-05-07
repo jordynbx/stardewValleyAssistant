@@ -18,9 +18,9 @@
         <table>
             <c:forEach var="note" items="${itemNotes}">
                 <tr>
-                    <td class="item-td">${note.noteContent}</td>
-                    <td class="item-td"><a href="edit?id=${note.id}">Edit</a></td>
-                    <td class="item-td"><a href="delete?id=${note.id}">Delete</a></td>
+                    <td class="item-td" id="results-note-content">${note.noteContent}</td>
+                    <td class="item-td" id="results-note-edit"><a href="edit?id=${note.id}">Edit</a></td>
+                    <td class="item-td" id="results-note-delete"><a href="delete?id=${note.id}">Delete</a></td>
                 </tr>
             </c:forEach>
         </table>
