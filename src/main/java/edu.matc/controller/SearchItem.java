@@ -47,9 +47,9 @@ public class SearchItem extends HttpServlet {
     session.setAttribute("success", itemExists);
 
     /*
-      In V1 of this project, all items will be crops, so this seems unnecessary. However, in future
-      versions, items could be crops, fish, animal products, gems, or something else, and each
-      type of item will require it's own if statement
+      In V1 of this project, all items will be crops, but in future versions all types of items
+      will be searchable. I have entered them into the item database so users will be informed
+      that it is a valid item, but not yet implemented into the application.
      */
     if (itemExists) {
         int searchItemId = item.getId();
@@ -64,6 +64,7 @@ public class SearchItem extends HttpServlet {
         session.setAttribute("isMineral", "false");
         session.setAttribute("isWeapon", "false");
         session.setAttribute("isAnimalProduct", "false");
+        session.setAttribute("isArtisanGood", "false");
 
         /*
             Process item based on type
@@ -96,6 +97,10 @@ public class SearchItem extends HttpServlet {
 
         if (item.getType().equals("animal product")) {
             itemNotYetImplemented(session, "animal products");
+        }
+
+        if (item.getType().equals("artisan good")) {
+            itemNotYetImplemented(session, "artisan goods");
         }
 
         if (request.isUserInRole("user") || request.isUserInRole("admin")) {
