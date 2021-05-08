@@ -37,12 +37,15 @@ public class GetFavorites extends HttpServlet {
 
         GenericDao<Favorite> favoriteDao = new GenericDao<>(Favorite.class);
         GenericDao<Crop> cropDao = new GenericDao<>(Crop.class);
+        GenericDao<Item> itemDao = new GenericDao<>(Item.class);
+
 
         String message = "";
 
         int userId = (int) session.getAttribute("currentUserId");
         List<Favorite> favorites = favoriteDao.getByPropertyEqualInt("user", userId);
         List<Crop> favoriteCrops = new ArrayList<>();
+        List<Item> otherFavorites = new ArrayList<>();
 
         if (favorites.size() > 0) {
 
@@ -53,17 +56,18 @@ public class GetFavorites extends HttpServlet {
                 if (item.getType().equals("crop")) {
                     Crop crop = cropDao.getByUniquePropertyEqualInt("item", itemId);
                     favoriteCrops.add(crop);
+                } else {
+                    otherFavorites.add(item);
                 }
             }
-
             message = "";
         } else {
             message = "Add some favorites to see them on your list!";
-
         }
 
         session.setAttribute("favoriteMessage", message);
         session.setAttribute("favoriteCrops", favoriteCrops);
+        session.setAttribute("favoriteItems", otherFavorites);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("favorites.jsp");
         dispatcher.forward(request, response);

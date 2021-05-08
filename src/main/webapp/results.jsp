@@ -36,6 +36,6 @@
 </c:if>
 <br>
 
-<a href="index.jsp">Search again</a>
+<a href="home">Search again</a>
 
 <%@include file="template/footer.jsp"%>

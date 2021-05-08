@@ -6,6 +6,7 @@
 <%@include file="template/nav.jsp"%>
 
 <h1>Favorites</h1>
+<h2>Crops</h2>
 <c:if test="${favoriteCrops.size() >= 1}">
     <table class="table table-hover">
         <thead>
@@ -21,9 +22,7 @@
         <tbody>
         <c:forEach var="crop" items="${favoriteCrops}">
             <tr class="clickable"
-                    onclick="window.location='http://localhost:8080/stardewValleyAssistant/searchItem?submit=search&searchTerm=${crop.item.name}'">
-<%--                    onclick="window.location='http://18.219.146.156:8080/StardewValleyAssistant/searchItem?submit=search&searchTerm=${crop.item.name}'">--%>
-
+                onclick="window.location='searchItem?submit=search&searchTerm=${crop.item.name}'">
                 <td class="td-fave" style="background-color: #D08AAD;">${crop.item.name}</td>
                 <td class="td-fave" style="background-color: #D08AAD;">${crop.seedPrice}</td>
                 <td class="td-fave" style="background-color: #D08AAD;">${crop.sellPrice}</td>
@@ -36,8 +35,15 @@
     </table>
 </c:if>
 <c:if test="${favoriteCrops.size() == 0}">
-    <p>Add some items to your favorites to see their data here.</p>
+    <p>Add some crops to your favorites to see their data here.</p>
 </c:if>
-
+<c:if test="${favoriteItems.size() >= 1}">
+    <h2>Other items</h2>
+    <ul>
+        <c:forEach var="item" items="${favoriteItems}">
+            <li><a href="searchItem?submit=search&searchTerm=${item.name}">${item.name}</a></li>
+        </c:forEach>
+    </ul>
+</c:if>
 
 <%@include file="template/footer.jsp"%>
