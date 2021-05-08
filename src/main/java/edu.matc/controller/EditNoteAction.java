@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * The purpose of this servlet is to process a user's request to edit a note.
+ * @author jordynbx
+ */
 @WebServlet(
         urlPatterns = {"/editNoteAction"}
 )

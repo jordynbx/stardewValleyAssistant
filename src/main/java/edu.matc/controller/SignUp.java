@@ -18,8 +18,7 @@ import java.io.IOException;
 
 
 /**
- * A simple servlet whose purpose is to forward to
- * the signup JSP
+ * The purpose of this servlet is to forward to the signup JSP.
  *
  * @author jordynbx
  */

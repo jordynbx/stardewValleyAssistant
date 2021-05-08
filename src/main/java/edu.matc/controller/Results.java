@@ -14,7 +14,8 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The purpose of this servlet is to forward to favorites.jsp
+ * The purpose of this servlet is to forward to results.jsp
+ * @author jordynbx
  */
 @Log4j2
 @WebServlet(

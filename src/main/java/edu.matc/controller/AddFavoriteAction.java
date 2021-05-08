@@ -14,6 +14,13 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * The purpose of this servlet is to verify a request to add a favorite item
+ * is valid and process that request by eitheradding it as a favorite, returning the
+ * user to the results page without adding it, or sending the user to an appropriate
+ * error page.
+ * @author jordynbx
+ */
 @WebServlet(
         urlPatterns = {"/addFavoriteAction"}
 )

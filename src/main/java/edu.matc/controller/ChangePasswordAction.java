@@ -18,6 +18,7 @@ import java.security.NoSuchAlgorithmException;
  * The purpose of this servlet is to process password updates
  * for users who are logged in to their account and want to
  * set a new password
+ * @author jordynbx
  */
 @WebServlet(
         name = "changePasswordAction",

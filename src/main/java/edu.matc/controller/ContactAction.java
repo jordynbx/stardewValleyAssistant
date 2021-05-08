@@ -16,7 +16,9 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The purpose of this servlet is to forward to favorites.jsp
+ * The purpose of this servlet is to facilitate users sending emails to
+ * me via the Javamail API
+ * @author jordynbx
  */
 @Log4j2
 @WebServlet(
@@ -72,8 +74,5 @@ public class ContactAction extends HttpServlet {
 
         String url = "contact";
         response.sendRedirect(url);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("contact.jsp");
-//        dispatcher.forward(request, response);
-
     }
 }

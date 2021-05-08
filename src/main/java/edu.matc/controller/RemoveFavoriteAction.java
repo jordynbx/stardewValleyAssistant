@@ -14,6 +14,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * The purpose of this servlet is to process a user's request to
+ * remove a favorite item.
+ * @author jordynbx
+ */
 @WebServlet(
         urlPatterns = {"/removeFavoriteAction"}
 )

@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-
 /**
  * A simple servlet whose purpose is to redirect to the home page
  * after a log in attempt

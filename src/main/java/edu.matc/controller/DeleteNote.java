@@ -14,6 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * The purpose of this servlet is to verify a user is allowed to delete a specific
+ * note, and if so, forward the request to delete.jsp. If not, send the user to an
+ * appropriate error page.
+ * @author jordynbx
+ */
 @Log4j2
 @WebServlet(
         name = "delete",

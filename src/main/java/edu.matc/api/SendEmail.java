@@ -81,7 +81,6 @@ public class SendEmail implements PropertiesLoader {
                 });
 
         try {
-//            String emailList = email + ", " + username;
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipients(

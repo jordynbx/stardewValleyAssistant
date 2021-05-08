@@ -17,6 +17,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The purpose of this servlet is to get all of user's favorite items and
+ * forward the request to favorites.jsp.
+ * @author jordynbx
+ */
 @Log4j2
 @WebServlet(
         name = "favorites",

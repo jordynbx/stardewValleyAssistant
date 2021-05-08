@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * The purpose of this servlet is to forward to index.jsp
+ * @author jordynbx
  */
 @Log4j2
 @WebServlet(

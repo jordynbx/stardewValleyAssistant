@@ -22,6 +22,7 @@ import java.util.Date;
  * The purpose of this servlet is to process password updates
  * for users who forgot their password and requested a change
  * password link
+ * @author jordynbx
  */
 @WebServlet(
         name = "newPasswordAction",

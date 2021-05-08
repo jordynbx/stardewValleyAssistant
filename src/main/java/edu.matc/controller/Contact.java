@@ -14,7 +14,8 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The purpose of this servlet is to forward to favorites.jsp
+ * The purpose of this servlet is to forward to contact.jsp
+ * @author jordynbx
  */
 @Log4j2
 @WebServlet(
@@ -30,7 +31,5 @@ public class Contact extends HttpServlet {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("contact.jsp");
         dispatcher.forward(request, response);
-
-
     }
 }

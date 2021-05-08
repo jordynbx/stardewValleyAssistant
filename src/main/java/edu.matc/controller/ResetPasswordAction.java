@@ -23,10 +23,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * The purpose of this servlet is to process requests for users
- * who want to change their password by verifying their username
- * and email match and sending that email a link to reset their
- * password.
+ * The purpose of this servlet is to process a user's request to
+ * change their password by verifying their username and email
+ * match and sending that email a link to reset their password.
+ * @author jordynbx
  */
 @Log4j2
 @WebServlet(

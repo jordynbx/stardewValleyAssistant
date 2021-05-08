@@ -15,6 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * The purpose of this servlet is to verify the item id exists and forward it to
+ * the addFavoriteItem JSP.
+ * @author jordynbx
+ */
 @Log4j2
 @WebServlet(
         name = "addFavorite",

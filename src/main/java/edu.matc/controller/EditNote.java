@@ -14,6 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * The purpose of this servlet is to verify a user is allowed to edit
+ * a specific note, and if so to forward the request to edit.jsp.
+ * @author jordynbx
+ */
 @Log4j2
 @WebServlet(
         name = "edit",

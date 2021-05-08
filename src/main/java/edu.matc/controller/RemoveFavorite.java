@@ -15,6 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * The purpose of this servlet is to verify a user has permission
+ * to remove a favorite item, and if so to forward the request to
+ * removeFavoriteItem.jsp.
+ * @author jordynbx
+ */
 @Log4j2
 @WebServlet(
         name = "removeFavorite",
@@ -89,9 +95,7 @@ public class RemoveFavorite extends HttpServlet {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);
-
     }
-
 }
 
 

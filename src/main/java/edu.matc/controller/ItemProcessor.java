@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The type Item processor.
+ * The purpose of this class is to interactive with various DAOs in order
+ * to get user-specific data that is output to the Results page
+ *  @author jordynbx
  */
 @Log4j2
 public class ItemProcessor {

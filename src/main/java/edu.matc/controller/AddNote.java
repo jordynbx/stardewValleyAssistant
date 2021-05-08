@@ -15,6 +15,10 @@ import java.io.IOException;
 import java.util.List;
 
 
+/**
+ * The purpose of this servlet is to add a note to an item.
+ * @author jordynbx
+ */
 @Log4j2
 @WebServlet(
         name = "addNote",

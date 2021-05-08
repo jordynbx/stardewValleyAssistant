@@ -1,16 +1,10 @@
 package edu.matc.controller;
 
-import edu.matc.entity.Note;
 import edu.matc.entity.Role;
 import edu.matc.entity.User;
 import edu.matc.persistence.GenericDao;
 import lombok.extern.log4j.Log4j2;
 import org.apache.catalina.realm.MessageDigestCredentialHandler;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import javax.mail.Session;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +16,8 @@ import java.security.NoSuchAlgorithmException;
 
 
 /**
- * A simple servlet whose purpose is
+ * The purpose of this servlet is to sign a new user up for
+ * an account.
  *
  * @author jordynbx
  */
@@ -113,10 +108,6 @@ public class SignUpAction extends HttpServlet {
 
             url = "loginAction";
         }
-
-        // forward the request
-//        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-//        dispatcher.forward(request, response);
 
         response.sendRedirect(url);
     }

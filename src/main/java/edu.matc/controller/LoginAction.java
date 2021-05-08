@@ -18,9 +18,10 @@ import java.io.IOException;
 
 
 /**
- * A simple servlet whose purpose is to redirect to the home page
+ * The purpose of this servlet is to redirect to the home page
  * after a log in attempt
  * @author pwaite
+ * @author jordynbx
  */
 
 @WebServlet(

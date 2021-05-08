@@ -16,6 +16,12 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * The purpose of this servlet is to consolidate duplicative code used to
+ * reconfigure user-specific output for the results page after the user makes
+ * a change, like adds or deletes a note.
+ * @author jordynbx
+ */
 @WebServlet(
         urlPatterns = {"/configureOutput"}
 )
@@ -62,9 +68,6 @@ public class ConfigureOutput extends HttpServlet {
         session.setAttribute("messageType", messageType);
         session.setAttribute("showUpdateMessage", true);
 
-        // forward the request
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("results.jsp");
-//        dispatcher.forward(request, response);
 
         String url = "results";
         response.sendRedirect(url);

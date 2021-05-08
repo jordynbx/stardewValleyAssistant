@@ -13,6 +13,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * The purpose of this servlet is to search for an item, check
+ * what type of item it is and forward that info to the Results page
+ * @author jordynbx
+ */
 @Log4j2
 @WebServlet(
         name = "searchItem",
@@ -133,6 +138,14 @@ public class SearchItem extends HttpServlet {
         response.sendRedirect(url);
     }
 
+    /**
+     * Set attributes for error message for items that exist in
+     * Stardew Valley but don't yet have their data implemented
+     * into this application.
+     *
+     * @param session  the session
+     * @param itemType the item type
+     */
     public void itemNotYetImplemented(HttpSession session, String itemType) {
         String thisMessage = "<strong>We're sorry!</strong>\n" +
                 "Support for " + itemType + " has not yet been added.\n" +
