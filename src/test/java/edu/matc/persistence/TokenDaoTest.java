@@ -12,6 +12,10 @@ import java.util.Calendar;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Token dao test.
+ * @author jordynbx
+ */
 public class TokenDaoTest {
 
     GenericDao<Token> dao;

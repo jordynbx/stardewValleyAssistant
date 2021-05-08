@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * The type Crop dao test.
+ * @author jordynbx
+ */
 public class CropDaoTest {
 
     GenericDao<Crop> dao;

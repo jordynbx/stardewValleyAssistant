@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * The type User dao test.
+ * @author jordynbx
+ */
 public class UserDaoTest {
 
     GenericDao<User> dao;
@@ -37,5 +41,4 @@ public class UserDaoTest {
         assertNotNull(retrievedUser);
         assertEquals(1, retrievedUser.getId());
     }
-
 }

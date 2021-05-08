@@ -10,6 +10,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Item dao test.
+ * @author jordynbx
+ */
 public class ItemDaoTest {
 
     GenericDao<Item> dao;
@@ -47,6 +51,9 @@ public class ItemDaoTest {
         assertEquals(6, items.get(0).getId());
     }
 
+    /**
+     * Gets item by unique name success.
+     */
     @Test
     void getItemByUniqueNameSuccess() {
         String itemName = "garlic";

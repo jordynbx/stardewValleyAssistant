@@ -10,6 +10,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Note dao test.
+ * @author jordynbx
+ */
 public class NoteDaoTest {
 
     GenericDao<Note> dao;
@@ -130,6 +134,4 @@ public class NoteDaoTest {
         assertNotNull(insertedNote.getUser());
         assertEquals(expectedUser, insertedNote.getUser().getUsername());
     }
-
-
 }
