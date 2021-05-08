@@ -10,10 +10,21 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.Authenticator;
 import java.util.Properties;
 
+/*
+    This class sends emails using the Javamail API
+ */
 @Log4j2
 public class SendEmail implements PropertiesLoader {
 
-
+    /**
+     * Sends an email to email address defined in properties file
+     * from form on Contact servlet
+     *
+     * @param messageSubject the message subject
+     * @param messageText    the message text
+     * @param returnAddress  the return address
+     * @return if email was sent successfully
+     */
     public boolean createEmail(String messageSubject, String messageText, String returnAddress) {
 
         Properties properties = loadProperties("/email.properties");
@@ -48,6 +59,14 @@ public class SendEmail implements PropertiesLoader {
         }
     }
 
+    /**
+     * Sends an email to the user's email on file in order to reset
+     * their password upon request
+     *
+     * @param email the user's email
+     * @param token unique token to verify user's identity
+     * @return if email was sent successfully
+     */
     public boolean resetPassword(String email, String token) {
         Properties properties = loadProperties("/email.properties");
 
