@@ -9,6 +9,7 @@ import java.util.Set;
 
 /**
  * A class to represent a user search
+ * @author jordynbx
  */
 @Entity(name = "UserSearch")
 @Table(name = "user_searches")

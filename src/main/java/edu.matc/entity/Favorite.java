@@ -6,7 +6,8 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 /**
- * The type Favorite.
+ * A class to represent a favorite item
+ * @author jordynbx
  */
 @Entity(name = "Favorite")
 @Table(name = "user_favorites")
@@ -21,12 +22,10 @@ public class Favorite {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
-    //@Column(name = "user_id")
     @NonNull
     @ManyToOne
     private User user;
 
-    //@Column(name = "item_id")
     @NonNull
     @ManyToOne
     private Item item;

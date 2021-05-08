@@ -5,6 +5,10 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
+/**
+ * A class to represent a user's role
+ * @author jordynbx
+ */
 @Entity(name = "Role")
 @Table(name = "role")
 @NoArgsConstructor

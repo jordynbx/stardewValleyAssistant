@@ -6,6 +6,10 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+/**
+ * A class to represent a unique token
+ * @author jordynbx
+ */
 @Entity(name = "Token")
 @Table(name = "tokens")
 @NoArgsConstructor

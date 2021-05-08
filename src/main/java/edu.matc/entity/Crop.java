@@ -7,7 +7,7 @@ import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
 
 /**
- * A class to represent an item
+ * A class to represent a crop
  *
  * @author jordynbx
  */

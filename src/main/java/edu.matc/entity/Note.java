@@ -7,7 +7,8 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 /**
- * A user's note
+ * A class to represent a user's note
+ * @author jordynbx
  */
 @Entity(name = "Note")
 @Table(name = "notes")
