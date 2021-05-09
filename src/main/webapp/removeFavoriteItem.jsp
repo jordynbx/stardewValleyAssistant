@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="taglib.jsp"%>
 <c:set var="title" value="Remove From Favorites" />
-<%@include file="template/head.jsp"%>
-<%@include file="template/header.jsp"%>
-<%@include file="template/nav.jsp"%>
+<c:import url="template/head.jsp" />
+<c:import url="template/header.jsp" />
+<c:import url="template/nav.jsp" />
 
 <h2>Remove from favorites</h2>
 <p>Remove ${item.name} from favorites? </p>
@@ -14,4 +14,4 @@
     <button type="submit" name="submit" class="btn btn-danger" value="confirm">Confirm</button>
     <button type="submit" name="submit" class="btn btn-warning" value="cancel">Cancel</button>
 </form>
-<%@include file="template/footer.jsp"%>
+<c:import url="template/footer.jsp" />

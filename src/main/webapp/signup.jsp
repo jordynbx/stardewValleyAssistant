@@ -1,8 +1,8 @@
 <%@include file="taglib.jsp"%>
 <c:set var="title" value="Sign Up" />
-<%@include file="template/head.jsp"%>
-<%@include file="template/header.jsp"%>
-<%@include file="template/nav.jsp"%>
+<c:import url="template/head.jsp" />
+<c:import url="template/header.jsp" />
+<c:import url="template/nav.jsp" />
 
 ${errorMessage}
 <c:set var="errorMessage" value="" scope="session" />
@@ -28,4 +28,4 @@ ${errorMessage}
 
 </form>
 
-<%@include file="template/footer.jsp"%>
+<c:import url="template/footer.jsp" />

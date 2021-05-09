@@ -1,8 +1,8 @@
 <%@include file="taglib.jsp"%>
 <c:set var="title" value="Stardew Valley Assistant" />
-<%@include file="template/head.jsp"%>
-<%@include file="template/header.jsp"%>
-<%@include file="template/nav.jsp"%>
+<c:import url="template/head.jsp" />
+<c:import url="template/header.jsp" />
+<c:import url="template/nav.jsp" />
 
 ${updateMessage}
 <c:set var="updateMessage" value="" scope="session" />
@@ -23,4 +23,4 @@ ${updateMessage}
 <c:if test="${pageContext.request.isUserInRole('admin')}">
     <p>I don't know if I will have any admin functionality, but if I do, you would be able to see it!</p>
 </c:if>
-<%@include file="template/footer.jsp"%>
+<c:import url="template/footer.jsp" />

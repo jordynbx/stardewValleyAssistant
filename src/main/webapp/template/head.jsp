@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: jordyn
-  Date: 3/18/2021
-  Time: 12:31 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@include file="../taglib.jsp"%>
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">

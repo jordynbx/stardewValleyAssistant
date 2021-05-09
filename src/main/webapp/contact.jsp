@@ -1,8 +1,8 @@
 <%@include file="taglib.jsp"%>
 <c:set var="title" value="Contact" />
-<%@include file="template/head.jsp"%>
-<%@include file="template/header.jsp"%>
-<%@include file="template/nav.jsp"%>
+<c:import url="template/head.jsp" />
+<c:import url="template/header.jsp" />
+<c:import url="template/nav.jsp" />
 
 <p class="pt-2">Notice a mistake or want to request a new feature? Send me a message!</p>
 
@@ -34,4 +34,4 @@
 
 </form>
 
-<%@include file="template/footer.jsp"%>
+<c:import url="template/footer.jsp" />

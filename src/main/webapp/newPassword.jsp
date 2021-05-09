@@ -1,9 +1,8 @@
 <%@include file="taglib.jsp"%>
 <c:set var="title" value="Forgot password" />
-<%@include file="template/head.jsp"%>
-<%@include file="template/header.jsp"%>
-<%@include file="template/nav.jsp"%>
-
+<c:import url="template/head.jsp" />
+<c:import url="template/header.jsp" />
+<c:import url="template/nav.jsp" />
 ${updateMessage}
 <c:set var="updateMessage" value="" scope="session" />
 <form action="newPasswordAction" method="post">
@@ -20,4 +19,4 @@ ${updateMessage}
 
 </form>
 
-<%@include file="template/footer.jsp"%>
+<c:import url="template/footer.jsp" />

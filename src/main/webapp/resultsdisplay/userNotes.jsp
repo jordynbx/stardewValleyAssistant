@@ -1,3 +1,4 @@
+<%@include file="../taglib.jsp"%>
 <%--        Display a user's notes and a form where they can add new notes if they are logged in--%>
 <div class="w-75 float-left">
     <c:if test="${pageContext.request.isUserInRole('user')}">

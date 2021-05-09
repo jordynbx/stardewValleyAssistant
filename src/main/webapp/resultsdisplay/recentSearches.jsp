@@ -1,3 +1,4 @@
+<%@include file="../taglib.jsp"%>
 <%--    Display a list of recent searches for logged in users    --%>
 <div class="card border-info mb-3" id="results-searches" style="max-width: 20rem;">
     <div class="card-body">

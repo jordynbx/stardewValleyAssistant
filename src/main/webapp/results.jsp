@@ -1,8 +1,14 @@
 <%@include file="taglib.jsp"%>
 <c:set var="title" value="Search Result" />
-<%@include file="template/head.jsp"%>
-<%@include file="template/header.jsp"%>
-<%@include file="template/nav.jsp"%>
+<%--<%@include file="template/head.jsp"%>--%>
+<%--<%@include file="template/header.jsp"%>--%>
+<%--<%@include file="template/nav.jsp"%>--%>
+<%--<jsp:include page="template/head.jsp" />--%>
+<%--<jsp:include page="template/header.jsp" />--%>
+<%--<jsp:include page="template/nav.jsp" />--%>
+<c:import url="template/head.jsp" />
+<c:import url="template/header.jsp" />
+<c:import url="template/nav.jsp" />
 
 <%--Show alert if note was successfully added--%>
 <c:if test="${showUpdateMessage}">
@@ -26,11 +32,11 @@
 
     <div class="clearfix">
 
-        <%@include file="resultsdisplay/recentSearches.jsp"%>
+        <c:import url="resultsdisplay/recentSearches.jsp" />
 
-        <%@include file="resultsdisplay/itemCards.jsp"%>
+        <c:import url="resultsdisplay/itemCards.jsp" />
 
-        <%@include file="resultsdisplay/userNotes.jsp"%>
+        <c:import url="resultsdisplay/userNotes.jsp" />
 
     </div>
 </c:if>
@@ -38,4 +44,4 @@
 
 <a href="home">Search again</a>
 
-<%@include file="template/footer.jsp"%>
+<c:import url="template/footer.jsp" />

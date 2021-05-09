@@ -1,3 +1,4 @@
+<%@include file="../taglib.jsp"%>
 <%--        Display a card deck showing details about the searched-for item--%>
 <c:if test="${isCrop}">
     <div class="card-deck my-cards">

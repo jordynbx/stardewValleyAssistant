@@ -1,8 +1,8 @@
 <%@include file="taglib.jsp"%>
 <c:set var="title" value="Log in" />
-<%@include file="template/head.jsp"%>
-<%@include file="template/header.jsp"%>
-<%@include file="template/nav.jsp"%>
+<c:import url="template/head.jsp" />
+<c:import url="template/header.jsp" />
+<c:import url="template/nav.jsp" />
 
 ${updateMessage}
 <c:set var="updateMessage" value="" scope="session" />
@@ -22,5 +22,4 @@ ${updateMessage}
 
 <a href="forgotPassword.jsp">Forgot password?</a>
 
-
-<%@include file="template/footer.jsp"%>
+<c:import url="template/footer.jsp" />
