@@ -24,6 +24,7 @@
 <c:if test="${!success}">
     <h2>Search Results:</h2>
     <p>${message}</p>
+    <c:set var="message" value="" scope="session" />
 </c:if>
 
 <%--If item was found, show the item data--%>
