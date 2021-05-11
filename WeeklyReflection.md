@@ -136,3 +136,15 @@ Tasks completed:
 - Peer code review 
 
 I feel a little bit silly right now. Due to an initially shaky understanding of GET vs POST I defaulted to using GET for all of my project without really thinking about it. However, I had a little extra time this morning and decided that once and for all I was going to understand the difference. Imagine my shock to realize that the difference was quite simple once I found a good explanation that made sense to me, and that I've done a ton of extra work on my project due to using GETs instead of POSTs. I correctly realized that having sensitive info in my URLs was a no-go so I used a bunch of servlets and sessions in order to hide that data, but much of my work could have been expedited by using POSTs from the start. I took the time today to convert all my GETs that should be POSTs into POSTs, and now I am sure I will always remember the difference. I have a lot of error handling in my project that I'm now wondering if it's even necessary, but for now I'm sure extra error handling won't hurt anything. 
+
+### Week 15/16
+
+Tasks completed:
+- Converted scriplets to JSTL
+- Updated styling
+_ Added javadoc
+- Added support for non-crop item searches
+- Other finished touches
+- Recorded presentation 
+
+The final week! With most of my project done, I spent the last two weeks adding in finishing touches like correcting any last-minute issues, updating styling, adding javadoc, and adding support for searching non-crop items like artisan goods, animal products, fish, and more. Overall working on this project has been such a journey, but I am very happy with how it turned out and I'm proud to have it as part of my portfolio!

@@ -50,3 +50,7 @@
 |4/29/21|Code review demo|1|
 |5/2/21|Code review|2|
 |5/6/21|Add styling to Favorites table, added error handling, other clean-up|5|
+|5/7/21|Added styling and support for valid non-crop item searches |1.5|
+|5/8/21|Added javadoc, updated footer and styling, worked on presentation|3|
+|5/9/21|Replaced scriplets with JSTL|1|
+|5/11/21|Recorded presentation, final clean-up|4|

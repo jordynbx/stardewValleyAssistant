@@ -13,11 +13,14 @@
     </form-login-config>
   </login-config>
 
-<!--   Protect the user favorites page. -->
+<!--   Protect everything in the "user" directory . -->
   <security-constraint>
     <web-resource-collection>
-      <web-resource-name>favorites</web-resource-name>
+      <web-resource-name>RequiresUserRole</web-resource-name>
       <url-pattern>/favorites</url-pattern>
+      <url-pattern>/favorites.jsp</url-pattern>
+      <url-pattern>/account</url-pattern>
+      <url-pattern>/account.jsp</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>admin</role-name>
@@ -25,22 +28,10 @@
     </auth-constraint>
   </security-constraint>
 
-<!--   Protect the user account page. -->
-  <security-constraint>
-    <web-resource-collection>
-        <web-resource-name>account</web-resource-name>
-        <url-pattern>/account</url-pattern>
-    </web-resource-collection>
-    <auth-constraint>
-        <role-name>admin</role-name>
-        <role-name>user</role-name>
-    </auth-constraint>
-  </security-constraint>
-
-<!--  <error-page>-->
-<!--    <exception-type>java.lang.Throwable</exception-type>-->
-<!--    <location>/error.jsp</location>-->
-<!--  </error-page>-->
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/error.jsp</location>
+  </error-page>
 
   <!-- Protect everything in the adminOnly directory -->
   <security-constraint>

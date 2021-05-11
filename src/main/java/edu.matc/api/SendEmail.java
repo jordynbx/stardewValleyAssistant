@@ -87,6 +87,7 @@ public class SendEmail implements PropertiesLoader {
                     MimeMessage.RecipientType.TO, InternetAddress.parse(email));
 
             message.setSubject("Stardew Valley Assistant Password Reset");
+            // Uncomment link based on local or AWS deployment
             message.setText("Please paste the following link into your browser to reset your password." +
                     " Please note this link expires in 30 minutes.\n" +
                     "http://localhost:8080/stardewValleyAssistant/newPassword?token=" + token);
