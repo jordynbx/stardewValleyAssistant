@@ -43,7 +43,6 @@ public class NewPasswordAction extends HttpServlet {
         String url = "";
         String userToken = request.getParameter("token");
 
-
         // Get username to update password for
         Token token = tokenDao.getByUniquePropertyEqualString("token", userToken);
 

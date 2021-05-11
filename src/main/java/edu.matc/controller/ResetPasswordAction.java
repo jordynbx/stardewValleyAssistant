@@ -60,9 +60,7 @@ public class ResetPasswordAction extends HttpServlet {
             // get time 30 minutes away
             Calendar date = Calendar.getInstance();
             long timeInSecs = date.getTimeInMillis();
-//            log.info("orig time: " + date);
             Timestamp expiration = new Timestamp(timeInSecs + (30 * 60 * 1000));
-//            log.info("new time: " + expiration);
 
             // check if there is an existing token for this user
             Token existingToken = tokenDao.getByUniquePropertyEqualInt("user", user.getId());
