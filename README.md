@@ -23,7 +23,7 @@ A potential future update will incorporate the ability for logged in users to cu
 * Dependency Management
     * Maven
 * CSS
-    * Bootstrap or Materialize (tbd)
+    * Bootstrap
 * Data Validation
     * Bootstrap Validator for front end
     * Explore Hibernate's validation
@@ -32,12 +32,8 @@ A potential future update will incorporate the ability for logged in users to cu
 * Hosting
     * AWS
 * Independent Research Topic/s
-    * CI tools in AWS
-    * Materialize
-    * Google Maps API
-    * Hibernate Validation
-    * Hibernate Search
-* Project Lombok
+    * Javamail API
+    * Project Lombok
 * Unit Testing
     * JUnit tests to achieve 80%+ code coverage
 * IDE: IntelliJ IDEA
@@ -45,15 +41,11 @@ A potential future update will incorporate the ability for logged in users to cu
 ### Design
 * [User Stories](DesignDocuments/userStories.md)
 * [Screen Design](DesignDocuments/wireframes)
-* [Application Flow] - TBD
 * [Database Design](DesignDocuments/db_design.png)
 
-### [Project Plan](ProjectPlan.md)
 
-### Examples of documentation of progress, reflections, and time spent on this class
-Choose a format that works for you, or create your own.
-
-#### [Weekly Refelection](WeeklyReflection.md)
-#### [Journal](Journal.md)
-#### [TimeLog](TimeLog.md)
-
+### Project
+* [Project Plan](ProjectPlan.md)
+* [Time Log](TimeLog.md)
+* [Weekly Reflection](WeeklyReflection.md)
+* [Project Demo](https://youtu.be/WWhY-HLtwwg)
